@@ -1,24 +1,25 @@
+import classes from './style.module.css';
 
 const Navbar = () => {
   return ( 
-    <div className="it-nav-wrapper">
-    <div className="it-header-center-wrapper">
+    <div className={classes["it-nav-wrapper"]}>
+    <div className={classes["it-header-center-wrapper"]}>
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="it-header-center-content-wrapper">
+            <div className={classes["it-header-center-content-wrapper"]}>
               <div className="it-brand-wrapper">
                 <a href="#" title="Vai alla homepage">
                   <svg className="icon" aria-hidden="true">
                     {/* <use href="../assets/bootstrap-italia/dist/svg/sprites.svg#it-pa"></use> */}
                   </svg>
-                  <div className="it-brand-text">
+                  <div className={classes["it-brand-text"]}>
                     <div className="it-brand-title">Nome del Comune</div>
                   </div>
                 </a>
               </div>
-              <div className="it-right-zone">
-                <div className="it-socials d-none d-lg-flex">
+              <div className={classes["it-right-zone"]}>
+                <div className={`${classes['it-socials']} d-none d-lg-flex`}>
                   <span>Seguici su</span>
                   <ul>
                     <li>
@@ -79,7 +80,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
-    <div className="it-header-navbar-wrapper" id="header-nav-wrapper">
+    <div className={classes["it-header-navbar-wrapper"]} id="header-nav-wrapper">
       <div className="container">
         <div className="row">
           <div className="col-12">
@@ -105,8 +106,8 @@ const Navbar = () => {
                     <svg className="icon" aria-hidden="true">
                       {/* {/* <use href="../assets/bootstrap-italia/dist/svg/sprites.svg#it-pa"></use> */} 
                     </svg>
-                    <div className="it-brand-text">
-                      <div className="it-brand-title">Nome del Comune</div>
+                    <div className={classes["it-brand-text"]}>
+                      <div className={classes["it-brand-title"]}>Nome del Comune</div>
                     </div>
                   </a>
                   <ul className="navbar-nav" data-element="main-navigation">
@@ -147,7 +148,7 @@ const Navbar = () => {
                       </a>
                     </li>
                   </ul>
-                  <div className="it-socials">
+                  <div className={classes["it-socials"]}>
                     <span>Seguici su</span>
                     <ul>
                       <li>
