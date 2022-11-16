@@ -6,17 +6,7 @@ return [
 
     'auth_profiles' => [
 
-        /*
-         * Authenticate using a service account.
-         */
-        'service_account' => [
-            /*
-             * Path to the json file containing the credentials.
-             */
-            'credentials_json' => storage_path('app/google-calendar/service-account-credentials.json'),
-        ],
-
-        /*
+           /*
          * Authenticate with actual google user account.
          */
         'oauth' => [
@@ -29,6 +19,16 @@ return [
              * Path to the json file containing the oauth2 token.
              */
             'token_json' => storage_path('app/google-calendar/oauth-token.json'),
+        ],
+
+        /*
+         * Authenticate using a service account.
+         */
+        'service_account' => [
+            /*
+             * Path to the json file containing the credentials.
+             */
+            'credentials_json' => storage_path('app/google-calendar/service-account-credentials.json'),
         ],
     ],
 

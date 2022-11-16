@@ -18,3 +18,4 @@ yarn-error.log
 /.vscode
 /google_credentials.json
 .DS_Store
+/app/google-calendar/service-account-credentials.json

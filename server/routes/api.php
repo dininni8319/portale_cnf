@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\AuthPassportController;
 use App\Http\Controllers\VerificationController;
-use App\Http\Controllers\SearchConsoleController;
+use App\Http\Controllers\GoogleCalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +18,7 @@ use App\Http\Controllers\SearchConsoleController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('/calendar/create/event', [GoogleCalendarController::class, 'createNewReservation']);
 
 Route::group(['middleware' => 'CORS'],function ($router){
     //login with passport
@@ -33,7 +34,6 @@ Route::group(['middleware' => 'CORS'],function ($router){
         Route::get('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
     });
 
-    
     Route::get('/home', function () {
         return response()->json('Hello world', 200);
     });
@@ -41,6 +41,8 @@ Route::group(['middleware' => 'CORS'],function ($router){
     //login with google
     Route::get('google/login/url', [AuthController::class, 'getAuthUrl']);
     Route::post('google/auth/login', [AuthController::class, 'postLogin']);
+
+    //google calendar apis
 });
    
 
