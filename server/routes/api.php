@@ -18,7 +18,7 @@ use App\Http\Controllers\GoogleCalendarController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/calendar/create/event', [GoogleCalendarController::class, 'createNewReservation']);
+Route::post('/calendar/create/event', [GoogleCalendarController::class, 'createNewReservation']);
 
 Route::group(['middleware' => 'CORS'],function ($router){
     //login with passport

@@ -8,15 +8,22 @@ use Spatie\GoogleCalendar\Event;
 
 class GoogleCalendarController extends Controller
 { 
-  public function createNewReservation(){
-    $event = new Event;
+  public function createNewReservation(Request $request){
+    $event = new Event();
+    
+    $startTime = Carbon::parse(
+      $request->meeting_date. " ".$request->meeting_time.'Europe/Rome'
+    );
 
-    $event->name = 'Prenotazione appuntamento';
-    $event->description = 'Appunatmento prestazioni';
-    $event->startDateTime = Carbon::now()->addHours(5);
-    $event->endDateTime = Carbon::now()->addHours(7);
-
-    $event->save();
+    $endTime = (clone $startTime)->addHour();
+    $event = Event::create([
+      'name' => $request->name,
+      'description' => $request->description,
+      'startDateTime' => $startTime,
+      'endDateTime' => $endTime,
+      'attendee'=> $request->email,
+   ]);
+  
     if (!$event) {
       return response()->json([
         'msg' => "L'evento non è stato creato!"
