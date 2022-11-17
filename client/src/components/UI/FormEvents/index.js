@@ -1,5 +1,5 @@
 import useInput from "../../Hooks/useInput";
-
+import classes from './style.module.css';
 const FormEvents = () => {
   const email = useInput("");
   const name = useInput("");
@@ -29,38 +29,38 @@ const FormEvents = () => {
       });
   };
   return ( 
-    <>
+    <div className={classes.formContainer}>
       <form className="mb-3 row" onSubmit={handleEvent}>
            <div>
             <label for="staticEmail" className="col-sm-2 col-form-label">Email</label>
             <div className="col-sm-10">
               <input 
                 type="email"  
-                className="form-control-plaintext" 
+                className="form-control" 
                 id="staticEmail" 
                 value="email@example.com" 
                 {...email}
               />
             </div>
           </div>
-          <div className="mb-3 row">
+          <div className="mb-3">
             <label for="inputName" className="col-sm-2 col-form-label">Name</label>
             <div className="col-sm-10">
               <input type="text" className="form-control" id="inputName" {...name}/>
             </div>
           </div>
-          <div className="mb-3 row">
+          <div className="mb-3">
             <div className="col-sm-10">
               <textarea name="" id="" cols="30" rows="10" {...description}>description</textarea>
             </div>
           </div>
-          <div className="mb-3 row">
+          <div className="mb-3">
             <label for="inputDate" className="col-sm-2 col-form-label">Date</label>
             <div className="col-sm-10">
               <input type="date" className="form-control" id="inputDate" {...date}/>
             </div>
           </div>
-          <div className="mb-3 row">
+          <div className="mb-3">
             <label for="inputDate" className="col-sm-2 col-form-label">Time</label>
             <div className="col-sm-10">
               <input type="time" className="form-control" id="inputDate" {...time}/>
@@ -68,7 +68,7 @@ const FormEvents = () => {
           </div>
           <button type="submit">Submit</button>
       </form>
-    </>  
+    </div>  
    );
 }
  
