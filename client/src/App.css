@@ -1,38 +1,54 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap');
+
+:root{
+  --backgroundColor: #F5F6FA;
+  --vanillaColor: #f2f2f2; 
+  --accentColor: #C3DBF5;
+  --textColor:#8590AA;
+  --borderColor: #FFFFFF;
+  --grayColor: #303030;
+  --orangeColor: #ff8c00;
+  --navColor: #323B59; 
+  --greenColor: #79c09c;
+  --blueColor: #272D36;
+  --headerColor: #A49F9F; 
+  --svgColor: white; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Titillium Web', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  width: 100vw;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  list-style: none;
+}
+
+.nav-ul-width{
+  width: 40%;
+}
+.nav-link {
   color: white;
+  font-size: 18px;
+  font-weight: 700;
+}
+.navbar-color {
+  background-color: var(--greenColor);
 }
 
-.App-link {
-  color: #61dafb;
+.footer-color {
+  background-color: var(--headerColor);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.svg-color {
+  fill: white;
 }

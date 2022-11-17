@@ -1,0 +1,9 @@
+export { default as Facebook } from "./facebook.svg";
+export { default as Telegram } from "./telegram.svg";
+export { default as Youtube } from "./youtube.svg";
+export { default as Twitter } from "./twitter.svg";
+export { default as Wifi } from "./wifi.svg";
+export { default as UserAuth } from "./user-auth.svg";
+export { default as Whatsapp } from "./whatsapp.svg";
+export { default as Search } from "./search.svg";
+export { default as ListButton } from "./list-button.svg";
