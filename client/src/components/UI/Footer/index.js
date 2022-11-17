@@ -7,7 +7,6 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 footer-items-wrapper logo-wrapper">
-              {/* <img className="ue-logo" src="../assets/images/logo-eu-inverted.svg" alt="logo Unione Europea"> */}
               <div className="it-brand-wrapper">
                 <a href="#" className="text-decoration-none">
                   <div className={classes["it-brand-title"]}>
