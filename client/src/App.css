@@ -13,6 +13,7 @@
   --blueColor: #272D36;
   --headerColor: #A49F9F; 
   --svgColor: white; 
+  --footerColor: #272D36;
 }
 
 * {
@@ -52,4 +53,23 @@ ul {
 
 .svg-color {
   fill: white;
+}
+
+.footer-color-custom {
+  background-color: var(--footerColor);
+}
+
+a {
+  color: white;
+  font-size: .8888888889rem;;
+  font-weight: 700;
+}
+
+h3 {
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bolder;
+  padding-bottom: 20px;
+  border-bottom: 1px solid hsla(0,0%,100%,.5);
 }
