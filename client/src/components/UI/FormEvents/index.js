@@ -59,11 +59,11 @@ const FormEvents = () => {
   };
 
   return ( 
-    <div className={classes.formContainer}>
-      <form className="mb-3 row custom-height-class" onSubmit={handleEvent}>
-        <h2>Prenota un appuntamento</h2>
+    <div className={`${classes.formContainer}`}>
+      <form className="mb-3 row p-5 bg-gray d-md-flex align-items-center mt-5 col-md-5" onSubmit={handleEvent}>
+        <h2 className="mb-3">Prenota un appuntamento</h2>
         { 
-          step === 1 && <Ufficio ufficio={ufficio} />
+          step === 1 && <Ufficio ufficio={ufficio}/>
         }
 
         { 
@@ -90,13 +90,14 @@ const FormEvents = () => {
         {
           step === 5 && <Riepilogo config={config}/>
         }
-        <StepsComponents 
-            handlePrevStep={handlePrevStep}
-            handleNextStep={handleNextStep}
-            handleEvent={handleEvent}
-            step={step}
-        />
+
       </form>
+        <StepsComponents 
+              handlePrevStep={handlePrevStep}
+              handleNextStep={handleNextStep}
+              handleEvent={handleEvent}
+              step={step}
+        />
     </div>  
    );
 }

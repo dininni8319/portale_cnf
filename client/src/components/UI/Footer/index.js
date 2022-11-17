@@ -27,7 +27,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a href="#">Aree amministrative</a>
-                </li>
+               </li>
                 <li>
                   <a href="#">Uffici</a>
                 </li>
@@ -141,8 +141,7 @@ const Footer = () => {
                     Centralino unico: 012 3456
                   </p>
                 </div>
-                
-            
+
                 <div className="col-md-4">
                   <ul className="footer-list">
                     <li>

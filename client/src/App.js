@@ -9,7 +9,9 @@ const App = () => {
     <>
       <Header />
       <Navbar />
-      <FormEvents />
+      <div className="custom-height-class">
+         <FormEvents />
+      </div>
       <Footer />
     </>
 

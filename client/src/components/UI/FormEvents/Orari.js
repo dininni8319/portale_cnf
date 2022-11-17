@@ -1,7 +1,7 @@
 const Orari = ({ date, time }) => {
   return ( 
     <section>
-        <h3>Orari</h3>
+        <h4>Orari</h4>
         <div className="mb-3">
           <label for="inputDate" className="col-sm-2 col-form-label">Date</label>
           <div className="col-sm-10">

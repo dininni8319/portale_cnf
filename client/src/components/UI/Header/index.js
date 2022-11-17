@@ -33,7 +33,7 @@ const Header = () => {
                       </div>
                         <a className={`bg-white ${classes['it-aria-personale-btn']} d-md-flex`} href="#" data-element="personal-area-login">
                           <span className="rounded-icon position-relative" aria-hidden="true">
-                           <FontAwesomeIcon icon={faUser} size="1xs" className={`${classes.iconUser}`} />
+                           <FontAwesomeIcon icon={faUser} size="1x" className={`${classes.iconUser}`} />
                           </span>
                         </a>
                         <span className="d-none d-lg-block px-3 text-white fs-5 fw-bolder">Accedi all'area personale</span>
