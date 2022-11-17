@@ -57,12 +57,18 @@
 }
 
 .it-aria-personale-btn {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 
 .it-icon-area-riservata {
   color: #00402b;
-  
+}
+
+.iconUser {
+  color: var(--greenColor);
+  position: relative;
+  left: 55%;
+  top: 7%;
 }

@@ -1,3 +1,7 @@
+.it-nav-wrapper {
+   min-height: 25vh;
+}
+
 .navbar .navbar-collapsable .menu-wrapper {
   background: #fff;
   position: absolute;
@@ -10,4 +14,42 @@
   transform: translateX(-100%);
   transition: all .2s cubic-bezier(.29,.85,.5,.99);
   z-index: 5;
+}
+
+.it-header-center-content-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 15vh;
+}
+
+.it-brand-title {
+  font-size: 32px;
+  color: white;
+  font-weight: 900;
+}
+
+.navbar-style-custom {
+  display: flex;
+  align-items: flex-end;
+  height: 10vh;
+  width: 100vw;
+}
+
+.search-botton-navbar {
+  background-color: white;
+  outline: none;
+  border-radius: 50%;
+  padding: 20px;
+  border: none;
+  width: 1em;
+  height: 1em;
+  position: relative;
+}
+
+.icon-search {
+  position: absolute;
+  top: 30%;
+  right: 30%;
+  color: var(--greenColor);
 }

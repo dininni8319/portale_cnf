@@ -34,13 +34,14 @@ ul {
 }
 
 .nav-ul-width{
-  width: 40%;
+  min-width: 20vw;
 }
 .nav-link {
   color: white;
   font-size: 18px;
   font-weight: 700;
 }
+
 .navbar-color {
   background-color: var(--greenColor);
 }

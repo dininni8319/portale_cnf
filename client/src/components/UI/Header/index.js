@@ -1,7 +1,6 @@
 import { faUser} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from './style.module.css';
-import { UserAuth } from "../../../svgs/index";
 
 const Header = () => {
   return ( 
@@ -11,7 +10,7 @@ const Header = () => {
               <div className="row">
                 <div className="col-12">
                   <div className={classes['it-header-slim-wrapper-content']}>
-                    <a className="d-lg-block navbar-brand text-white" target="_blank" href="#" aria-label="Vai al portale {Nome della Regione} - link esterno - apertura nuova scheda" title="Vai al portale {Nome della Regione}">Nome della Regione</a>
+                    <a className="d-lg-block navbar-brand text-white nav-link" target="_blank" href="#" aria-label="Vai al portale {Nome della Regione} - link esterno - apertura nuova scheda" title="Vai al portale {Nome della Regione}">Nome della Regione</a>
                     <div className={classes["it-header-slim-right-zone"]} role="navigation">
                       <div className={`nav-item dropdown px-5`}>
                         <button type="button" className={`nav-link dropdown-toggle bg-transparent text-white fw-bold ${classes.btnSelect}`} data-bs-toggle="dropdown" aria-expanded="false" aria-controls="languages" aria-haspopup="true">
@@ -32,12 +31,12 @@ const Header = () => {
                           </div>
                         </div>
                       </div>
-                        <a className={`bg-white ${classes['it-aria-personale-btn']}`} href="#" data-element="personal-area-login">
-                          <span className="rounded-icon" aria-hidden="true">
-                            <img src={UserAuth} alt='user login' className={classes["it-icon-area-riservata"]} />
+                        <a className={`bg-white ${classes['it-aria-personale-btn']} d-md-flex`} href="#" data-element="personal-area-login">
+                          <span className="rounded-icon position-relative" aria-hidden="true">
+                           <FontAwesomeIcon icon={faUser} size="1xs" className={`${classes.iconUser}`} />
                           </span>
-                          <span className="d-none d-lg-block">Accedi all'area personale</span>
                         </a>
+                        <span className="d-none d-lg-block px-3 text-white fs-5 fw-bolder">Accedi all'area personale</span>
                     </div>
                   </div>
                 </div>

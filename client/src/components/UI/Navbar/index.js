@@ -18,16 +18,16 @@ const Navbar = () => {
             <div className="col-12">
               <div className={classes["it-header-center-content-wrapper"]}>
                 <div className="it-brand-wrapper">
-                  <a href="#" title="Vai alla homepage">
+                  <a href="#" title="Vai alla homepage" className="text-decoration-none">
                     <div className={classes["it-brand-text"]}>
-                      <div className="it-brand-title">Nome del Comune</div>
+                      <h1 className={classes["it-brand-title"]}>Nome del Comune</h1>
                     </div>
                   </a>
                 </div>
                 <div className={classes["it-right-zone"]}>
                   <div className={`${classes['it-socials']} d-none d-md-flex`}>
                     <span className='nav-link'>Seguici su</span>
-                    <ul className="d-md-flex justify-content-md-between nav-ul-width">
+                    <ul className="d-md-flex justify-content-md-around nav-ul-width">
                       <li>
                         <a href="#" target="_blank">
                             <FontAwesomeIcon icon={faTwitter} size="2x" className="text-white"/> 
@@ -66,25 +66,24 @@ const Navbar = () => {
                       </li>
                     </ul>
                   </div>
+                </div>
                   <div className="it-search-wrapper">
-                    <span className="d-none d-md-block">Cerca</span>
-                    <button className="search-link rounded-icon" type="button" data-bs-toggle="modal" data-bs-target="#search-modal" aria-label="Cerca nel sito">
-                      <FontAwesomeIcon icon={faSearch} size="2x" className="text-dark"/>
+                    <span className="d-none">Cerca</span>
+                    <button className={`search-link rounded-icon ${classes['search-botton-navbar']}`} type="button" data-bs-toggle="modal" data-bs-target="#search-modal" aria-label="Cerca nel sito">
+                      <FontAwesomeIcon icon={faSearch} size="1x" className={classes['icon-search']}/>
                     </button>
                   </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <nav class="navbar navbar-expand-lg">
+      <nav class={`navbar navbar-expand-lg ${classes['navbar-style-custom']}`}>
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse d-md-flex justify-content-around" id="navbarNavDropdown">
+          <div class="collapse navbar-collapse d-md-flex justify-content-md-evenly" id="navbarNavDropdown">
             <ul class="navbar-nav">
               <li className="nav-item">
                 <a className="nav-link" href="#" data-element="management">
