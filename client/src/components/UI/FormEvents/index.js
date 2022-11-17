@@ -1,72 +1,101 @@
+import { useState } from "react";
 import useInput from "../../Hooks/useInput";
+import DettagliAppuntamento from "./DettagliAppuntamento";
+import Orari from "./Orari";
+import Richiedente from "./Richiedente";
+import Riepilogo from "./Riepilogo";
+import StepsComponents from "./StepsComponent";
 import classes from './style.module.css';
+import Ufficio from "./Ufficio";
+
 const FormEvents = () => {
   const email = useInput("");
-  const name = useInput("");
-  const description = useInput("");
+  const first_name = useInput("");
+  const last_name = useInput("");
+  const codicefiscale = useInput("");
   const date = useInput("");
   const time = useInput("");
+  const tipologiaRichiesta = useInput("");
+  const ufficio = useInput("");
+  const description = useInput("");
+  const phone = useInput("");
+  const [ step, setStep ]= useState(1);
+  
+  const handlePrevStep = (e) => {
+    e.preventDefault();
+    setStep(prevStep => prevStep > 1 ? prevStep - 1 : prevStep );
+  }
+
+  const handleNextStep = (e) => {
+    e.preventDefault();
+    setStep(nextStep => nextStep < 5 ? nextStep + 1 : nextStep );
+  }
+
+  const config = {
+    email: email.value, 
+    first_name: first_name.value,
+    last_name: last_name.value,
+    description: description.value,
+    date: date.value,
+    time: time.value,
+    codicefiscale: codicefiscale.value,
+    tipologiaRichiesta: tipologiaRichiesta.value,
+    ufficio: ufficio.value,
+    phone: phone.value,
+  }
 
   const handleEvent = (event) => {
     event.preventDefault();
-    // console.log({email: email.value, password: password.value}, 'response from the server when we try to login');
 
     fetch(`http://localhost:8000/api/calendar/create/event`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        email: email.value, 
-        name: name.value,
-        description: description.value,
-        date: date.value,
-        time: time.value
-      }),
+      body: JSON.stringify(config),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, 'testing the data');
-      
+        console.log(data, 'testing the data'); 
       });
   };
+
   return ( 
     <div className={classes.formContainer}>
-      <form className="mb-3 row" onSubmit={handleEvent}>
-           <div>
-            <label for="staticEmail" className="col-sm-2 col-form-label">Email</label>
-            <div className="col-sm-10">
-              <input 
-                type="email"  
-                className="form-control" 
-                id="staticEmail" 
-                value="email@example.com" 
-                {...email}
-              />
-            </div>
-          </div>
-          <div className="mb-3">
-            <label for="inputName" className="col-sm-2 col-form-label">Name</label>
-            <div className="col-sm-10">
-              <input type="text" className="form-control" id="inputName" {...name}/>
-            </div>
-          </div>
-          <div className="mb-3">
-            <div className="col-sm-10">
-              <textarea name="" id="" cols="30" rows="10" {...description}>description</textarea>
-            </div>
-          </div>
-          <div className="mb-3">
-            <label for="inputDate" className="col-sm-2 col-form-label">Date</label>
-            <div className="col-sm-10">
-              <input type="date" className="form-control" id="inputDate" {...date}/>
-            </div>
-          </div>
-          <div className="mb-3">
-            <label for="inputDate" className="col-sm-2 col-form-label">Time</label>
-            <div className="col-sm-10">
-              <input type="time" className="form-control" id="inputDate" {...time}/>
-            </div>
-          </div>
-          <button type="submit">Submit</button>
+      <form className="mb-3 row custom-height-class" onSubmit={handleEvent}>
+        <h2>Prenota un appuntamento</h2>
+        { 
+          step === 1 && <Ufficio ufficio={ufficio} />
+        }
+
+        { 
+          step === 2 && <Orari date={date} time={time}/>
+        }
+
+        { 
+          step === 3 && <DettagliAppuntamento 
+                          description={description} 
+                          tipologiaRichiesta={tipologiaRichiesta} 
+                        />
+        }
+
+        { 
+          step === 4 && <Richiedente 
+                          first_name={first_name} 
+                          last_name={last_name}
+                          email={email}
+                          codicefiscale={codicefiscale}
+                          phone={phone}
+                        />
+        }
+
+        {
+          step === 5 && <Riepilogo config={config}/>
+        }
+        <StepsComponents 
+            handlePrevStep={handlePrevStep}
+            handleNextStep={handleNextStep}
+            handleEvent={handleEvent}
+            step={step}
+        />
       </form>
     </div>  
    );

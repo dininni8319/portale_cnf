@@ -73,3 +73,7 @@ h3 {
   padding-bottom: 20px;
   border-bottom: 1px solid hsla(0,0%,100%,.5);
 }
+
+.custom-height-class {
+  min-height: 50vh;
+}
