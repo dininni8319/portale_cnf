@@ -1,9 +1,35 @@
+// Everything except weekend days
+export const excludeWeekends = dateString => {
+  const day = (new Date(dateString)).getDay();
+  if (day==0 || day==6) {
+    return false;
+  }
+  return true;
+}
+
+export function getCurrentDate() {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1; //January is 0!
+    let yyyy = today.getFullYear();
+
+    if (dd < 10) {
+      dd = '0' + dd;
+    }
+
+    if (mm < 10) {
+      mm = '0' + mm;
+    } 
+        
+    return yyyy + '-' + mm + '-' + dd;
+}
+
 export function formatDate(date){
   if (!date) return "The date was not found!";
   let time = new Date(date);
   let timeNow = new Date().getDay();
 
-  let day = time.getDay() + 1;
+  let day = time.getDate();
   let month = time.getMonth() + 1;
   let year = time.getFullYear()
 
@@ -62,7 +88,7 @@ export const validateForm = ( values ) => {
   }
 
   if (!tipologiaRichiesta) {
-    error.tipologiaRichiesta = `La tipologia di richiesta è obbligatoria!`; 
+    error.tipologiaRichiesta = `Il motivo della richiesta è obbligatorio!`; 
   }
 
   if (!ufficio) {

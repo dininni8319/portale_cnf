@@ -1,8 +1,9 @@
-const Orari = ({ date, time,  }) => {
-  let lengthDate = date.value.length;
-  let lengthTime = time.value.length;
-  // let message = <span className='text-danger text-small'>Field is Required</span>
-  
+import { getCurrentDate, excludeWeekends } from "../../../utilities";
+
+const Orari = ({ date, time }) => {
+
+  const minDate = getCurrentDate();
+
   return ( 
     <section>
         <h4 className='h4'>Orari</h4>
@@ -12,7 +13,8 @@ const Orari = ({ date, time,  }) => {
             <input 
               type="date" 
               className="form-control" 
-              id="inputDate" 
+              id="inputDate"
+              min={minDate} 
               {...date}
               required
             />

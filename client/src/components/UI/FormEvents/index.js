@@ -21,6 +21,7 @@ const FormEvents = () => {
   const ufficio = useInput("");
   const description = useInput("");
   const phone = useInput("");
+  const [message, setMessage] = useState('');
   const [ step, setStep ]= useState(1);
   const [ formErrors, setFormErrors ] = useState({});
   const [ isSubmited, setIsSubmited ] = useState(false);
@@ -53,8 +54,9 @@ const FormEvents = () => {
     event.preventDefault();
     
     setFormErrors(validateForm(config));
-    setIsSubmited(true)
-    if (formErrors.length === 0) {
+    setIsSubmited(true);
+    
+    if (Object.keys(formErrors).length === 0) {
       fetch(`http://localhost:8000/api/calendar/create/event`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -62,10 +64,13 @@ const FormEvents = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data, 'testing the data'); 
+          console.log(data.event);
+          if (data.event.googleEvent.id) {
+            setMessage(data.msg);
+          }
+          
         });
-    }
-     console.log('errors forms');
+    } 
   };
 
   return ( 
@@ -104,6 +109,7 @@ const FormEvents = () => {
           })}
          </div>
       </form>
+       {message && <div className="text-success fs-4 fw-bold">{message}</div>}
         <StepsComponents 
               handlePrevStep={handlePrevStep}
               handleNextStep={handleNextStep}
