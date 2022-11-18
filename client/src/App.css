@@ -79,6 +79,9 @@ button {
   background-color: transparent;
 }
 
+.bg-green-custom {
+  background-color: var(--greenColor);
+}
 .btn-color-green {
   border-radius: 4px;
   white-space: normal;

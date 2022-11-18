@@ -4,7 +4,7 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 const StepsComponents = ({ 
   handlePrevStep,
   handleNextStep,
-  handleEvent,
+  handleSubmit,
   step,
 }) => {
   return ( 
@@ -13,7 +13,7 @@ const StepsComponents = ({
           <FontAwesomeIcon icon={faAngleLeft} size="1x" className="pe-1 text-green-dark"/>
           Indietro
       </button>}
-       { step === 5 && <button disabled={`${step === 5 ? '' : 'disabled'}`} className='btn btn-outline-success' onClick={handleEvent}>Salva Richiesta</button>}
+       { step === 5 && <button disabled={`${step === 5 ? '' : 'disabled'}`} className='btn btn-outline-success' onClick={handleSubmit}>Salva Richiesta</button>}
       { step !== 5 && <button type='button' className="btn-color-green text-white fw-bold" onClick={handleNextStep}>
           Avanti
           <FontAwesomeIcon icon={faAngleRight} size="1x" className="ps-1 text-white"/> 
