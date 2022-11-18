@@ -1,3 +1,4 @@
+import { formatDate } from "../../../utilities";
 const Riepilogo = ({ config }) => {
   const { 
     email,
@@ -13,35 +14,62 @@ const Riepilogo = ({ config }) => {
    } = config;
 
   return ( 
-    <section className='component-wrapper'>
+    <section>
         
-          <div className="info-progress-body d-flex justify-content-between align-items-end py-3 col-12 px-2">
-            <span className="title-medium text-uppercase fw-bold">Luogo:</span>
-            <span className="">{ufficio}</span>
+          <div className="py-3 col-12 px-2 component-wrapper mb-3 px-3">
+            <h4 className='h4 input-custom-style py-3'>Ufficio</h4>
+            <div className="d-flex justify-content-between align-items-end input-custom-style py-3">
+              <span className="title-medium text-uppercase fw-bold">Luogo:</span>
+              <span className="">{ufficio}</span>
+            </div>
           </div>
         
-          <div className="info-progress-body d-flex justify-content-between align-items-end py-3 col-12 px-2">
-            <span className="title-medium text-uppercase fw-bold">Data e orario:</span>
-            <span className="">{date}  {time}</span>
+          <div className="py-3 col-12 component-wrapper mb-3 px-3">
+          <h4 className='h4 input-custom-style py-3'>Orari</h4>
+            <div className="d-flex justify-content-between align-items-end input-custom-style py-3">
+              <span className="title-medium text-uppercase fw-bold">Data e orario:</span>
+              <span className="fw-bold">{time} {formatDate(date)}</span>
+            </div>
           </div>
 
-
-          <div className="info-progress-body d-flex flex-column py-3 col-12 px-2">
-            <span className="title-medium text-uppercase fw-bold">Dettagli appuntamento</span>
-            <ul>
-              <li><span className="title-medium text-capitalize fw-bold">Motivo: </span>{tipologiaRichiesta}</li>
-              <li><span className="title-medium text-capitalize fw-bold">Dettaglio: </span>{description}</li>
+          <div className="info-progress-body d-flex flex-column py-3 col-12 px-3 component-wrapper mb-3">
+            <h4 className='h4 input-custom-style py-3'>Dettaglio Appuntamento</h4>
+            <ul className='ul py-3'>
+              <li className="d-flex justify-content-between align-items-end input-custom-style py-3">
+                <strong>Motivo: </strong>
+                <span className="title-medium text-capitalize fw-bold py-3"></span>{tipologiaRichiesta}
+              </li>
+              <li className="d-flex justify-content-between align-items-end input-custom-style py-3">
+                <strong>Dettaglio: </strong>
+                <span className="title-medium text-capitalize fw-bold py-3"></span>{description}
+              </li>
             </ul>
           </div>
 
-          <div className="info-progress-body d-flex flex-column py-3 col-12 px-2">
-            <span className="d-block h-100 title-medium text-uppercase">Richiedente</span>
-            <ul>
-              <li>Email: {email}</li>
-              <li>Nome: {first_name}</li>
-              <li>Cognome: {last_name}</li>
-              <li>Telefono: {phone}</li>
-              <li>Cod/Fiscale: {codicefiscale}</li>
+          <div className="py-3 col-12 component-wrapper mb-3 px-3">
+            <h4 className='h4 input-custom-style py-3'>Richiedente</h4>
+            <ul className='ul-custom-style py-3'>
+              <li className="d-flex justify-content-between align-items-end input-custom-style py-3">
+                <strong>Email:</strong>
+                <span>{email}</span>
+              </li>
+
+              <li className="d-flex justify-content-between align-items-end input-custom-style py-3">
+                <strong>Nome: </strong>
+                <span>{first_name}</span>
+                </li>
+              <li className="d-flex justify-content-between align-items-end input-custom-style py-3">
+                <strong>Cognome: </strong>
+                <span>{last_name}</span>
+                </li>
+              <li className="d-flex justify-content-between align-items-end input-custom-style py-3">
+                <strong>Telefono: </strong>
+                <span>{phone}</span>
+              </li>
+              <li className="d-flex justify-content-between align-items-end input-custom-style py-3">
+                <strong>Cod/Fiscale: </strong>
+                <span>{codicefiscale}</span>
+              </li>
             </ul>
              
           </div>
