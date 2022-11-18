@@ -1,7 +1,7 @@
 const DettagliAppuntamento = ({ description, tipologiaRichiesta }) => {
   return ( 
     <section>
-      <h4>Dettaglio Appuntamento</h4>
+      <h4 className='h4'>Dettaglio Appuntamento</h4>
       <div className="mb-3 col-sm-10">
         <label htmlFor="">Motivo*</label>
         <select className="form-select " aria-label="Default select example" {...tipologiaRichiesta} required>

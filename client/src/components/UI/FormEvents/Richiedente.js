@@ -1,7 +1,7 @@
 const Richiedente = ( { email, first_name,last_name, phone, codicefiscale }) => {
   return ( 
     <section className="component-wrapper px-5">
-        <h4>Richiedente</h4>
+        <h4 className='h4'>Richiedente</h4>
          <div>
             <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Email*</label>
             <div className="col-sm-10">

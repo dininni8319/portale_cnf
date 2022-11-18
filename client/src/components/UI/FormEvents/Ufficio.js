@@ -1,7 +1,7 @@
 const Ufficio = ({ ufficio }) => {
   return ( 
     <section className="mb-3" required>
-        <h4>Ufficio*</h4>
+        <h4 className='h4'>Ufficio*</h4>
         <select className="form-select col-sm-10" aria-label="Default select example" {...ufficio}>
           <option defaultValue>Scegli un Ufficio</option>
           <option value="Bari">Bari</option>
