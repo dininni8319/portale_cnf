@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Mail;
 class GoogleCalendarController extends Controller
 { 
   public function createNewReservation(Request $request){
-    $event = new Event();
 
     $startTime = Carbon::parse(
       $request->date. " ".$request->time.'Europe/Rome'
@@ -21,7 +20,7 @@ class GoogleCalendarController extends Controller
     $name = $request->first_name.' '.$request->last_name;
 
     $endTime = (clone $startTime)->addHour();
-    $event = new Event;
+    $event = new Event();
 
     $event->name = $request->tipologiaRichiesta;
     $event->description = $request->description;
@@ -30,12 +29,12 @@ class GoogleCalendarController extends Controller
     // $event->addAttendee([
     //     'email' => 's.dininni@yahoo.com',
     // ]);
+    
     $event->save();
-
     $email = $request->email;
     $ufficio = $request->ufficio;
     //if you want to save the request into the DB
-    // $subscriber = Reservation::create([
+    // $revervation = Reservation::create([
     //   'email' => $request->email
     // ]);
 
@@ -43,21 +42,10 @@ class GoogleCalendarController extends Controller
         Mail::to($email)->send(new Reservation($event, $email, $name, $ufficio));
         return new JsonResponse(
             [
-                'success' => true,
-                'message' => "Thank you for your reservation, please check your inbox"
+              'success' => true,
+              'message' => "Thank you for your reservation, please check your inbox"
             ], 200
         );
     }
-
-    // if (!$event) {
-    //   return response()->json([
-    //     'msg' => "L'evento non è stato creato!"
-    //   ], 401);
-    // }
-    // return response()->json([
-    //   'event'=> $event,
-    //   'msg' => "L'evento è stato creato!",
-
-    // ], 201);
   }
 }
