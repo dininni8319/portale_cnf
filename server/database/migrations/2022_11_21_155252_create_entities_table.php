@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('meetings', function (Blueprint $table) {
+        Schema::create('entities', function (Blueprint $table) {
             $table->id();
-            $table->string('giorno_appuntamento');
-            $table->string('start');
-            $table->boolean('stato_prenotazione')->nullable();
-            $table->longText('note_lavorazione')->nullable();
+            $table->longText('ufficio');
+            $table->string('codice_catastale')->nullable();
+            $table->string('office_phone');
+            $table->string('email_addetto_ufficio');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meetings');
+        Schema::dropIfExists('entities');
     }
 };

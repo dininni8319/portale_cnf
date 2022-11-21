@@ -10,14 +10,11 @@ class Meeting extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ufficio',
-        'codice_catastale',
         'giorno_appuntamento',
-        'email_addetto_ufficio',
-        'start',
-        'end',
+        'start',  
         'stato_prenotazione',
         'note_lavorazione',
+        'entity_id',
     ]; 
 }
 

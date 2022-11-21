@@ -23,9 +23,6 @@ return new class extends Migration
             $table->string('phone');
             $table->string('codice_fiscale');
             $table->string('tipologia_richiesta');
-            $table->longText('ufficio');
-            $table->string('codice_catastale')->nullable();
-            $table->string('email_addetto_ufficio');
             $table->boolean('stato')->nullable();
             $table->longText('note_lavorazione')->nullable();
             $table->timestamps();

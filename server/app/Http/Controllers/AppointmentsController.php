@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Meeting;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -20,8 +21,9 @@ class AppointmentsController extends Controller
       $duration = '30';  // split by 30 mins
       $array_of_time = array();
       $start_time = strtotime($starttime); //change to strtotime
-      $end_time = strtotime ($endtime); //change to strtotime
+      $end_time = strtotime($endtime); //change to strtotime
       
+    //   dd($operatore);
       $add_mins  = $duration * 60;
       
       while ($start_time <= $end_time) // loop between time
@@ -32,9 +34,12 @@ class AppointmentsController extends Controller
     
         if ($operatore) {
     
-          $dubleStr = array_values(str_split(str_repeat($time, $operatore -1),5));
-          $array_of_time = array_merge($array_of_time,$dubleStr);
-          
+          $dubleStr = array_values(str_split(str_repeat($time, $operatore),5));
+
+          foreach ($dubleStr as $key => $value) {
+            $array_of_time =[...$array_of_time,$value];
+          }
+
           $start_time += $add_mins;
         } 
           
@@ -43,20 +48,30 @@ class AppointmentsController extends Controller
       return $array_of_time;
     }
 
-    protected function getYearlyScheduleForWorkingDay($day, $daysOFTheWeek, $dateFrom, $dateTo, $array_of_time)
+    protected function getYearlyScheduleForWorkingDay($day, $daysOFTheWeek, $dateFrom, $dateTo, $array_of_time, $entity_id)
     {
-        $dates = [];
-
+        // $dates = [];
+        $appointments = [];
         if (intval($day) != $dateFrom->format('N')) {
          
             $dateFrom->modify('next '.$daysOFTheWeek[intval($day)]);
           }
           
           while ($dateFrom <= $dateTo) {
-            $dates[] = array($dateFrom->format('Y-m-d') => $array_of_time);
+
+            foreach ($array_of_time as $key => $value) {
+              
+              $appointments = Meeting::create([
+                'giorno_appuntamento' => $dateFrom->format('Y-m-d'),
+                'start' => $value,
+                'entity_id' => intval($entity_id)
+              ]);
+            }
+
+            // $dates[] = array($dateFrom->format('Y-m-d') => $array_of_time);
             $dateFrom->modify('+1 week');
           }
-        return $dates;
+        return $appointments;
     }
 
     public function schuduleAppointments(Request $request)
@@ -71,7 +86,8 @@ class AppointmentsController extends Controller
         $dateTo = new \DateTime($request->dateToString);
 
         $daysOFTheWeek = $this->daysOFTheWeek;
-        $dates = $this->getYearlyScheduleForWorkingDay($day, $daysOFTheWeek, $dateFrom, $dateTo, $array_of_time);
+        $dates = $this->getYearlyScheduleForWorkingDay($day, $daysOFTheWeek, $dateFrom, $dateTo, $array_of_time, $request->entity_id);
+        
         
         if ($dateFrom > $dateTo) {
           new JsonResponse(
@@ -88,17 +104,16 @@ class AppointmentsController extends Controller
           $dateFrom->modify('next '.$daysOFTheWeek[intval($day)]);
         }
         
-        while ($dateFrom <= $dateTo) {
-          $dates[] = array($dateFrom->format('Y-m-d') => $array_of_time);
-          $dateFrom->modify('+1 week');
-        }
+        // while ($dateFrom <= $dateTo) {
+        //   $dates[] = array($dateFrom->format('Y-m-d') => $array_of_time);
+        //   $dateFrom->modify('+1 week');
+        // }
     
         return new JsonResponse(
           [
             'success' => true,
             'message' => "Thank you for your reservation, please check your inbox",
-            'dates' => $dates,
-            'mondays' => sizeof($dates),
+            // 'dates' => $dates,
           ], 200
       );
     }
