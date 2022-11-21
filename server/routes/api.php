@@ -19,6 +19,7 @@ use App\Http\Controllers\GoogleCalendarController;
 |
 */
 Route::post('/calendar/create/event', [GoogleCalendarController::class, 'createNewReservation']);
+Route::post('/calendar/create/appointments', [GoogleCalendarController::class, 'getMondaysInRange']);
 
 Route::group(['middleware' => 'CORS'],function ($router){
     //login with passport
