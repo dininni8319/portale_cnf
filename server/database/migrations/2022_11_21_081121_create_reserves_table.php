@@ -17,14 +17,17 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('email_addetto_ufficio');
+            $table->longText('description');
             $table->string('start');
             $table->string('end');
             $table->string('phone');
             $table->string('codice_fiscale');
             $table->string('tipologia_richiesta');
             $table->longText('ufficio');
-            $table->longText('description');
+            $table->string('codice_catastale')->nullable();
+            $table->string('email_addetto_ufficio');
+            $table->boolean('stato')->nullable();
+            $table->longText('note_lavorazione')->nullable();
             $table->timestamps();
         });
     }

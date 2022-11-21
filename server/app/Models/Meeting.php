@@ -5,23 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reserve extends Model
+class Meeting extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'email',
+        'ufficio',
+        'codice_catastale',
+        'giorno_appuntamento',
         'email_addetto_ufficio',
         'start',
         'end',
-        'phone',
-        'description',
-        'codice_fiscale',
-        'tipologia_richiesta',
-        'ufficio',
-        'codice_catastale',
-        'stato',
+        'stato_prenotazione',
         'note_lavorazione',
-    ];
+    ]; 
 }
+
