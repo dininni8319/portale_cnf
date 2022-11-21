@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('meetings', function (Blueprint $table) {
+        Schema::table('reserves', function (Blueprint $table) {
             $table->unsignedBigInteger("entity_id");
             $table
                 ->foreign("entity_id")
@@ -30,7 +30,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('meetings', function (Blueprint $table) {
+        Schema::table('reserves', function (Blueprint $table) {
             $table->dropForeign(["entity_id"]);
             $table->dropColumn("entity_id");
         });

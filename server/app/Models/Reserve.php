@@ -23,5 +23,6 @@ class Reserve extends Model
         'codice_catastale',
         'stato',
         'note_lavorazione',
+        'entity_id',
     ];
 }
