@@ -22,16 +22,18 @@ class GoogleCalendarController extends Controller
     
     $name = $request->first_name.' '.$request->last_name;
 
-    $endTime = (clone $startTime)->addHour();
+    $end = date("H:i", strtotime('+30 minutes', $request->time));
+
+    $endTime = Carbon::parse(
+      $request->date. " ".$end.'Europe/Rome'
+    );
+    
     $event = new Event();
 
     $event->name = $request->tipologiaRichiesta;
     $event->description = $request->description;
     $event->startDateTime = $startTime;
     $event->endDateTime = $endTime;
-    // $event->addAttendee([
-    //   'email' => 's.dininni@yahoo.com',
-    //   ]);
       
     $event->save();
   
@@ -40,7 +42,6 @@ class GoogleCalendarController extends Controller
 
     $revervation = Reserve::create([
       'email' => $request->email,
-      // 'email_addetto_ufficio' => 'dininnisalvatore@gmail.com',
       'start' => $event->startDateTime,
       'end' => $event->endDateTime,
       'tipologia_richiesta' => $event->name,
@@ -48,7 +49,6 @@ class GoogleCalendarController extends Controller
       'name' => $name,
       'codice_fiscale' => $request->codicefiscale,
       'phone' => $request->phone,
-      // 'ufficio' => $request->ufficio,
       'meeting_id' => $request->meeting_id,
     ]);
     
