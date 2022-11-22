@@ -17,7 +17,8 @@ class MeetingsController extends Controller
         $pageSize = 5;
         $startingPoint = $request->start_point ?? 0;
 
-        $meetings = Meeting::where('stato_prenotazione','=' , null)
+        $meetings = Meeting::orderBy('giorno_appuntamento', 'ASC')
+            ->where('stato_prenotazione','=' , null)
             ->where('giorno_appuntamento', '>', $currentTime)
             ->get()
             ->toArray();
