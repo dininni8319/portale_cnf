@@ -17,10 +17,10 @@ class Meeting extends Model
         'entity_id',
     ]; 
 
-    public function meeting()
-    {
-        return $this->hasOne(Meeting::class);
-    }
+    // public function meeting()
+    // {
+    //     return $this->hasOne(Meeting::class);
+    // }
     
     public function reservation()
     {
