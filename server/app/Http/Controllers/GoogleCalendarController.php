@@ -14,83 +14,93 @@ use Illuminate\Support\Facades\Mail;
 
 class GoogleCalendarController extends Controller
 { 
-  public function createNewReservation(Request $request){
-
+  protected function createGoogleCalendarEvent($date, $time, $tipologiaRichiesta, $description)
+  {
     $startTime = Carbon::parse(
-      $request->date. " ".$request->time.'Europe/Rome'
+      $date. " ".$time.'Europe/Rome'
     );
-    
-    $name = $request->first_name.' '.$request->last_name;
 
-    $end = date("H:i", strtotime('+30 minutes', $request->time));
+    $end = date("H:i", strtotime('+30 minutes', strtotime($time)));
 
     $endTime = Carbon::parse(
-      $request->date. " ".$end.'Europe/Rome'
+      $date. " ".$end.'Europe/Rome'
     );
     
     $event = new Event();
 
-    $event->name = $request->tipologiaRichiesta;
-    $event->description = $request->description;
+    $event->name = $tipologiaRichiesta;
+    $event->description = $description;
     $event->startDateTime = $startTime;
     $event->endDateTime = $endTime;
-      
-    $event->save();
-  
+
+    $event->conferenceData = [
+      'createRequest' => [
+          'conferenceSolutionKey' => [
+            'type' => 'hangoutsMeet'
+          ],
+          'requestId' => 'sdg-mjae-hat'
+        ]
+    ];
+
+    return $event->save();
+  }
+
+  public function createNewReservation(Request $request){
+
+    $name = $request->first_name.' '.$request->last_name;
+
     $emails = array($request->email, 'alber.gino@yahoo.com', 'dininnisalvatore@gmail.com');
     $ufficio = $request->ufficio;
 
-    $revervation = Reserve::create([
-      'email' => $request->email,
-      'start' => $event->startDateTime,
-      'end' => $event->endDateTime,
-      'tipologia_richiesta' => $event->name,
-      'description' => $event->description,
-      'name' => $name,
-      'codice_fiscale' => $request->codicefiscale,
-      'phone' => $request->phone,
-      'meeting_id' => $request->meeting_id,
-    ]);
-    
-    $meetingStaus = Meeting::find(intval($request->meeting_id))->update([
-       'stato_prenotazione' => true,
-    ]);
+    $meetingId = Meeting::where('stato_prenotazione', true)->find(intval($request->meeting_id));
 
-    if($emails && $event){
+    if (!$meetingId) {
 
-      foreach ($emails as $key => $email) {
-        
-        Mail::to($email)->send(new Reservation($event, $email, $name, $ufficio));
-      }
-    
-      return new JsonResponse(
-          [
-            'success' => true,
-            'message' => "Thank you for your reservation, please check your inbox",
-            'revervation' => $revervation,
-            'stato_prenotazione' => $meetingStaus,
-          ], 200
+      $event = $this->createGoogleCalendarEvent(
+        $request->date, 
+        $request->time,  
+        $request->tipologiaRichiesta,
+        $request->description
       );
+    
+      $revervation = Reserve::create([
+        'email' => $request->email,
+        'start' => $event->startDateTime,
+        'end' => $event->endDateTime,
+        'tipologia_richiesta' => $event->name,
+        'description' => $event->description,
+        'name' => $name,
+        'codice_fiscale' => $request->codicefiscale,
+        'phone' => $request->phone,
+        'meeting_id' => $request->meeting_id,
+      ]);
+      
+      $meetingStaus = Meeting::find(intval($request->meeting_id))->update([
+         'stato_prenotazione' => true,
+      ]);
+
+      if($emails && $event){
+
+        foreach ($emails as $key => $email) {
+          
+          Mail::to($email)->send(new Reservation($event, $email, $name, $ufficio));
+        }
+      
+        return response()->json(
+            [
+              'success' => true,
+              'message' => "Thank you for your reservation, please check your inbox",
+              'revervation' => $revervation,
+              'stato_prenotazione' => $meetingStaus,
+            ], 201
+        );
+      }
+
+    } else {
+      return response()->json([
+        'success' => false,
+        'message' => 'Qualcosa è andato storto'
+      ],400); //bad request
     }
   }
-
-  // public static function createFromGoogleCalendarEvent($googleEvent, $calendarId)
-  //   {
-  //       // this option are to create a conference and add a link to meet in event
-  //       $googleCalendar = static::getGoogleCalendar($calendarId);
-  //       $service = $googleCalendar->getService();
-  //       $conference = new \Google_Service_Calendar_ConferenceData();
-  //       $conferenceRequest = new \Google\Service\Calendar\CreateConferenceRequest();
-  //       $conferenceRequest->setRequestId('randomString123');
-  //       $conference->setCreateRequest($conferenceRequest);
-  //       $googleEvent->setConferenceData($conference);
-  //       $googleEvent = $service->events->patch($calendarId, $googleEvent->id, $googleEvent, ['conferenceDataVersion' => 1]);
-
-  //       $event = new static;
-
-  //       $event->googleEvent = $googleEvent;
-  //       $event->calendarId = $calendarId;
-
-  //       return $event;
-  //   }
 }

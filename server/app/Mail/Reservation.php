@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use DateTime;
+use DateTimeZone;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
@@ -9,6 +11,8 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Spatie\IcalendarGenerator\Components\Event;
+use Spatie\IcalendarGenerator\Components\Calendar;
 
 class Reservation extends Mailable
 {
@@ -55,7 +59,6 @@ class Reservation extends Mailable
      */
     public function content()
     {
-
         return new Content(
             markdown: 'emails.reservations'
         );
@@ -68,6 +71,7 @@ class Reservation extends Mailable
      */
     public function attachments()
     {
-        return [];
+     return [];
     }
+
 }
