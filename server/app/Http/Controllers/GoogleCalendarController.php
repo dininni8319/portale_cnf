@@ -28,13 +28,12 @@ class GoogleCalendarController extends Controller
     $event->description = $request->description;
     $event->startDateTime = $startTime;
     $event->endDateTime = $endTime;
-    
     // $event->addAttendee([
     //   'email' => 's.dininni@yahoo.com',
     //   ]);
       
-      $event->save();
-      // dd($event->ConferenceData, 'teting the event');
+    $event->save();
+  
 
     $emails = array($request->email, 'alber.gino@yahoo.com', 'dininnisalvatore@gmail.com');
     $ufficio = $request->ufficio;

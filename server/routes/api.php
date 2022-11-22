@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\MeetingsController;
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\AuthPassportController;
 use App\Http\Controllers\VerificationController;
@@ -21,8 +22,10 @@ use App\Http\Controllers\GoogleCalendarController;
 */
 Route::post('/calendar/create/event', [GoogleCalendarController::class, 'createNewReservation']);
 Route::post('/calendar/create/appointments', [AppointmentsController::class, 'schuduleAppointments']);
+Route::post('/calendar/all/meetings', [MeetingsController::class, 'getAllMeetings']);
 
 Route::group(['middleware' => 'CORS'],function ($router){
+
     //login with passport
     Route::post('/register', [AuthPassportController::class, 'register']);
     Route::post('/login', [AuthPassportController::class, 'login']);
