@@ -15,8 +15,7 @@ const FormEvents = () => {
   const first_name = useInput("");
   const last_name = useInput("");
   const codicefiscale = useInput("");
-  const date = useInput("");
-  const time = useInput("");
+
   const tipologiaRichiesta = useInput("");
   const ufficio = useInput("");
   const description = useInput("");
@@ -25,6 +24,8 @@ const FormEvents = () => {
   const [ step, setStep ]= useState(1);
   const [ formErrors, setFormErrors ] = useState({});
   const [ isSubmited, setIsSubmited ] = useState(false);
+  const [ date, setDate ] = useState({});
+  const [ isClicked, setIsClicked ] = useState(false)
 
   const errors = Object.keys(formErrors).length > 0 && Object.values(formErrors);
   const handlePrevStep = (e) => {
@@ -42,12 +43,13 @@ const FormEvents = () => {
     first_name: first_name.value,
     last_name: last_name.value,
     description: description.value,
-    date: date.value,
-    time: time.value,
+    date: date.giorno_appuntamento,
+    time: date.start,
     codicefiscale: codicefiscale.value,
     tipologiaRichiesta: tipologiaRichiesta.value,
     ufficio: ufficio.value,
     phone: phone.value,
+    meeting_id: date.id
   }
   
   const handleSubmit = (event) => {
@@ -82,7 +84,9 @@ const FormEvents = () => {
 
         {step === 2 && <Orari 
             date={date} 
-            time={time} 
+            setDate={setDate} 
+            isClicked={isClicked}
+            setIsClicked={setIsClicked}
           />
         }
 

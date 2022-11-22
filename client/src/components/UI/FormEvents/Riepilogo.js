@@ -15,7 +15,6 @@ const Riepilogo = ({ config }) => {
 
   return ( 
     <section>
-        
           <div className="py-3 col-12 px-2 component-wrapper mb-3 px-3">
             <h4 className='h4 input-custom-style py-3'>Ufficio</h4>
             <div className="d-flex justify-content-between align-items-end input-custom-style py-3">
