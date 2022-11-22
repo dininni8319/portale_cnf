@@ -34,7 +34,6 @@ class GoogleCalendarController extends Controller
       
     $event->save();
   
-
     $emails = array($request->email, 'alber.gino@yahoo.com', 'dininnisalvatore@gmail.com');
     $ufficio = $request->ufficio;
 
@@ -49,7 +48,7 @@ class GoogleCalendarController extends Controller
       'codice_fiscale' => $request->codicefiscale,
       'phone' => $request->phone,
       // 'ufficio' => $request->ufficio,
-      'meeting_id' => 1,
+      'meeting_id' => $request->meeting_id,
     ]);
     
     if($emails && $event){
