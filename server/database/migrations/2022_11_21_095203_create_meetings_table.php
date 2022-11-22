@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('giorno_appuntamento');
             $table->string('start');
             $table->boolean('stato_prenotazione')->nullable();
-            $table->longText('note_lavorazione')->nullable();
             $table->timestamps();
         });
     }

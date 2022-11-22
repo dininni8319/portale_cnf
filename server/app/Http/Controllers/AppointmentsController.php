@@ -14,7 +14,7 @@ class AppointmentsController extends Controller
         3 => 'Wednesday',
         4 => 'Thursday',
         5 => 'Friday',
-        ];
+    ];
 
     protected function getHalfHourAppointments($operatore, $starttime, $endtime)
     {
@@ -23,7 +23,6 @@ class AppointmentsController extends Controller
       $start_time = strtotime($starttime); //change to strtotime
       $end_time = strtotime($endtime); //change to strtotime
       
-    //   dd($operatore);
       $add_mins  = $duration * 60;
       
       while ($start_time <= $end_time) // loop between time
@@ -50,7 +49,6 @@ class AppointmentsController extends Controller
 
     protected function getYearlyScheduleForWorkingDay($day, $daysOFTheWeek, $dateFrom, $dateTo, $array_of_time, $entity_id)
     {
-        // $dates = [];
         $appointments = [];
         if (intval($day) != $dateFrom->format('N')) {
          
@@ -76,8 +74,8 @@ class AppointmentsController extends Controller
 
     public function schuduleAppointments(Request $request)
     {
-        $operatore = $request->operatore;  // your start time '09:00'
-        $starttime = $request->startTime;  // your start time '09:00'
+        $operatore = $request->operatore;  
+        $starttime = $request->startTime;  
         $endtime = $request->endTime;  // End time '18:00'
         $day = $request->day;
 
@@ -112,7 +110,7 @@ class AppointmentsController extends Controller
         return new JsonResponse(
           [
             'success' => true,
-            'message' => "Thank you for your reservation, please check your inbox",
+            'message' => "Gli appuntamenti sono stati creati!",
             // 'dates' => $dates,
           ], 200
       );

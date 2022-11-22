@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Meeting;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reserve extends Model
 {
@@ -23,6 +24,11 @@ class Reserve extends Model
         'codice_catastale',
         'stato',
         'note_lavorazione',
-        'entity_id',
+        'meeting_id',
     ];
+
+    public function meeting()
+    {
+        return $this->hasOne(Meeting::class);
+    }
 }
