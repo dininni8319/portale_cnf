@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Mail\Reservation;
+use App\Models\Meeting;
 use Illuminate\Http\Request;
 use App\Models\Reserve;
 use Google\Service\Calendar\ConferenceData;
@@ -51,6 +52,10 @@ class GoogleCalendarController extends Controller
       'meeting_id' => $request->meeting_id,
     ]);
     
+    $meetingStaus = Meeting::find(intval($request->meeting_id))->update([
+       'stato_prenotazione' => true,
+    ]);
+
     if($emails && $event){
 
       foreach ($emails as $key => $email) {
@@ -63,6 +68,7 @@ class GoogleCalendarController extends Controller
             'success' => true,
             'message' => "Thank you for your reservation, please check your inbox",
             'revervation' => $revervation,
+            'stato_prenotazione' => $meetingStaus,
           ], 200
       );
     }

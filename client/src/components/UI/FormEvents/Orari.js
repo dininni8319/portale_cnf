@@ -7,7 +7,7 @@ import { formatDate } from "../../../utilities";
 const Orari = ({ date, setDate, isClicked, setIsClicked }) => {
 
   const [dates, setDates] = useState([]);
-  const [size, setSize] = useState(5);
+  const [size, setSize] = useState(0);
   const [message, setMessage] = useState('');
   
   const handleNextPage = (e) => {
@@ -17,7 +17,7 @@ const Orari = ({ date, setDate, isClicked, setIsClicked }) => {
 
   const handlePrevPage = (e) => {
     e.preventDefault()
-    setSize(prev => size === 5 ? 5 : prev - 5);
+    setSize(prev => size === 0 ? 0 : prev - 5);
   };
 
 
