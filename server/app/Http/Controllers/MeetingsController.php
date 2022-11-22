@@ -26,7 +26,7 @@ class MeetingsController extends Controller
         $paginate = array_slice($meetings, $startingPoint, $pageSize);
 
         $appointments = [];
-            // ->paginate($pageSize);
+
         foreach ($paginate as $key => $value) {
             array_push($appointments, $value);
         }
@@ -34,10 +34,10 @@ class MeetingsController extends Controller
         if ($appointments) {
             return response()->json([
              'paginate' => $appointments,
-             'msg' => 'Questi sono i meeting che ho trovato!'
+             'message' => 'Questi sono i meeting che ho trovato!'
             ], 200);
         }
 
-        return response()->json(["msg" => "Non è stato trovato nessun meeting!"], 400);
+        return response()->json(["message" => "Non è stato trovato nessun meeting!"], 400);
     }
 }

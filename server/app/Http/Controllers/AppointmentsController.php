@@ -106,7 +106,7 @@ class AppointmentsController extends Controller
         //   $dates[] = array($dateFrom->format('Y-m-d') => $array_of_time);
         //   $dateFrom->modify('+1 week');
         // }
-    
+  
         return new JsonResponse(
           [
             'success' => true,

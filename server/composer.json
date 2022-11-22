@@ -13,6 +13,7 @@
         "laravel/passport": "^11.3",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "spatie/icalendar-generator": "^2.5",
         "spatie/laravel-google-calendar": "^3.5"
     },
     "require-dev": {
