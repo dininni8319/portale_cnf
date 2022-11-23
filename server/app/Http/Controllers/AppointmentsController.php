@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Meeting;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use App\Jobs\Calc30MinutesAppointments;
 
 class AppointmentsController extends Controller
 {
@@ -24,52 +25,28 @@ class AppointmentsController extends Controller
       $end_time = strtotime($endtime); //change to strtotime
       
       $add_mins  = $duration * 60;
-      
       while ($start_time <= $end_time) // loop between time
       {
         $operatore = intval($operatore);
-    
-        $time = date("h:i", $start_time);
-    
-        if ($operatore) {
-    
+        
+        $time = date("H:i", $start_time);
+        
+        if ($operatore > 1) {
+          // dd($time);
+          $start_time += $add_mins;
           $dubleStr = array_values(str_split(str_repeat($time, $operatore),5));
-
+          
           foreach ($dubleStr as $key => $value) {
-            $array_of_time =[...$array_of_time,$value];
+            
+            $array_of_time = [...$array_of_time, $value];
           }
 
+        } else {
+          $array_of_time = [...$array_of_time,$time];
           $start_time += $add_mins;
-        } 
-          
-        $start_time += $add_mins; // to check endtie=me
+        }
       }
       return $array_of_time;
-    }
-
-    protected function getYearlyScheduleForWorkingDay($day, $daysOFTheWeek, $dateFrom, $dateTo, $array_of_time, $entity_id)
-    {
-        $appointments = [];
-        if (intval($day) != $dateFrom->format('N')) {
-         
-            $dateFrom->modify('next '.$daysOFTheWeek[intval($day)]);
-          }
-          
-          while ($dateFrom <= $dateTo) {
-
-            foreach ($array_of_time as $key => $value) {
-              
-              $appointments = Meeting::create([
-                'giorno_appuntamento' => $dateFrom->format('Y-m-d'),
-                'start' => $value,
-                'entity_id' => intval($entity_id)
-              ]);
-            }
-
-            // $dates[] = array($dateFrom->format('Y-m-d') => $array_of_time);
-            $dateFrom->modify('+1 week');
-          }
-        return $appointments;
     }
 
     public function schuduleAppointments(Request $request)
@@ -84,7 +61,8 @@ class AppointmentsController extends Controller
         $dateTo = new \DateTime($request->dateToString);
 
         $daysOFTheWeek = $this->daysOFTheWeek;
-        $dates = $this->getYearlyScheduleForWorkingDay($day, $daysOFTheWeek, $dateFrom, $dateTo, $array_of_time, $request->entity_id);
+        //we are sending the time to the queue to save it in the DB
+        Calc30MinutesAppointments::dispatch($day, $daysOFTheWeek, $dateFrom, $dateTo, $array_of_time, $request->entity_id);
         
         if ($dateFrom > $dateTo) {
           new JsonResponse(
