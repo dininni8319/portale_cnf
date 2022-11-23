@@ -2,17 +2,15 @@
 
 namespace App\Mail;
 
-use DateTime;
-use DateTimeZone;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Spatie\IcalendarGenerator\Components\Event;
-use Spatie\IcalendarGenerator\Components\Calendar;
+
 
 class Reservation extends Mailable
 {
@@ -26,13 +24,15 @@ class Reservation extends Mailable
     public $email;
     public $name;
     public $event;
-    public $ufficio;
-    public function __construct($event, $email, $name, $ufficio)
+    public $entity;
+
+    public function __construct($event, $email, $name,  $attachment, $entity)
     {
         $this->event = $event;
         $this->email = $email;
         $this->name = $name; 
-        $this->ufficio = $ufficio; 
+        $this->attachment = $attachment; 
+        $this->entity = $entity; 
     }
 
     /**
@@ -43,11 +43,11 @@ class Reservation extends Mailable
     public function envelope()
     {
         $subject = $this->event->name;
-        $name = $this->name;
-        $email = $this->email;
-
+        $entity = $this->entity;
+        
+        //here you have to pass the email and name of the sender
         return new Envelope(
-            from: new Address($email, $name),
+            from: new Address($entity->email_addetto_ufficio, $entity->ufficio),
             subject: $subject,
         );
     }
@@ -71,7 +71,11 @@ class Reservation extends Mailable
      */
     public function attachments()
     {
-     return [];
+        $attachment = $this->attachment;
+       return [
+           Attachment::fromData(fn () => $attachment->get() , 'invite.ics')
+           ->withMime('text/calendar; charset=UTF-8; method=REQUEST'),
+       ];
     }
 
 }

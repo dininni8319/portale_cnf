@@ -86,7 +86,6 @@ class AppointmentsController extends Controller
         $daysOFTheWeek = $this->daysOFTheWeek;
         $dates = $this->getYearlyScheduleForWorkingDay($day, $daysOFTheWeek, $dateFrom, $dateTo, $array_of_time, $request->entity_id);
         
-        
         if ($dateFrom > $dateTo) {
           new JsonResponse(
             [
