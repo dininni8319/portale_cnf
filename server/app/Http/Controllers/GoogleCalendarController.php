@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Mail\Reservation;
 use App\Models\Meeting;
-use Illuminate\Http\Request;
 use App\Models\Reserve;
-use Google\Service\Calendar\ConferenceData;
+use App\Mail\Reservation;
+use Illuminate\Http\Request;
 use Spatie\GoogleCalendar\Event;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\CalendarAttachment;
 
 class GoogleCalendarController extends Controller
 { 
+
+  public function __construct(CalendarAttachment $calendarAttachment)
+  {
+      $this->calendarAttachment = $calendarAttachment;
+  }
+  
   protected function createGoogleCalendarEvent($date, $time, $tipologiaRichiesta, $description)
   {
     $startTime = Carbon::parse(
@@ -32,26 +37,41 @@ class GoogleCalendarController extends Controller
     $event->description = $description;
     $event->startDateTime = $startTime;
     $event->endDateTime = $endTime;
-
     $event->conferenceData = [
       'createRequest' => [
-          'conferenceSolutionKey' => [
-            'type' => 'hangoutsMeet'
-          ],
-          'requestId' => 'sdg-mjae-hat'
+        'conferenceSolutionKey' => [
+          'type' => 'hangoutsMeet'
+        ],
+        'requestId' => 'sample232212'
         ]
     ];
+  //   $event->addAttendee([
+  //     'email' => 'john.doe@email.com',
+  //     'name' => 'John Doe',
+  //     'comment' => 'Lorum ipsum',
+  // ]);
+  // $event->save('insertEvent', [
+  //   // 'sendUpdates' => 'all',
+  //   'conferenceDataVersion' => 1,
+  // ]);
 
     return $event->save();
   }
 
   public function createNewReservation(Request $request){
 
+    $startTime = Carbon::parse(
+      $request->date. " ".$request->time.'Europe/Rome'
+    );
+
+    $end = date("H:i", strtotime('+30 minutes', strtotime($request->time)));
+
+    $endTime = Carbon::parse(
+      $request->date. " ".$end.'Europe/Rome'
+    );
+
     $name = $request->first_name.' '.$request->last_name;
-
-    $emails = array($request->email, 'alber.gino@yahoo.com', 'dininnisalvatore@gmail.com');
-    $ufficio = $request->ufficio;
-
+    
     $meetingId = Meeting::where('stato_prenotazione', true)->find(intval($request->meeting_id));
 
     if (!$meetingId) {
@@ -78,12 +98,20 @@ class GoogleCalendarController extends Controller
       $meetingStaus = Meeting::find(intval($request->meeting_id))->update([
          'stato_prenotazione' => true,
       ]);
-
+      
+       // email_addetto_ufficio
+      $entity = Meeting::find(intval($request->meeting_id))->entity;
+      
+      $emails = array($request->email, $entity->email_addetto_ufficio);
+      
       if($emails && $event){
+        
+        // dd($attachment, 'atta');
+        $attachment =$this->calendarAttachment->genareteCalendarAttachment($event, $entity, $startTime, $endTime);
 
         foreach ($emails as $key => $email) {
           
-          Mail::to($email)->send(new Reservation($event, $email, $name, $ufficio));
+          Mail::to($email)->send(new Reservation($event, $email, $name, $attachment, $entity));
         }
       
         return response()->json(
