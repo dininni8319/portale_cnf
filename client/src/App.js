@@ -1,12 +1,7 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
-import Footer from './components/UI/Footer';
-import FormEvents from './components/UI/FormEvents';
-import Header from './components/UI/Header';
-import Navbar from './components/UI/Navbar';
-import AdminArea from './components/Views/AdminArea';
-import Home from './components/Views/Home';
-import SignUp from './components/Views/SingUp';
+import { Home, AdminArea, SignUp } from "./components/Views";
+import { Header, Navbar, FormEvents, Footer, } from "./components/UI";
 
 const App = () => {
   return (
