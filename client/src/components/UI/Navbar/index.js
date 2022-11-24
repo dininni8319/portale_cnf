@@ -39,7 +39,7 @@ const Navbar = () => {
                   <div className="it-search-wrapper">
                     <span className="d-none">Cerca</span>
                     <button className={`search-link rounded-icon ${classes['search-botton-navbar']}`} type="button" data-bs-toggle="modal" data-bs-target="#search-modal" aria-label="Cerca nel sito">
-                      <FontAwesomeIcon icon={faSearch} size="1x" className={classes['icon-search']}/>
+                      <FontAwesomeIcon icon={faSearch} size="2x" className={classes['icon-search']}/>
                     </button>
                   </div>
               </div>
