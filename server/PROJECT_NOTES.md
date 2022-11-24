@@ -7,3 +7,6 @@ composer require laravel/passport
 
 Add a column to a table
 #php artisan make:migration add_foreignkey_to_reserves_table --table=reserves
+
+Command install react-router 
+#npm install react-router-dom@6 

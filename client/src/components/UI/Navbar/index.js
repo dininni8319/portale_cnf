@@ -3,7 +3,7 @@ import NavComponent from './NavComponent';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import NavIcons from './NavIcons';
-
+import { memo } from "react";
 const Navbar = () => {
   return ( 
     <div className={`navbar-color`}>
@@ -38,4 +38,4 @@ const Navbar = () => {
   );
 }
  
-export default Navbar;
+export default memo(Navbar);

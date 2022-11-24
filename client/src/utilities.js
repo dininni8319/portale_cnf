@@ -1,7 +1,7 @@
 // Everything except weekend days
 export const excludeWeekends = dateString => {
   const day = (new Date(dateString)).getDay();
-  if (day==0 || day==6) {
+  if (day === 0 || day === 6) {
     return false;
   }
   return true;
