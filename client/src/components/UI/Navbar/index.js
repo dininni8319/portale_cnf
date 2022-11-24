@@ -1,10 +1,22 @@
 import classes from './style.module.css';
-import NavComponent from './NavComponent';
+import { useContext, memo } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/Auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import NavComponent from './NavComponent';
 import NavIcons from './NavIcons';
-import { memo } from "react";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSpinner,
+  faUserCircle,
+  faSignOutAlt,
+  faCircle,
+} from "@fortawesome/free-solid-svg-icons";
+
 const Navbar = () => {
+
+  const { user, logout } = useContext(AuthContext);
+
   return ( 
     <div className={`navbar-color`}>
       <div className={classes["it-header-center-wrapper"]}>
@@ -15,7 +27,9 @@ const Navbar = () => {
                 <div className="it-brand-wrapper">
                   <a href="#" title="Vai alla homepage" className="text-decoration-none">
                     <div className={classes["it-brand-text"]}>
-                      <h1 className={classes["it-brand-title"]}>Nome del Comune</h1>
+                      <Link className="nav-link active" aria-current="page" to="/">
+                        <h1 className={classes["it-brand-title"]}>Nome del Comune</h1>
+                      </Link>
                     </div>
                   </a>
                 </div>

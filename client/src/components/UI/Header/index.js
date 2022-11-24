@@ -1,8 +1,13 @@
-import { faUser} from "@fortawesome/free-solid-svg-icons";
+import { useContext, memo } from "react";
+import { AuthContext } from "../../../Contexts/Auth";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import classes from './style.module.css';
 
 const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+
   return ( 
       <header className={`${classes['it-header-height']}${classes['it-header-wrapper']}`} data-bs-target="#header-nav-wrapper">
           <div className={classes['it-header-slim-wrapper']}>
@@ -10,6 +15,9 @@ const Header = () => {
               <div className="row">
                 <div className="col-12">
                   <div className={classes['it-header-slim-wrapper-content']}>
+                      <Link className="d-lg-block navbar-brand text-white nav-link" aria-current="page" to="/">
+                        Nome della Regione
+                      </Link>
                     <a className="d-lg-block navbar-brand text-white nav-link" target="_blank" href="#" aria-label="Vai al portale {Nome della Regione} - link esterno - apertura nuova scheda" title="Vai al portale {Nome della Regione}">Nome della Regione</a>
                     <div className={classes["it-header-slim-right-zone"]} role="navigation">
                       <div className={`nav-item dropdown px-5`}>
@@ -31,12 +39,26 @@ const Header = () => {
                           </div>
                         </div>
                       </div>
+                        {user && (
+                          <span className="nav-label-style text-base capitalize">ciao {user?.first_name}</span>
+                        )}
+
+                        {user && (
+                        <FontAwesomeIcon
+                          onClick={logout}
+                          icon={faArrowRightFromBracket}
+                          className={`fa-1x mx-1 text-white logout-icon-style`}
+                        /> 
+                      
+                        )}
                         <a className={`bg-white ${classes['it-aria-personale-btn']} d-md-flex`} href="#" data-element="personal-area-login">
                           <span className="rounded-icon position-relative" aria-hidden="true">
                            <FontAwesomeIcon icon={faUser} size="1x" className={`${classes.iconUser}`} />
                           </span>
                         </a>
-                        <span className="d-none d-lg-block px-3 text-white fs-5 fw-bolder">Accedi all'area personale</span>
+                        <Link className="nav-link active" aria-current="page" to="/sign">
+                          <span className="d-none d-lg-block px-3 text-white fs-5 fw-bolder">Accedi all'area personale</span>
+                        </Link>
                     </div>
                   </div>
                 </div>
@@ -47,4 +69,4 @@ const Header = () => {
    );
 }
  
-export default Header;
+export default memo(Header);
