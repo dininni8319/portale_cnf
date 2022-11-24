@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useInput from "../../Hooks/useInput";
-import DettagliAppuntamento from "./DettagliAppuntamento";
-import Orari from "./Orari";
-import Richiedente from "./Richiedente";
-import Riepilogo from "./Riepilogo";
-import StepsComponents from "./StepsComponent";
+import { useNavigate } from "react-router";
+import { 
+  DettagliAppuntamento, 
+  Orari, 
+  Richiedente, 
+  Riepilogo, 
+  StepsComponent, 
+  Ufficio } from "./link-form-comp";
 import classes from './style.module.css';
-import Ufficio from "./Ufficio";
 import { validateForm } from '../../../utilities';
 
 const FormEvents = () => {
-
+  const navigate = useNavigate()
   const email = useInput("");
   const first_name = useInput("");
   const last_name = useInput("");
@@ -85,6 +87,12 @@ const FormEvents = () => {
             setMessage(data.message);
           }
           setMessage('Qualcosa e andato storto');
+          console.log(data.event);
+          if (data.event.googleEvent.id) {
+            setMessage(data.msg);
+            navigate('/adminarea');
+          }
+          navigate('/adminarea');
         });
     } 
   };
@@ -126,9 +134,9 @@ const FormEvents = () => {
             return <span key={id} className='text-danger fs-6'>{err}</span>
           })}
          </div>
-      </form>       
-       {message && <div className={`${isSubmited ? 'text-success' : 'text-danger'} fs-4 fw-bold`}>{message}</div>}
-        <StepsComponents 
+      </form>
+       {message && <div className="text-success fs-4 fw-bold">{message}</div>}
+        <StepsComponent 
               handlePrevStep={handlePrevStep}
               handleNextStep={handleNextStep}
               handleSubmit={handleSubmit}

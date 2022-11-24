@@ -15,7 +15,7 @@ export default function SignUp() {
     event.preventDefault();
     // console.log({email: email.value, password: password.value}, 'response from the server when we try to login');
 
-    fetch(`${api_urls.backend}/api/users/login`, {
+    fetch(`${api_urls.backend}/api/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: email.value, password: password.value }),
@@ -26,7 +26,7 @@ export default function SignUp() {
 
         /// una volta ricevuto il token, possiamo richiedere informazioni come username e email ad esempio
         //alla rotta view profile
-        fetch(`${api_urls.backend}/api/users/view-profile`, {
+        fetch(`${api_urls.backend}/api/view-profile`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -35,7 +35,7 @@ export default function SignUp() {
           .then((response) => response.json())
           .then((data) => {
             login(data.data.username, token, data.data.id);
-            navigate("/"); //object history;
+            navigate("/adminarea"); //object history;
           });
       });
   };
@@ -51,7 +51,7 @@ export default function SignUp() {
         </label>
         <input
           type="email"
-          className="form-control bg-transparent border-0 border-bottom border-info rounded-0 text-white"
+          className="form-control bg-transparent border-0 border-bottom border-info rounded-0"
           id="userMail"
           {...email}
         />
@@ -63,7 +63,7 @@ export default function SignUp() {
         </label>
         <input
           type="password"
-          className="form-control bg-transparent border-0 border-bottom border-info rounded-0 text-white"
+          className="form-control bg-transparent border-0 border-bottom border-info rounded-0"
           id="userPassword"
           {...password}
         />

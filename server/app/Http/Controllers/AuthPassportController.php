@@ -120,7 +120,6 @@ class AuthPassportController extends Controller
             'success' => true,
             'message' => $responseMessage
         ], 200);
-
     }
     
     public function viewProfile(){
