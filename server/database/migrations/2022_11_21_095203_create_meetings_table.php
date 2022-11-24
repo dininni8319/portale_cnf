@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('giorno_appuntamento');
             $table->string('start');
-            $table->boolean('stato_prenotazione')->nullable();
+            $table->string('stato_prenotazione')
+               ->default('libero')
+               ->nullable();
             $table->timestamps();
         });
     }
