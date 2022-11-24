@@ -26,14 +26,16 @@ export function getCurrentDate() {
 
 export function formatDate(date){
   if (!date) return "The date was not found!";
-  let time = new Date(date);
+  let newDate = date.slice(0,10)
+  let newTime = date.slice(10, 16)
+  let time = new Date(newDate);
   let timeNow = new Date().getDay();
 
   let day = time.getDate();
   let month = time.getMonth() + 1;
   let year = time.getFullYear()
 
-  return ` ${day < 10 ? "0" + day: day}.${month < 10 ? "0" + month : month
+  return `${newTime} ${day < 10 ? "0" + day: day}.${month < 10 ? "0" + month : month
   }.${year}`;
 }
 

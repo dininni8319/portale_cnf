@@ -145,3 +145,12 @@ h3 {
 .checkbox-round:checked {
   background-color: gray;
 }
+
+.li-card-style {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e9e6f2;
+}

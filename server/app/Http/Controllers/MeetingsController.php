@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Meeting;
+use App\Models\Reserve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -112,5 +113,27 @@ class MeetingsController extends Controller
         }
 
         return response()->json(["message" => "Non è stato trovato nessun meeting!"], 400);
+    }
+
+    public function getAppointments()
+    {
+        $appointments = Reserve::all();
+        
+        if ($appointments) {
+            return response()->json([
+                'success' => true,
+                'message' => "Gli appuntamenti sono stati creati!",
+                'appointments' => $appointments,
+            ], 200);
+        } else {
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => "Thank you for your reservation, please check your inbox",
+                    'dates' => [],
+                ], 404
+            );
+        }
+
     }
 }
