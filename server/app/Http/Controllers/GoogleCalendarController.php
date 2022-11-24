@@ -96,7 +96,7 @@ class GoogleCalendarController extends Controller
       ]);
       
       $meetingStaus = Meeting::find(intval($request->meeting_id))->update([
-         'stato_prenotazione' => true,
+         'stato_prenotazione' => 'prenotato',
       ]);
       
        // email_addetto_ufficio

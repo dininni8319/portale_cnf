@@ -23,6 +23,9 @@ use App\Http\Controllers\GoogleCalendarController;
 Route::post('/calendar/create/event', [GoogleCalendarController::class, 'createNewReservation']);
 Route::post('/calendar/create/appointments', [AppointmentsController::class, 'schuduleAppointments']);
 Route::post('/calendar/all/meetings', [MeetingsController::class, 'getAllMeetings']);
+Route::get('/calendar/all/active/meetings', [MeetingsController::class, 'getActiveAppointments']);
+Route::get('/calendar/all/reserved/meetings', [MeetingsController::class, 'getScheduledAppointments']);
+Route::get('/calendar/all/old/meetings', [MeetingsController::class, 'getOldAppointments']);
 
 Route::group(['middleware' => 'CORS'],function ($router){
 
