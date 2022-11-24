@@ -65,7 +65,7 @@ export default function SignIn() {
                 .then((response) => response.json())
                 .then((data) => {
                   login(data.data.name, token, data.data.id);
-                  navigate("/"); //object history;
+                  navigate("/adminarea"); //object history;
                 });
             });
         });

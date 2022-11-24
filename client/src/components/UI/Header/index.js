@@ -18,7 +18,6 @@ const Header = () => {
                       <Link className="d-lg-block navbar-brand text-white nav-link" aria-current="page" to="/">
                         Nome della Regione
                       </Link>
-                    <a className="d-lg-block navbar-brand text-white nav-link" target="_blank" href="#" aria-label="Vai al portale {Nome della Regione} - link esterno - apertura nuova scheda" title="Vai al portale {Nome della Regione}">Nome della Regione</a>
                     <div className={classes["it-header-slim-right-zone"]} role="navigation">
                       <div className={`nav-item dropdown px-5`}>
                         <button type="button" className={`nav-link dropdown-toggle bg-transparent text-white fw-bold ${classes.btnSelect}`} data-bs-toggle="dropdown" aria-expanded="false" aria-controls="languages" aria-haspopup="true">
@@ -39,18 +38,6 @@ const Header = () => {
                           </div>
                         </div>
                       </div>
-                        {user && (
-                          <span className="nav-label-style text-base capitalize">ciao {user?.first_name}</span>
-                        )}
-
-                        {user && (
-                        <FontAwesomeIcon
-                          onClick={logout}
-                          icon={faArrowRightFromBracket}
-                          className={`fa-1x mx-1 text-white logout-icon-style`}
-                        /> 
-                      
-                        )}
                         <a className={`bg-white ${classes['it-aria-personale-btn']} d-md-flex`} href="#" data-element="personal-area-login">
                           <span className="rounded-icon position-relative" aria-hidden="true">
                            <FontAwesomeIcon icon={faUser} size="1x" className={`${classes.iconUser}`} />
@@ -59,7 +46,19 @@ const Header = () => {
                         <Link className="nav-link active" aria-current="page" to="/sign">
                           <span className="d-none d-lg-block px-3 text-white fs-5 fw-bolder">Accedi all'area personale</span>
                         </Link>
+                        
                     </div>
+                    
+                     {user && (
+                          <span className="nav-label-style text-white text-capitalize fw-bold fs-5">ciao {user?.name ? user?.name : 'User'}</span>
+                     )}
+                     {user && (
+                        <FontAwesomeIcon
+                          onClick={logout}
+                          icon={faArrowRightFromBracket}
+                          className={`fa-1x mx-1 text-white logout-icon-style`}
+                        /> 
+                    )}
                   </div>
                 </div>
               </div>

@@ -20,15 +20,15 @@ use App\Http\Controllers\GoogleCalendarController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('/calendar/create/event', [GoogleCalendarController::class, 'createNewReservation']);
-Route::post('/calendar/create/appointments', [AppointmentsController::class, 'schuduleAppointments']);
-Route::post('/calendar/all/meetings', [MeetingsController::class, 'getAllMeetings']);
-Route::get('/calendar/all/active/meetings', [MeetingsController::class, 'getActiveAppointments']);
-Route::get('/calendar/all/reserved/meetings', [MeetingsController::class, 'getScheduledAppointments']);
-Route::get('/calendar/all/old/meetings', [MeetingsController::class, 'getOldAppointments']);
 
 Route::group(['middleware' => 'CORS'],function ($router){
-
+    
+    Route::post('/calendar/create/event', [GoogleCalendarController::class, 'createNewReservation']);
+    Route::post('/calendar/create/appointments', [AppointmentsController::class, 'schuduleAppointments']);
+    Route::post('/calendar/all/meetings', [MeetingsController::class, 'getAllMeetings']);
+    Route::get('/calendar/all/active/meetings', [MeetingsController::class, 'getActiveAppointments']);
+    Route::get('/calendar/all/reserved/meetings', [MeetingsController::class, 'getScheduledAppointments']);
+    Route::get('/calendar/all/old/meetings', [MeetingsController::class, 'getOldAppointments']);
     //login with passport
     Route::post('/register', [AuthPassportController::class, 'register']);
     Route::post('/login', [AuthPassportController::class, 'login']);
@@ -40,10 +40,6 @@ Route::group(['middleware' => 'CORS'],function ($router){
     
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
-    });
-
-    Route::get('/home', function () {
-        return response()->json('Hello world', 200);
     });
 
     //login with google

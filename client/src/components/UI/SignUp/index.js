@@ -35,7 +35,7 @@ export default function SignUp() {
           .then((response) => response.json())
           .then((data) => {
             login(data.data.username, token, data.data.id);
-            navigate("/"); //object history;
+            navigate("/adminarea"); //object history;
           });
       });
   };
