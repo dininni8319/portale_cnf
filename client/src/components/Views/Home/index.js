@@ -1,6 +1,9 @@
+import { FormEvents } from "../../UI";
 const Home = () => {
   return ( 
-    <div>Home</div>
+    <div className="custom-height-class">
+      <FormEvents />
+    </div>
    );
 }
  
