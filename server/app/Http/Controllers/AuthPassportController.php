@@ -6,39 +6,30 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Actions\UserRegistrationAction;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UserRegisterValidation;
 
 class AuthPassportController extends Controller
 {
-    public function register(Request $request) {
+    public function register(UserRegisterValidation $request, UserRegistrationAction $action) {
         
-        $validator = Validator::make($request->all(),[
-            'name' => 'required|string',
-            'last_name' => 'required|string',
-            'email' => 'required|string|unique:users',
-            'password' => 'required|min:6|confirmed', 
-        ]);
-
-        if ($validator->fails()) {
+        $registration = $action->handle($request);
+        
+        if (!$registration) {
             return response()->json([
                   'success' => false,
-                  'message' => $validator->messages()->toArray()
+                  'message' => 'quallcosa è andato storto'
             ],400); //bad request
+        } else {
+
+            $resposeMessage = "Registration Successful";
+    
+            return response()->json([
+                'success' => true,
+                'message' => $resposeMessage
+            ],200);  //success
         }
-       
-        User::create([
-            'name' => $request->name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ])->sendEmailVerificationNotification();
-
-        $resposeMessage = "Registration Successful";
-
-        return response()->json([
-            'success' => true,
-            'message' => $resposeMessage
-        ],200);  //success
     }
     
     public function login(Request $request) {
@@ -144,6 +135,5 @@ class AuthPassportController extends Controller
             'message' => $responseMessage,
             'data' => $user
         ], 200);
-
     }
 }
