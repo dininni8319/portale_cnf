@@ -9,6 +9,7 @@ use App\Mail\Reservation;
 use Illuminate\Http\Request;
 use Spatie\GoogleCalendar\Event;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\CalendarAttachment;
 
 class GoogleCalendarController extends Controller
@@ -59,21 +60,33 @@ class GoogleCalendarController extends Controller
 
   public function createNewReservation(Request $request){
 
-    $startTime = Carbon::parse(
-      $request->date. " ".$request->time.'Europe/Rome'
-    );
-
-    $end = date("H:i", strtotime('+30 minutes', strtotime($request->time)));
-
-    $endTime = Carbon::parse(
-      $request->date. " ".$end.'Europe/Rome'
-    );
-
-    $name = $request->first_name.' '.$request->last_name;
+    $validator = Validator::make($request->all(),[
+      'first_name' => 'required|string',
+      'last_name' => 'required|string',
+      'email' => 'required|string',
+      'date' => 'required|date',
+      'time' => 'required|string',
+      'tipologiaRichiesta' => 'required|string',
+      'codicefiscale' => 'required|string',
+      'meeting_id' => 'required|numeric',
+    ]);
     
     $meetingId = Meeting::where('stato_prenotazione', true)->find(intval($request->meeting_id));
-
-    if (!$meetingId) {
+    
+    if (!$meetingId && !$validator->fails()) {
+     
+      $startTime = Carbon::parse(
+        $request->date. " ".$request->time.'Europe/Rome'
+      );
+  
+      $end = date("H:i", strtotime('+30 minutes', strtotime($request->time)));
+  
+      $endTime = Carbon::parse(
+        $request->date. " ".$end.'Europe/Rome'
+      );
+  
+      $name = $request->first_name.' '.$request->last_name;
+      
 
       $event = $this->createGoogleCalendarEvent(
         $request->date, 
@@ -81,7 +94,7 @@ class GoogleCalendarController extends Controller
         $request->tipologiaRichiesta,
         $request->description
       );
-    
+  
       $revervation = Reserve::create([
         'email' => $request->email,
         'start' => $event->startDateTime,
@@ -127,7 +140,7 @@ class GoogleCalendarController extends Controller
     } else {
       return response()->json([
         'success' => false,
-        'message' => 'Qualcosa è andato storto'
+        'message' => $validator->messages()->toArray()
       ],400); //bad request
     }
   }

@@ -25,7 +25,7 @@ class AuthPassportController extends Controller
                   'message' => $validator->messages()->toArray()
             ],400); //bad request
         }
-        dd($request->last_name, 'testing the user');
+       
         User::create([
             'name' => $request->name,
             'last_name' => $request->last_name,

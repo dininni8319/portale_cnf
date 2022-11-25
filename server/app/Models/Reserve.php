@@ -11,17 +11,15 @@ class Reserve extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
-        'email_addetto_ufficio',
         'start',
         'end',
         'phone',
         'description',
         'codice_fiscale',
         'tipologia_richiesta',
-        'ufficio',
-        'codice_catastale',
         'stato',
         'note_lavorazione',
         'meeting_id',
