@@ -14,6 +14,7 @@ class AuthPassportController extends Controller
         
         $validator = Validator::make($request->all(),[
             'name' => 'required|string',
+            'last_name' => 'required|string',
             'email' => 'required|string|unique:users',
             'password' => 'required|min:6|confirmed', 
         ]);
@@ -24,9 +25,10 @@ class AuthPassportController extends Controller
                   'message' => $validator->messages()->toArray()
             ],400); //bad request
         }
-        
+        dd($request->last_name, 'testing the user');
         User::create([
             'name' => $request->name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ])->sendEmailVerificationNotification();
@@ -85,7 +87,6 @@ class AuthPassportController extends Controller
             $responseMessage = 'Sorry this user does not exist';
             
             return response()->json([
-
                 'success' => false,
                 'message' => $responseMessage,
                 'error' => $responseMessage,

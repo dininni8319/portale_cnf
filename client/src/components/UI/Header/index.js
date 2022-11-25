@@ -38,19 +38,19 @@ const Header = () => {
                           </div>
                         </div>
                       </div>
-                        <a className={`bg-white ${classes['it-aria-personale-btn']} d-md-flex`} href="#" data-element="personal-area-login">
+                      {user && <a className={`bg-white ${classes['it-aria-personale-btn']} d-md-flex`} href="#" data-element="personal-area-login">
                           <span className="rounded-icon position-relative" aria-hidden="true">
-                           <FontAwesomeIcon icon={faUser} size="1x" className={`${classes.iconUser}`} />
+                            <FontAwesomeIcon icon={faUser} size="1x" className={`${classes.iconUser}`} />
                           </span>
-                        </a>
-                        <Link className="nav-link active" aria-current="page" to="/sign">
-                          <span className="d-none d-lg-block px-3 text-white fs-5 fw-bolder">Accedi all'area personale</span>
-                        </Link>
+                        </a>}
+                     {user === null && <Link className="nav-link active" aria-current="page" to="/sign">
+                        <span className="d-none d-lg-block px-3 text-white fs-5 fw-bolder">Accedi all'area personale</span>
+                      </Link>}
                         
                     </div>
                     
                      {user && (
-                          <span className="nav-label-style text-white text-capitalize fw-bold fs-5">ciao {user?.name ? user?.name : 'User'}</span>
+                        <span className="nav-label-style text-white text-capitalize fw-bold fs-5">ciao {user?.username}</span>
                      )}
                      {user && (
                         <FontAwesomeIcon
@@ -58,7 +58,7 @@ const Header = () => {
                           icon={faArrowRightFromBracket}
                           className={`fa-1x mx-1 text-white logout-icon-style`}
                         /> 
-                    )}
+                     )}
                   </div>
                 </div>
               </div>

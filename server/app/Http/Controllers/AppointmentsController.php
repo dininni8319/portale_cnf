@@ -88,7 +88,6 @@ class AppointmentsController extends Controller
           [
             'success' => true,
             'message' => "Gli appuntamenti sono stati creati!",
-            // 'dates' => $dates,
           ], 200
       );
     }

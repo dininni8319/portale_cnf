@@ -13,7 +13,6 @@ use App\Http\Controllers\CalendarAttachment;
 
 class GoogleCalendarController extends Controller
 { 
-
   public function __construct(CalendarAttachment $calendarAttachment)
   {
       $this->calendarAttachment = $calendarAttachment;
@@ -89,7 +88,8 @@ class GoogleCalendarController extends Controller
         'end' => $event->endDateTime,
         'tipologia_richiesta' => $event->name,
         'description' => $event->description,
-        'name' => $name,
+        'first_name' => $request->first_name,
+        'last_name' => $request->last_name,
         'codice_fiscale' => $request->codicefiscale,
         'phone' => $request->phone,
         'meeting_id' => $request->meeting_id,
