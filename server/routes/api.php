@@ -29,7 +29,6 @@ Route::group(['middleware' => 'CORS'],function ($router){
     Route::get('/calendar/all/active/meetings', [MeetingsController::class, 'getActiveAppointments']);
     Route::get('/calendar/all/reserved/meetings', [MeetingsController::class, 'getScheduledAppointments']);
     Route::get('/calendar/all/old/meetings', [MeetingsController::class, 'getOldAppointments']);
-    Route::get('/calendar/all/current/appointments', [MeetingsController::class, 'getAppointments']);
     //login with passport
     Route::post('/register', [AuthPassportController::class, 'register']);
     Route::post('/login', [AuthPassportController::class, 'login']);

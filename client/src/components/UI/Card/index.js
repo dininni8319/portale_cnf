@@ -6,11 +6,11 @@ import { formatDate } from "../../../utilities";
 
 const Card = ( { meeting, id }) => {
   return (
-    <div className="card col-12 col-md-4 m-2 p-0">
+    <div className="card col-12 col-md-5 m-2 p-0">
       <div className="card-header bg-dark text-white fw-bold">
         Appuntamenti
       </div>
-      <ul key={meeting.id} className="">
+      <ul>
           <li className="li-card-style">{id + 1}</li>
           <li className="li-card-style"><span>Name:</span> {meeting.name}</li>
           <li className="li-card-style"><span>Email:</span> {meeting.email}</li>

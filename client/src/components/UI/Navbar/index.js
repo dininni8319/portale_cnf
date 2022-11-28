@@ -25,13 +25,13 @@ const Navbar = () => {
             <div className="col-12">
               <div className={classes["it-header-center-content-wrapper"]}>
                 <div className="it-brand-wrapper">
-                  <a href="#" title="Vai alla homepage" className="text-decoration-none">
+                 
                     <div className={classes["it-brand-text"]}>
                       <Link className="nav-link active" aria-current="page" to="/">
                         <h1 className={classes["it-brand-title"]}>Nome del Comune</h1>
                       </Link>
                     </div>
-                  </a>
+                
                 </div>
                 <div className={classes["it-right-zone"]}>
                    <NavIcons />

@@ -58,7 +58,7 @@ class MeetingsController extends Controller
         
         if ($meetings) {
             return response()->json([
-             'meetings' => $meetings,
+             'appointments' => $meetings,
              'count' => $count,
              'message' => 'Questi sono i meeting che ho trovato!'
             ], 200);
@@ -72,17 +72,19 @@ class MeetingsController extends Controller
         $currentTime = Carbon::now();
         $currentTime->format('Y-m-d H:i:s');
 
-        $meetings = Meeting::orderBy('giorno_appuntamento', 'ASC')
-            ->orderBy('start','ASC')
-            ->where('stato_prenotazione','=' , 'prenotato')
-            ->where('giorno_appuntamento', '>', $currentTime)
-            ->get()
-            ->toArray();
+        // $meetings = Meeting::orderBy('giorno_appuntamento', 'ASC')
+        //     ->orderBy('start','ASC')
+        //     ->where('stato_prenotazione','=' , 'prenotato')
+        //     ->where('giorno_appuntamento', '>', $currentTime)
+        //     ->get()
+        //     ->toArray();
+        $meetings = Reserve::orderBy('start', 'ASC')->get();
+        
         $count = count($meetings);
         
         if ($meetings) {
             return response()->json([
-             'meetings' => $meetings,
+             'appointments' => $meetings,
              'count' => $count,
              'message' => 'Questi sono i meeting che ho trovato!'
             ], 200);
@@ -100,40 +102,19 @@ class MeetingsController extends Controller
             ->orderBy('start','DESC')
             ->where('stato_prenotazione','=' , 'libero')
             ->where('giorno_appuntamento', '<', $currentTime)
+            
             ->get()
             ->toArray();
         $count = count($meetings);
-        
+
         if ($meetings) {
             return response()->json([
-             'meetings' => $meetings,
+             'appointments' => $meetings,
              'count' => $count,
              'message' => 'Questi sono i meeting che ho trovato!'
             ], 200);
         }
 
         return response()->json(["message" => "Non è stato trovato nessun meeting!"], 400);
-    }
-
-    public function getAppointments()
-    {
-        $appointments = Reserve::all();
-        
-        if ($appointments) {
-            return response()->json([
-                'success' => true,
-                'message' => "Gli appuntamenti sono stati creati!",
-                'appointments' => $appointments,
-            ], 200);
-        } else {
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => "Thank you for your reservation, please check your inbox",
-                    'dates' => [],
-                ], 404
-            );
-        }
-
     }
 }
