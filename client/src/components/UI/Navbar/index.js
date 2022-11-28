@@ -2,19 +2,12 @@ import classes from './style.module.css';
 import { useContext, memo } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/Auth";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import NavComponent from './NavComponent';
 import NavIcons from './NavIcons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import {
-  faSpinner,
-  faUserCircle,
-  faSignOutAlt,
-  faCircle,
-} from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
-
   const { user, logout } = useContext(AuthContext);
 
   return ( 

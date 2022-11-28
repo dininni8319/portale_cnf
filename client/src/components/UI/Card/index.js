@@ -6,8 +6,8 @@ import { memo } from "react";
 
 const Card = ( { children }) => {
   return (
-    <div className="card col-12 col-md-5 m-2 p-0">
-      <div className="card-header bg-dark text-white fw-bold">
+    <div className="card col-11 col-md-5 m-2 p-0">
+      <div className="card-header footer-color-custom text-white fw-bold">
         Appuntamenti
       </div>
      { children}
@@ -16,16 +16,3 @@ const Card = ( { children }) => {
 }
 
 export default memo(Card);
-
-{/* <div className={classes["card-game"]}>
-<img src={props.image} alt="test" />
-<p>{props.name}</p>
-  <Link to={`/`} className="d-flex">
-  <FontAwesomeIcon
-    icon={faChevronCircleRight}
-    className="fa-2x text-white text-decoration-none"
-  />
-</Link>
-<div></div>
-<div></div>
-</div> */}

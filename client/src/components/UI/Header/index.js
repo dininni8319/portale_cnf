@@ -15,7 +15,7 @@ const Header = () => {
               <div className="row">
                 <div className="col-12">
                   <div className={classes['it-header-slim-wrapper-content']}>
-                      <Link className="d-lg-block navbar-brand text-white nav-link" aria-current="page" to="/">
+                      <Link className="d-lg-block navbar-brand text-white nav-link text-sm-small" aria-current="page" to="/">
                         Nome della Regione
                       </Link>
                     <div className={classes["it-header-slim-right-zone"]} role="navigation">
@@ -44,13 +44,13 @@ const Header = () => {
                           </span>
                         </a>}
                      {user === null && <Link className="nav-link active" aria-current="page" to="/sign">
-                        <span className="d-none d-lg-block px-3 text-white fs-5 fw-bolder">Accedi all'area personale</span>
+                        <span className="d-none d-lg-block px-sm-1 px-md-3 text-white fs-5 fw-bolder">Accedi all'area personale</span>
                       </Link>}
                         
                     </div>
                     
                      {user && (
-                        <span className="nav-label-style text-white text-capitalize fw-bold fs-5">ciao {user?.username}</span>
+                        <span className="nav-label-style text-white text-capitalize fw-bold fs-5 d-none d-md-block">ciao {user?.username}</span>
                      )}
                      {user && (
                         <FontAwesomeIcon

@@ -26,9 +26,12 @@ Route::group(['middleware' => 'CORS'],function ($router){
     Route::post('/calendar/create/event', [GoogleCalendarController::class, 'createNewReservation']);
     Route::post('/calendar/create/appointments', [AppointmentsController::class, 'schuduleAppointments']);
     Route::post('/calendar/all/meetings', [MeetingsController::class, 'getAllMeetings']);
+    Route::delete('/calendar/delete/meeting/{id}', [MeetingsController::class, 'deleteMeeting']);
     Route::get('/calendar/all/active/meetings', [MeetingsController::class, 'getActiveAppointments']);
     Route::get('/calendar/all/reserved/meetings', [MeetingsController::class, 'getScheduledAppointments']);
     Route::get('/calendar/all/old/meetings', [MeetingsController::class, 'getOldAppointments']);
+    Route::post('/calendar/date', [MeetingsController::class, 'getAppointmentsWithDate']);
+
     //login with passport
     Route::post('/register', [AuthPassportController::class, 'register']);
     Route::post('/login', [AuthPassportController::class, 'login']);
