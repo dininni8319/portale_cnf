@@ -1,5 +1,5 @@
 import { getCurrentDate, excludeWeekends } from "../../../utilities";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { formatDate } from "../../../utilities";
@@ -90,4 +90,4 @@ const Orari = ({ date, setDate, isClicked, setIsClicked }) => {
    );
 }
  
-export default Orari;
+export default memo(Orari);

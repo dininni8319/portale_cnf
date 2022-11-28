@@ -1,4 +1,7 @@
+import { memo } from "react";
+
 const Richiedente = ( { email, first_name,last_name, phone, codicefiscale }) => {
+
   return ( 
     <section className="component-wrapper px-5">
         <h4 className='h4'>Richiedente</h4>
@@ -64,4 +67,4 @@ const Richiedente = ( { email, first_name,last_name, phone, codicefiscale }) => 
    );
 }
  
-export default Richiedente;
+export default memo(Richiedente);

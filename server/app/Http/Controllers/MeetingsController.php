@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Meeting;
-use App\Models\Reserve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class MeetingsController extends Controller
 {
@@ -18,7 +17,8 @@ class MeetingsController extends Controller
         $pageSize = 5;
         $startingPoint = $request->start_point ?? 0;
 
-        $meetings = Meeting::orderBy('giorno_appuntamento', 'ASC')
+        //using query builder is three times faster
+        $meetings = DB::table('meetings')->orderBy('giorno_appuntamento', 'ASC')
             ->orderBy('start','ASC')
             ->where('stato_prenotazione','=' , 'libero')
             ->where('giorno_appuntamento', '>', $currentTime)
@@ -48,12 +48,14 @@ class MeetingsController extends Controller
         $currentTime = Carbon::now();
         $currentTime->format('Y-m-d H:i:s');
 
-        $meetings = Meeting::orderBy('giorno_appuntamento', 'ASC')
+        $meetings = DB::table('meetings')
+            ->orderBy('giorno_appuntamento', 'ASC')
             ->orderBy('start','ASC')
             ->where('stato_prenotazione','=' , 'libero')
             ->where('giorno_appuntamento', '>', $currentTime)
             ->get()
             ->toArray();
+            
         $count = count($meetings);
         
         if ($meetings) {
@@ -78,7 +80,9 @@ class MeetingsController extends Controller
         //     ->where('giorno_appuntamento', '>', $currentTime)
         //     ->get()
         //     ->toArray();
-        $meetings = Reserve::orderBy('start', 'ASC')->get();
+        $meetings = DB::table('reserves')
+          ->orderBy('start', 'ASC')
+          ->get();
         
         $count = count($meetings);
         
@@ -98,11 +102,11 @@ class MeetingsController extends Controller
         $currentTime = Carbon::now();
         $currentTime->format('Y-m-d H:i:s');
 
-        $meetings = Meeting::orderBy('giorno_appuntamento', 'DESC')
+        $meetings = DB::table('meetings')
+            ->orderBy('giorno_appuntamento', 'DESC')
             ->orderBy('start','DESC')
             ->where('stato_prenotazione','=' , 'libero')
             ->where('giorno_appuntamento', '<', $currentTime)
-            
             ->get()
             ->toArray();
         $count = count($meetings);

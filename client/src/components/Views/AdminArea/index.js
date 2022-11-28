@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext, memo } from "react";
 import { Card, Sidebar } from "../../UI/index";
 import { ConfigContext } from './../../../Contexts/Config';
+import { formatDate } from "../../../utilities";
 
 const AdminArea = () => {
   const [ selectedAppointments, setSelectedAppointments ] = useState('');
@@ -25,7 +26,28 @@ const AdminArea = () => {
       <div className='row justify-content-around col-12 col-md-8'>
       {currentAppointments?.map((meeting, id) => {
           return (
-            <Card meeting={meeting} id={id} key={meeting.id}/>
+            <Card meeting={meeting} id={id} key={meeting.id}>
+              {meeting.email && 
+                <ul>
+                    <li className="li-card-style">{id + 1}</li>
+                    <li className="li-card-style"><span>Name:</span> {meeting.name}</li>
+                    <li className="li-card-style"><span>Email:</span> {meeting.email}</li>
+                    <li className="li-card-style"><span>Phone:</span> {meeting.phone}</li>
+                    <li className="li-card-style"><span>Tipologia di richiesta: </span>{meeting.tipologia_richiesta}</li>
+                    <li className="li-card-style"><span>Descrizione:</span> {meeting.description}</li>
+                    <li className="li-card-style"><span>Data inizio meeting:</span> {formatDate(meeting.start)}</li>
+                    <li className="li-card-style"><span>Data fine meeting:</span> {formatDate(meeting.end)}</li>
+                    <li className="li-card-style"><span>Stato del appuntamento: </span><span>{meeting.stato ? meeting.stato : ''}</span></li>
+                </ul>
+              }
+              {meeting.giorno_appuntamento && 
+                <ul>
+                    <li className="li-card-style">{id + 1}</li>
+                    <li className="li-card-style"><span>Giorno del appuntamento:</span> {meeting.giorno_appuntamento}</li>
+                    <li className="li-card-style"><span>Orario del meeting:</span> {meeting.email}</li>
+                </ul>
+              }
+            </Card>
           );
       })}
     </div>

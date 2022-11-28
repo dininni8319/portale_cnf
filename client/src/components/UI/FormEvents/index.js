@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import useInput from "../../Hooks/useInput";
 import { useNavigate } from "react-router";
 import { 
@@ -34,7 +34,7 @@ const FormEvents = () => {
     e.preventDefault();
     setStep(prevStep => prevStep > 1 ? prevStep - 1 : prevStep );
   }
-
+  
   const handleNextStep = (e) => {
     e.preventDefault();
     setStep(nextStep => nextStep < 5 ? nextStep + 1 : nextStep );
@@ -128,4 +128,4 @@ const FormEvents = () => {
    );
 }
  
-export default FormEvents;
+export default memo(FormEvents);

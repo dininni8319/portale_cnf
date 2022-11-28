@@ -8,6 +8,7 @@ const StepsComponents = ({
   step,
   formErrors,
 }) => {
+ 
   return ( 
      <div className='d-flex justify-content-between py-3 col-md-5 '>
       {step !== 1 && <button className="text-green-dark fs-5 fw-bold" onClick={handlePrevStep}>
