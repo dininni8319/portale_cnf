@@ -2,6 +2,7 @@ import { useState, useEffect, useContext, memo } from "react";
 import { Card } from "../../UI/index";
 import { ConfigContext } from './../../../Contexts/Config';
 import { formatDate } from "../../../utilities";
+
 const AdminArea = () => {
 
   const [ currentAppointments, setCurrentAppointments ] = useState([])
