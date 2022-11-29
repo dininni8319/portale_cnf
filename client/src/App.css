@@ -180,3 +180,12 @@ input[type="date"] {
   cursor: pointer;
 }
 
+.input-search {
+  width: 100%;
+  min-height: 20%;
+  background: inherit;
+  outline: none;
+  padding: 10px;
+  border: 1px solid #e9e6f2;
+  border-radius: 2px;
+}

@@ -6,7 +6,6 @@ use App\Models\Meeting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use App\Actions\UserRegistrationAction;
 use App\Models\Reserve;
 use Illuminate\Support\Facades\Validator;
 
@@ -102,7 +101,7 @@ class MeetingsController extends Controller
         $meetings = DB::table('meetings')
             ->orderBy('giorno_appuntamento', 'DESC')
             ->orderBy('start','DESC')
-            ->where('stato_prenotazione','=' , 'libero')
+            ->where('stato_prenotazione','=' , 'prenotato')
             ->where('giorno_appuntamento', '<', $currentTime)
             ->get()
             ->toArray();
@@ -121,10 +120,9 @@ class MeetingsController extends Controller
 
     public function getAppointmentsWithDate(Request $request)
     {
-        
+
         $validator = Validator::make($request->all(),[
-            'date' => 'required|date',
-            
+            'date' => 'required|date', 
         ]);
             
             if ($validator->fails()) {
@@ -136,8 +134,8 @@ class MeetingsController extends Controller
                 }
             }
             
-            $date = DB::table('meetings')
-              ->where('giorno_appuntamento', '=', $request->date)
+            $date = DB::table('reserves')
+              ->whereBetween('start', [$request->date." 00:00:00", $request->date." 23:59:59"])
               ->get();
 
             $resposeMessage = "Questi sono l'appuntamenti trovati con questa data: ".$request->date;
@@ -151,22 +149,42 @@ class MeetingsController extends Controller
               ],200);  //success
         }
 
-        public function deleteMeeting($id)
-        {
-            $meeting = Reserve::find($id);
-    
-            if ($meeting) {
-                $meeting->delete();
-                
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Eliminato appuntamento numero: '.$id,
-                     
-                ],200);  //success
-            }
+    public function deleteMeeting($id)
+    {
+        $meeting = Reserve::find($id);
+
+        if ($meeting) {
+            $meeting->delete();
+            
             return response()->json([
                 'success' => true,
-                'message' => 'appuntamento non è stato eliminato, numero: '.$id,  
-            ],200);
+                'message' => 'Eliminato appuntamento numero: '.$id,
+                    
+            ],200);  //success
         }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'appuntamento non è stato eliminato, numero: '.$id,  
+        ],200);
+    }
+    
+    public function searchAppuntamento($query)
+    {
+        if(!$query){
+            return response()->json([
+                'success' => false,
+                'message' => 'Nessun appuntamento trovato!',
+            ], 404);
+        } else {
+            // dd('test', $query);
+            $appointments = Reserve::search($query)->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'questi sono i risultati della ricerca',
+                'appointments'=> $appointments,
+                'count' => count($appointments),
+            ], 200);
+        }     
+    }
 }

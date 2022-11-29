@@ -12,9 +12,11 @@
         "laravel/framework": "^9.19",
         "laravel/passport": "^11.3",
         "laravel/sanctum": "^3.0",
+        "laravel/scout": "^9.4",
         "laravel/tinker": "^2.7",
         "spatie/icalendar-generator": "^2.5",
-        "spatie/laravel-google-calendar": "^3.5"
+        "spatie/laravel-google-calendar": "^3.5",
+        "teamtnt/laravel-scout-tntsearch-driver": "^12.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

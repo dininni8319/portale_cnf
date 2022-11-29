@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import useInput from '../../Hooks/useInput';
+import Search from '../Search';
 
-const Sidebar = ( { setSelectedAppointments, setCurrentDateAppointments, handleCalendar }) => {
+const Sidebar = ( { setSelectedAppointments, setCurrentDateAppointments, handleCalendar, setTerm }) => {
 
   const handleAppointments = (event) => {
     setSelectedAppointments(event.target.value);
@@ -48,6 +49,18 @@ const Sidebar = ( { setSelectedAppointments, setCurrentDateAppointments, handleC
               onChange={(event) => handleDateAppointments(event)}
             />
           </div>
+          </div>
+        </div>
+      </div>
+      <div className="accordion-item">
+        <h2 className="accordion-header" id="headingThree">
+          <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Cerca con i dati dell'utente
+          </button>
+        </h2>
+        <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div className="accordion-body">
+            <Search title='appuntamento' setTerm={setTerm}/>
           </div>
         </div>
       </div>

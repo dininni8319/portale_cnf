@@ -31,6 +31,7 @@ Route::group(['middleware' => 'CORS'],function ($router){
     Route::get('/calendar/all/reserved/meetings', [MeetingsController::class, 'getScheduledAppointments']);
     Route::get('/calendar/all/old/meetings', [MeetingsController::class, 'getOldAppointments']);
     Route::post('/calendar/date', [MeetingsController::class, 'getAppointmentsWithDate']);
+    Route::get("/appuntamenti/search={query}" , [MeetingsController::class, "searchAppuntamento"])->name("search.riscossione");
 
     //login with passport
     Route::post('/register', [AuthPassportController::class, 'register']);
@@ -48,6 +49,7 @@ Route::group(['middleware' => 'CORS'],function ($router){
     //login with google
     Route::get('google/login/url', [AuthController::class, 'getAuthUrl']);
     Route::post('google/auth/login', [AuthController::class, 'postLogin']);
+    
 
     //google calendar apis
 });
