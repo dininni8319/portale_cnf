@@ -69,6 +69,16 @@
 .iconUser {
   color: var(--greenColor);
   position: relative;
-  left: 55%;
-  top: 7%;
+  left: 60%;
+  top: 9%;
+}
+
+
+@media only screen and (max-width: 765px) {
+  .iconUser {
+    color: var(--greenColor);
+    position: relative;
+    left: 30%;
+    top: 9%;
+  }
 }

@@ -1,4 +1,7 @@
+import { memo } from "react";
+
 const Ufficio = ({ ufficio }) => {
+
   return ( 
     <section className="mb-3" required>
         <h4 className='h4'>Ufficio*</h4>
@@ -13,4 +16,4 @@ const Ufficio = ({ ufficio }) => {
    );
 }
  
-export default Ufficio;
+export default memo(Ufficio);

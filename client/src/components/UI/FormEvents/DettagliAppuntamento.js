@@ -1,4 +1,7 @@
+import { memo } from "react";
+
 const DettagliAppuntamento = ({ description, tipologiaRichiesta }) => {
+ 
   return ( 
     <section>
       <h4 className='h4'>Dettaglio Appuntamento</h4>
@@ -19,4 +22,4 @@ const DettagliAppuntamento = ({ description, tipologiaRichiesta }) => {
    );
 }
  
-export default DettagliAppuntamento;
+export default memo(DettagliAppuntamento);

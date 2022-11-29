@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { formatDate } from "../../../utilities";
 const Riepilogo = ({ config }) => {
   const { 
@@ -86,4 +87,4 @@ const Riepilogo = ({ config }) => {
    );
 }
  
-export default Riepilogo;
+export default memo(Riepilogo);

@@ -15,11 +15,11 @@ const Header = () => {
               <div className="row">
                 <div className="col-12">
                   <div className={classes['it-header-slim-wrapper-content']}>
-                      <Link className="d-lg-block navbar-brand text-white nav-link" aria-current="page" to="/">
+                      <Link className="d-lg-block navbar-brand text-white nav-link text-sm-small" aria-current="page" to="/">
                         Nome della Regione
                       </Link>
                     <div className={classes["it-header-slim-right-zone"]} role="navigation">
-                      <div className={`nav-item dropdown px-5`}>
+                      <div className={`nav-item dropdown px-3 px-md-5`}>
                         <button type="button" className={`nav-link dropdown-toggle bg-transparent text-white fw-bold ${classes.btnSelect}`} data-bs-toggle="dropdown" aria-expanded="false" aria-controls="languages" aria-haspopup="true">
                           <span className="visually-hidden">Lingua attiva:</span>
                           <span>ITA</span>
@@ -38,19 +38,19 @@ const Header = () => {
                           </div>
                         </div>
                       </div>
-                        <a className={`bg-white ${classes['it-aria-personale-btn']} d-md-flex`} href="#" data-element="personal-area-login">
-                          <span className="rounded-icon position-relative" aria-hidden="true">
-                           <FontAwesomeIcon icon={faUser} size="1x" className={`${classes.iconUser}`} />
+                      {user && <a className={`bg-white ${classes['it-aria-personale-btn']} d-md-flex`} href="#" data-element="personal-area-login">
+                          <span className="rounded-icon" aria-hidden="true">
+                            <FontAwesomeIcon icon={faUser} size="1x" className={`${classes.iconUser}`} />
                           </span>
-                        </a>
-                        <Link className="nav-link active" aria-current="page" to="/sign">
-                          <span className="d-none d-lg-block px-3 text-white fs-5 fw-bolder">Accedi all'area personale</span>
-                        </Link>
+                        </a>}
+                     {user === null && <Link className="nav-link active" aria-current="page" to="/sign">
+                        <span className="d-none d-lg-block px-sm-1 px-md-3 text-white fs-5 fw-bolder">Accedi all'area personale</span>
+                      </Link>}
                         
                     </div>
                     
                      {user && (
-                          <span className="nav-label-style text-white text-capitalize fw-bold fs-5">ciao {user?.name ? user?.name : 'User'}</span>
+                        <span className="nav-label-style text-white text-capitalize fw-bold fs-5 d-none d-md-block">ciao {user?.username}</span>
                      )}
                      {user && (
                         <FontAwesomeIcon
@@ -58,7 +58,7 @@ const Header = () => {
                           icon={faArrowRightFromBracket}
                           className={`fa-1x mx-1 text-white logout-icon-style`}
                         /> 
-                    )}
+                     )}
                   </div>
                 </div>
               </div>

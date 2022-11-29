@@ -12,8 +12,8 @@ import {
 const NavIcons = () => {
   return ( 
     <div className={`${classes['it-socials']} d-none d-md-flex`}>
-    <span className='nav-link'>Seguici su</span>
-    <ul className="d-md-flex justify-content-md-around nav-ul-width">
+    <span className='nav-link px-2'>Seguici su</span>
+    <ul className="d-md-flex justify-content-md-between nav-ul-width">
       <li>
         <a href="#" target="_blank">
             <FontAwesomeIcon icon={faTwitter} size="2x" className="text-white"/> 

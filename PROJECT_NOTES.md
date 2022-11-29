@@ -69,11 +69,14 @@ Get all the fase by group
 Indirizzo ip progetto ricorso
 #http://172.16.6.43/login
 
-#Commando per installare la libreria per importare/exportare file csv/excel
+#Comando per installare la libreria per importare/exportare file csv/excel
 composer require psr/simple-cache:^1.0 maatwebsite/excel
 
-Commando per creare classi import/export
+Comando per creare classi import/export
 php artisan make:import CartolineImport --model=Cartoline
+
+Comando per la crezione della classe FormRequest
+#php artisan make:request UserRegisterValidation
 
 Get a week before date in seconds, get a week in seconds, and the current date;
 #dd(strtotime('-1 week') , (60 * 60 * 24 * 7), strtotime(Carbon::now()));

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "./../../../Contexts/Auth/index";
 import { useContext } from "react";
 import { ConfigContext } from "./../../../Contexts/Config";
+import  classes from "./style.module.css";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -13,7 +14,6 @@ export default function SignUp() {
 
   const signUp = (event) => {
     event.preventDefault();
-    // console.log({email: email.value, password: password.value}, 'response from the server when we try to login');
 
     fetch(`${api_urls.backend}/api/login`, {
       method: "POST",
@@ -34,8 +34,10 @@ export default function SignUp() {
         })
           .then((response) => response.json())
           .then((data) => {
-            login(data.data.username, token, data.data.id);
-            navigate("/adminarea"); //object history;
+            console.log(data.data);
+            let username = `${data.data.name} ${data.data.last_name}`
+            login( username, token, data.data.id);
+            navigate("/adminarea"); 
           });
       });
   };
@@ -45,13 +47,14 @@ export default function SignUp() {
       <div className={`${"sign-top"}`}></div>
       <div className={`${"sign-bottom"}`}></div>
       <div className="mb-5">
+        <h2 className='h2 mb-5 fw-bold'>Login</h2>
         <label className="form-label" htmlFor="userMail">
           {" "}
           Inserisci la tua email
         </label>
         <input
           type="email"
-          className="form-control bg-transparent border-0 border-bottom border-info rounded-0"
+          className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
           id="userMail"
           {...email}
         />
@@ -63,13 +66,13 @@ export default function SignUp() {
         </label>
         <input
           type="password"
-          className="form-control bg-transparent border-0 border-bottom border-info rounded-0"
+          className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
           id="userPassword"
           {...password}
         />
       </div>
       <div className="mb-5">
-        <button type="submit" className="btn btn-outline-info px-5 rounded-0">
+        <button type="submit" className="btn btn-dark px-5 rounded-0 fw-bold">
           Login
         </button>
       </div>

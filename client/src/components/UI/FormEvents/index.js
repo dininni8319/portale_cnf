@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import useInput from "../../Hooks/useInput";
 import { useNavigate } from "react-router";
 import { 
@@ -35,7 +35,7 @@ const FormEvents = () => {
     e.preventDefault();
     setStep(prevStep => prevStep > 1 ? prevStep - 1 : prevStep );
   }
-
+  
   const handleNextStep = (e) => {
     e.preventDefault();
     setStep(nextStep => nextStep < 5 ? nextStep + 1 : nextStep );
@@ -99,7 +99,7 @@ const FormEvents = () => {
 
   return ( 
     <div className={`${classes.formContainer}`}>
-      <form className="mb-3 row p-5 bg-gray d-md-flex align-items-center mt-5 col-md-5" onSubmit={handleSubmit}>
+      <form className="mb-3 row p-5 bg-gray d-md-flex align-items-center mt-5 col-11 col-md-5" onSubmit={handleSubmit}>
         {/* { Object.keys(formErrors).length === 0 && isSubmited && <span className="text-white bg-green-custom fs-5 fw-bold px-5 py-2">La tua richiesta è stata inviata correttamente</span> } */}
         <h2 className="mb-3 h2 mt-2">Prenota un appuntamento</h2>
         {step === 1 && <Ufficio ufficio={ufficio} />}
@@ -147,4 +147,4 @@ const FormEvents = () => {
    );
 }
  
-export default FormEvents;
+export default memo(FormEvents);

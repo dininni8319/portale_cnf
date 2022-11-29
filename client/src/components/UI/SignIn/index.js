@@ -3,10 +3,12 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../../../Contexts/Auth";
 import { ConfigContext } from "../../../Contexts/Config";
 import { useContext, useState } from "react";
+import  classes from "./style.module.css";
 
 export default function SignIn() {
   const navigate = useNavigate();
   const username = useInput("");
+  const last_name = useInput("");
   const email = useInput("");
   const password = useInput("");
   const passwordConfirm = useInput("");
@@ -22,12 +24,13 @@ export default function SignIn() {
       //fetch register
       //fetch login
       //fetch view-profile
-    // console.log(api_urls.backend);
+
       fetch(`${api_urls.backend}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: username.value,
+          last_name: last_name.value,
           email: email.value,
           password: password.value,
           password_confirmation: passwordConfirm.value,
@@ -76,56 +79,68 @@ export default function SignIn() {
 
   return (
     <>
-      <form className={`${"sign-form"}`} onSubmit={Login}>
+      <form className={`${classes["sign-form"]}`} onSubmit={Login}>
         <div className={`${"sign-top"}`}></div>
         <div className={`${"sign-bottom"}`}></div>
         <div className="mb-5">
+          <h2 className='h2 mb-5 fw-bold'>Registrati</h2>
           <label className="form-label" htmlFor="userName">
-            Enter your User Name
+            Inserisci il tuo nome
           </label>
           <input
             type="text"
-            className="form-control bg-transparent border-0 border-bottom border-info rounded-0"
+            className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
             id="userName"
             {...username}
           />
         </div>
         <div className="mb-5">
+          <label className="form-label" htmlFor="userName">
+           Inserisci il tuo cognome
+          </label>
+          <input
+            type="text"
+            className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
+            id="userName"
+            {...last_name}
+          />
+        </div>
+        <div className="mb-5">
           <label className="form-label" htmlFor="userMail">
-            Enter your Email
+            Inserisci il tua Email
           </label>
           <input
             type="email"
-            className="form-control bg-transparent border-0 border-bottom border-info rounded-0"
+            className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
             id="userMail"
             {...email}
           />
         </div>
         <div className="mb-5">
           <label className="form-label" htmlFor="userPassword">
-            Enter a new Password
+           Inserisci il tua password
           </label>
           <input
             type="password"
-            className="form-control bg-transparent border-0 border-bottom border-info rounded-0"
+            className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
             id="userPassword"
             {...password}
           />
         </div>
         <div className="mb-5">
           <label className="form-label" htmlFor="userPasswordConfirm">
-            Confirm the entered Password
+          Inserisci il tua password
           </label>
           <input
             type="password"
-            className="form-control bg-transparent border-0 border-bottom border-info rounded-0"
+            className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
             id="userPasswordConfirm"
             {...passwordConfirm}
           />
         </div>
         <div className="mb-5">
-          <button type="submit" className="btn btn-outline-info px-5 rounded-0">
-            Register
+          <button type="submit" className="btn btn-dark px-5 rounded-0">
+            Registrati
           </button>
         </div>
       </form>

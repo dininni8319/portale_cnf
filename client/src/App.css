@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 :root{
   --backgroundColor: #F5F6FA;
   --vanillaColor: #f2f2f2; 
-  --accentColor: #C3DBF5;
+  --accentColor: #F1F2F6;
   --textColor:#8590AA;
   --borderColor: #FFFFFF;
   --grayLightColor: #EBEEF0;
@@ -53,7 +54,7 @@ button {
   border: none;
 }
 
-.nav-ul-width{
+.nav-ul-width {
   min-width: 20vw;
 }
 
@@ -83,6 +84,7 @@ button {
 .bg-green-custom {
   background-color: var(--greenColor);
 }
+
 .btn-color-green {
   border-radius: 4px;
   white-space: normal;
@@ -103,6 +105,7 @@ a {
   color: white;
   font-size: .8888888889rem;;
   font-weight: 700;
+  cursor: pointer;
 }
 
 h3 {
@@ -144,3 +147,36 @@ h3 {
 .checkbox-round:checked {
   background-color: gray;
 }
+
+.li-card-style {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e9e6f2;
+}
+
+input[type="date"] {
+  font-family: monospace;
+  overflow: hidden;
+  padding: 15px;
+  position: absolute;
+  background-color: var(--accentColor);
+  transform: translate(-10%,-40%);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 18;
+  border-radius: 5px;
+}
+::-webkit-calendar-picker-indicator {
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.logout-icon-style {
+  cursor: pointer;
+}
+
