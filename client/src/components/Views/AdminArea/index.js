@@ -48,7 +48,6 @@ const AdminArea = () => {
       fetch(`${api_urls.backend}/api/appuntamenti/search=${term}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data, 'testing the data');
           if (data?.appointments) {
             setCurrentAppointments(prev => [...data?.appointments])
             setCount(Number(data?.count))
@@ -63,6 +62,7 @@ const AdminArea = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data?.appointments) {
+          
           setCurrentAppointments(prev => [...data?.appointments])
           setCount(Number(data?.count))
           setShowCalendar(false);
@@ -78,12 +78,13 @@ const AdminArea = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+
         if (data?.appointments) {
-          setCurrentAppointments(prev => [...data?.appointments])
+          setCurrentAppointments([...data?.appointments])
           setCount(Number(data?.count))
         }
-        setCurrentAppointments([])
-        setCount(0)
+        // setCurrentAppointments([])
+        // setCount(0)
       });
   }, [currentDateAppointments]);
 
