@@ -19,7 +19,7 @@ const Header = () => {
                         Nome della Regione
                       </Link>
                     <div className={classes["it-header-slim-right-zone"]} role="navigation">
-                      <div className={`nav-item dropdown px-5`}>
+                      <div className={`nav-item dropdown px-3 px-md-5`}>
                         <button type="button" className={`nav-link dropdown-toggle bg-transparent text-white fw-bold ${classes.btnSelect}`} data-bs-toggle="dropdown" aria-expanded="false" aria-controls="languages" aria-haspopup="true">
                           <span className="visually-hidden">Lingua attiva:</span>
                           <span>ITA</span>
@@ -39,7 +39,7 @@ const Header = () => {
                         </div>
                       </div>
                       {user && <a className={`bg-white ${classes['it-aria-personale-btn']} d-md-flex`} href="#" data-element="personal-area-login">
-                          <span className="rounded-icon position-relative" aria-hidden="true">
+                          <span className="rounded-icon" aria-hidden="true">
                             <FontAwesomeIcon icon={faUser} size="1x" className={`${classes.iconUser}`} />
                           </span>
                         </a>}

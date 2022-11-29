@@ -3,7 +3,7 @@ import { Card, Sidebar } from "../../UI/index";
 import { ConfigContext } from './../../../Contexts/Config';
 import { formatDate } from "../../../utilities";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTrash, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 const AdminArea = () => {
   const [ selectedAppointments, setSelectedAppointments ] = useState('');
@@ -32,7 +32,8 @@ const AdminArea = () => {
       return meetings.slice(10 - curr, curr - 10);
     }
      return curr;
-   }
+  }
+
   const handleDelete = (id) => {
       fetch(`${api_urls.backend}/api/calendar/delete/meeting/${id}`, {
         method: "DELETE",
@@ -75,7 +76,7 @@ const AdminArea = () => {
   }, [currentDateAppointments]);
 
   return ( 
-    <div className='d-md-flex py-5'>
+    <div className='d-md-flex py-5 custom-height-class'>
       <Sidebar 
         setCurrentDateAppointments={setCurrentDateAppointments}
         setSelectedAppointments={setSelectedAppointments}
@@ -87,12 +88,12 @@ const AdminArea = () => {
         : <h2 className='text-dark text-capitalize text-center py-2 px-2 h2 fs-1'>Calendario</h2>
         }
           {!showCalendar && <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true" onClick={() => setCurrent(prev => prev > 10 ?  prev - 10 : prev)}>Previous</a>
+          <ul className="pagination justify-content-center">
+            <li className="page-item disabled">
+              <a className="page-link" href="#" tabIndex="-1" aria-disabled="true" onClick={() => setCurrent(prev => prev > 10 ?  prev - 10 : prev)}>Previous</a>
             </li>
             <li>
-              <a class="page-link" href="#" onClick={() => setCurrent(prev => prev + 10 )}>Next</a>
+              <a className="page-link" href="#" onClick={() => setCurrent(prev => prev + 10 )}>Next</a>
             </li>
           </ul>
         </nav>}
@@ -128,7 +129,7 @@ const AdminArea = () => {
           );
         })}
     
-       { showCalendar &&  <iframe 
+       {showCalendar &&  <iframe 
             src="https://calendar.google.com/calendar/embed?src=67cb10fc4ca65505e0149eb3b93e9fe1279f95ff12403a915c13a1c656381376%40group.calendar.google.com&ctz=Europe%2FZurich" 
             className="mt-5 pt-5" 
             width="800" height="600" frameBorder="0" scrolling="no">

@@ -34,7 +34,9 @@ export default function SignUp() {
         })
           .then((response) => response.json())
           .then((data) => {
-            login(data.data.username, token, data.data.id);
+            console.log(data.data);
+            let username = `${data.data.name} ${data.data.last_name}`
+            login( username, token, data.data.id);
             navigate("/adminarea"); 
           });
       });
