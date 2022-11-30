@@ -39,7 +39,6 @@ export function formatDate(date){
   }.${year}`;
 }
 
-
 export const validEmail = ( email ) => {
   const regex = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
   return email

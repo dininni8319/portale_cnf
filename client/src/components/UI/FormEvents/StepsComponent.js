@@ -6,7 +6,6 @@ const StepsComponents = ({
   handleNextStep,
   handleSubmit,
   step,
-  formErrors,
 }) => {
  
   return ( 
