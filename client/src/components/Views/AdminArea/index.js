@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback, memo } from "react";
+import { useState, useEffect, useContext, memo } from "react";
 import { Card, Sidebar } from "../../UI/index";
 import { ConfigContext } from './../../../Contexts/Config';
 import { formatDate } from "../../../utilities";
@@ -7,26 +7,43 @@ import { faTrashAlt,faAngleRight, faPen  } from "@fortawesome/free-solid-svg-ico
 import Modal from '../../UI/Modal/Modal';
 import useInput from '../../Hooks/useInput';
 import { useNavigate } from "react-router";
+import ReactPaginate from 'react-paginate';
 
 const AdminArea = () => {
 
+  const { api_urls } = useContext(ConfigContext);
   const navigate = useNavigate()
+
   const [ selectedAppointments, setSelectedAppointments ] = useState('');
   const [ term, setTerm ] = useState('');
   const [ currentAppointments, setCurrentAppointments ] = useState([]);
   const [ currentDateAppointments, setCurrentDateAppointments ] = useState('');
-  const { api_urls } = useContext(ConfigContext);
   const [ count, setCount ] = useState(0);
   const [showCalendar, setShowCalendar ] = useState(false);
   const [ show, setShow ] = useState(false);
   const [ idCard, setIdCard ] = useState(0);
 
-  const searchedTerm = useInput('');
   const [modal, setModal] = useState(false);
   const closeModal = () => setModal(false);
-
   const stato = useInput('');
   const note_lavorazione = useInput('');
+
+  const itemsPerPage = 10; 
+  const [ itemOffset, setItemOffset ] = useState(0);
+
+  const endOffset = itemOffset + itemsPerPage;
+
+  const currentItems = currentAppointments.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(currentAppointments.length / itemsPerPage);
+
+  // Invoke when user click to request another page.
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % currentAppointments.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
 
   const handleCalendar = () => {
     setShowCalendar(prev => !prev);
@@ -37,7 +54,7 @@ const AdminArea = () => {
   const handleShow = (id) => {
     let unique = currentAppointments?.some(el => {
       if (id === el.id) { 
-          return true
+        return true
       }
     })
 
@@ -80,7 +97,7 @@ const AdminArea = () => {
           if (response.status === 200) {
 
             let appointments = currentAppointments?.filter(appoitment => appoitment.id !== id);
-            setCurrentAppointments(prev => [...appointments]);
+            setCurrentAppointments({...appointments});
           }
         })
       setModal(false)
@@ -92,7 +109,7 @@ const AdminArea = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data?.appointments) {
-            setCurrentAppointments(prev => [...data?.appointments])
+            setCurrentAppointments([...data?.appointments])
             setCount(Number(data?.count))
             setShowCalendar(false);
           }
@@ -145,7 +162,26 @@ const AdminArea = () => {
         : <h2 className='text-dark text-capitalize text-center py-2 px-2 h2 fs-1'>Calendario</h2>
         }
         
-        {currentAppointments?.map((meeting, id) => {
+        <div className='d-flex justify-content-center align-items-end my-3'>
+       { currentItems &&  <ReactPaginate
+            nextLabel="next >"
+            previousLabel="< previous"
+            onPageChange={handlePageClick}
+            breakLabel="..."
+            pageCount={pageCount}
+            renderOnZeroPageCount={null}
+            pageRangeDisplayed={5}
+            containerClassName={"pagination"}
+            previousLinkClassName={"pagination__link"}
+            nextLinkClassName={"pagination__link"}
+            // pageRangeDisplayed={5}
+            disabledClassName={"pagination__link--disabled"}
+            activeClassName={"pagination__link--active"}
+          />
+    }
+        </div>
+
+        {currentItems?.map((meeting, id) => {
           return (
             <>
               <Card meeting={meeting} id={id} key={meeting.id}>
@@ -225,10 +261,11 @@ const AdminArea = () => {
                         id={meeting.id}
                       />
                   )}
-              </Card> 
+              </Card>
             </>
           );
         })}
+
        {showCalendar &&  <iframe 
             src="https://calendar.google.com/calendar/embed?src=67cb10fc4ca65505e0149eb3b93e9fe1279f95ff12403a915c13a1c656381376%40group.calendar.google.com&ctz=Europe%2FZurich" 
             className="mt-5 pt-5" 
