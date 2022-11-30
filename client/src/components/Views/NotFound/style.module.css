@@ -1,0 +1,17 @@
+.nt-body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 60px;
+  position: absolute;
+  top: 40%;
+}
+
+.nt-text {
+  font-size: 25px;
+  position: absolute;
+  top: 50%;
+}

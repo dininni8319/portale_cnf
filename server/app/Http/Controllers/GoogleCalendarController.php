@@ -84,5 +84,36 @@ class GoogleCalendarController extends Controller
         ],400); //bad request
       }
     } 
+
+    public function updateReservation(Request $request,$id)
+    {
+      $validator = Validator::make($request->all(),[
+        'stato' => 'required|string',
+        'note_lavorazione' => 'string', 
+      ]);
+      
+      if ($validator->fails()) {
+        return response()->json([
+              'success' => false,
+              'message' => $validator->messages()->toArray()
+        ],400); //bad request
+      }
+      
+      if ($id) {
+        $appuntamento = Reserve::find(intval($id));
+        
+        $appuntamento->update([
+          'stato' => true,
+          'note_lavorazione' => $request->note_lavorazione,
+          ]);
+          
+          // dd($appuntamento);
+          return response()->json([
+            'success' => true,
+            'message' => "L'appuntamento è stato aggiornato"
+        ], 201);
+       
+      }
+    }
   }
 

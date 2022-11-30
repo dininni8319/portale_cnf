@@ -24,6 +24,7 @@ use App\Http\Controllers\GoogleCalendarController;
 Route::group(['middleware' => 'CORS'],function ($router){
     
     Route::post('/calendar/create/event', [GoogleCalendarController::class, 'createNewReservation']);
+    Route::patch('/calendar/create/event/{id}', [GoogleCalendarController::class, 'updateReservation']);
     Route::post('/calendar/create/appointments', [AppointmentsController::class, 'schuduleAppointments']);
     Route::post('/calendar/all/meetings', [MeetingsController::class, 'getAllMeetings']);
     Route::delete('/calendar/delete/meeting/{id}', [MeetingsController::class, 'deleteMeeting']);

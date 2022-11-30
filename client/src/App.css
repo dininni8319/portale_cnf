@@ -186,6 +186,18 @@ input[type="date"] {
   background: inherit;
   outline: none;
   padding: 10px;
-  border: 1px solid #e9e6f2;
+  border: 2px solid #e9e6f2;
   border-radius: 2px;
+  background-color: white;
+}
+
+/* .ul-class-style {
+  position: relative;
+} */
+.z-index-class {
+  position: absolute;
+  width: 70%;
+  top: 25%;
+  right: 10%;
+  background-color: var(--grayLightColor);
 }
