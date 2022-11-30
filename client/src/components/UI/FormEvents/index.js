@@ -90,9 +90,9 @@ const FormEvents = () => {
           console.log(data.event);
           if (data.event.googleEvent.id) {
             setMessage(data.msg);
-            navigate('/adminarea');
+            navigate('/');
           }
-          navigate('/adminarea');
+          navigate('/');
         });
     } 
   };

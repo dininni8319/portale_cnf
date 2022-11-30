@@ -5,6 +5,7 @@ import { Header, Navbar, FormEvents, Footer} from "./components/UI";
 import { AuthProvider } from "./Contexts/Auth/index";
 import { ConfigProvider } from "./Contexts/Config/index";
 import Protected from "./components/utils/ProtectedRoute";
+import NotFound from './components/Views/NotFound';
 const App = () => {
   return (
     <>
@@ -14,6 +15,7 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home/>} />
+            <Route path="*" element={<NotFound />} />
             <Route path="/sign" element={<Sign />} />
             <Route path="/adminarea" element={
               <Protected>

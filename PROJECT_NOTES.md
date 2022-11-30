@@ -78,6 +78,15 @@ php artisan make:import CartolineImport --model=Cartoline
 Comando per la crezione della classe FormRequest
 #php artisan make:request UserRegisterValidation
 
+Seeding the DB with fake the Table reserves
+php artisan db:seed --class=AppoitmentsSeeder
+
+npm i react-js-pagination
+
 Get a week before date in seconds, get a week in seconds, and the current date;
 #dd(strtotime('-1 week') , (60 * 60 * 24 * 7), strtotime(Carbon::now()));
 
+#Laravel/Scout
+- composer require laravel/scout
+- php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
+- composer require teamtnt/laravel-scout-tntsearch-driver

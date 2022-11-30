@@ -180,3 +180,34 @@ input[type="date"] {
   cursor: pointer;
 }
 
+.input-search {
+  width: 100%;
+  min-height: 20%;
+  background: inherit;
+  outline: none;
+  padding: 10px;
+  border: 2px solid #e9e6f2;
+  border-radius: 2px;
+  background-color: white;
+}
+
+/* .ul-class-style {
+  position: relative;
+} */
+.z-index-class {
+  position: absolute;
+  width: 70%;
+  top: 25%;
+  right: 10%;
+  background-color: var(--grayLightColor);
+}
+
+.pagination__link {
+  background-color:		#D0D0D0;
+  padding: 10px 20px;
+  outline: none;
+}
+
+.pagination__link--active {
+  color: gold;
+}
