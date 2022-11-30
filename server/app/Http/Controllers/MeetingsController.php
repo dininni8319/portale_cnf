@@ -24,7 +24,7 @@ class MeetingsController extends Controller
         $meetings = DB::table('meetings')->orderBy('giorno_appuntamento', 'ASC')
             ->orderBy('start','ASC')
             ->where('stato_prenotazione','=' , 'libero')
-            ->where('giorno_appuntamento', '>', $currentTime)
+            ->where('giorno_appuntamento', '>=', $currentTime)
             ->get()
             ->toArray();
         
@@ -55,10 +55,10 @@ class MeetingsController extends Controller
             ->orderBy('giorno_appuntamento', 'ASC')
             ->orderBy('start','ASC')
             ->where('stato_prenotazione','=' , 'libero')
-            ->where('giorno_appuntamento', '>', $currentTime)
+            ->where('giorno_appuntamento', '>=', $currentTime)
             ->get()
             ->toArray();
-            
+
         $count = count($meetings);
         
         if ($meetings) {
@@ -78,9 +78,12 @@ class MeetingsController extends Controller
         $currentTime->format('Y-m-d H:i:s');
         $meetings = DB::table('reserves')
           ->orderBy('start', 'ASC')
-          ->get();
+          ->where('start','>=' , $currentTime)
+          ->get()
+          ->toArray();
         
-        $count = count($meetings);
+        $allMeetings =  DB::table('reserves')->get();
+        $count = count($allMeetings);
         
         if ($meetings) {
             return response()->json([
@@ -105,6 +108,7 @@ class MeetingsController extends Controller
             ->where('giorno_appuntamento', '<', $currentTime)
             ->get()
             ->toArray();
+
         $count = count($meetings);
 
         if ($meetings) {
@@ -136,7 +140,8 @@ class MeetingsController extends Controller
             
             $date = DB::table('reserves')
               ->whereBetween('start', [$request->date." 00:00:00", $request->date." 23:59:59"])
-              ->get();
+              ->get()
+              ->toArray();
 
             $resposeMessage = "Questi sono l'appuntamenti trovati con questa data: ".$request->date;
     
@@ -178,7 +183,10 @@ class MeetingsController extends Controller
             ], 404);
         } else {
             // dd('test', $query);
-            $appointments = Reserve::search($query)->get();
+            $appointments = Reserve::search($query)
+            ->get()
+            ->toArray();
+
             return response()->json([
                 'success' => true,
                 'message' => 'questi sono i risultati della ricerca',
