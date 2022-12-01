@@ -71,7 +71,7 @@ class GoogleCalendarController extends Controller
         return response()->json(
             [
               'success' => true,
-              'message' => "Thank you for your reservation, please check your inbox",
+              'message' => "Grazie per la tua richiesta, provvederemo a ricontattarla al più breve possibile, controlli la sua mail!",
               'revervation' => $revervation,
               'stato_prenotazione' => $meetingStaus,
             ], 201

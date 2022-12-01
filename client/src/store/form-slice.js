@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const formSlice = createSlice({
   name: 'form',
   initialState: {
-    message: '',
+    message: 'hello world',
     step: 1,
     errors: {},
     isSubmited: false,
@@ -11,7 +11,6 @@ const formSlice = createSlice({
   },
   reducers: {
     previusFormStep(state, action) {
-
       if (state.step === 0) {
         return state.step;
       }
@@ -26,11 +25,24 @@ const formSlice = createSlice({
       state.step++;
     },
     
+    resetSteps(state, action){
+      state.step = 1;
+    },
+
     checkForErrors(state, action) {
       state.errors = action.payload;
     },
+
     setErrorsToNull(state, action) {
-      state.errors = {}
+      state.errors = {};
+    },
+    
+    setMessage(state, action){
+      state.message = action.payload;
+    },
+
+    setIsSubmited(state, action) {
+      state.isSubmited = action.payload;
     }
   }
 });

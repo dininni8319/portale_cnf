@@ -1,4 +1,13 @@
 // Everything except weekend days
+export function isEmptyObject(obj) {
+  for(let prop in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 export const excludeWeekends = dateString => {
   const day = (new Date(dateString)).getDay();
   if (day === 0 || day === 6) {

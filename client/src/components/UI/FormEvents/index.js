@@ -5,14 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formActions } from '../../../store/form-slice';
 import { FormComponents, StepsComponent } from "./link-form-comp";
 import classes from './style.module.css';
-import { validateForm } from '../../../utilities';
+import { validateForm, isEmptyObject } from '../../../utilities';
 
 const FormEvents = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const step = useSelector(state => state.form.step);
-  const errorsForm = useSelector(state => state.form.errors);
-
+  const {step, errors: errorsForm, message, isSubmited } = useSelector(state => state.form);
+ 
   const email = useInput("");
   const first_name = useInput("");
   const last_name = useInput("");
@@ -22,10 +21,6 @@ const FormEvents = () => {
   const description = useInput("");
   const phone = useInput("");
   const [ date, setDate ] = useState({});
-  
-  const [message, setMessage] = useState('');
-
-  const [ isSubmited, setIsSubmited ] = useState(false);
   const [ isClicked, setIsClicked ] = useState(false)
 
   const errors = Object.keys(errorsForm).length > 0 && Object.values(errorsForm);
@@ -57,10 +52,9 @@ const FormEvents = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    dispatch(formActions.checkForErrors({payload: validateForm(config)}))
+    dispatch(formActions.checkForErrors(validateForm(config)))
     
-   
-    if (Object.values(errorsForm).length === 0) {
+    if (isEmptyObject(errorsForm)) {
       
       fetch(`http://localhost:8000/api/calendar/create/event`, {
         method: "POST",
@@ -70,21 +64,33 @@ const FormEvents = () => {
         .then((response) => response.json())
         .then((data) => {
           
-          if (data.stato_prenotazione === true) {
-           
-            setIsSubmited(true);
-            setMessage(data.message);
-          } else {
+          if (data.success === true) {
+            dispatch(formActions.setIsSubmited({
+              payload: true 
+            }))
 
-            setIsSubmited(false);
-            setMessage(data.message);
+            dispatch(formActions.setMessage({
+              payload: data.message
+            }))
+
+            setTimeout(() => {
+              dispatch(formActions.setMessage({
+                payload: ''
+              }))
+
+              dispatch(formActions.resetSteps())
+
+              navigate('/');
+            }, 3000)
+          } else {
+            dispatch(formActions.setIsSubmited({
+              payload: false,
+            }))
+
+            dispatch(formActions.setMessage({
+              payload: data.message
+            }))
           }
-          setMessage('Qualcosa e andato storto');
-          if (data.success) {
-            setMessage(data.msg);
-            navigate('/');
-          }
-          // navigate('/appoi');
         });
     } 
   };
@@ -112,7 +118,7 @@ const FormEvents = () => {
         />
    
       </form>
-       {message && <div className="text-success fs-4 fw-bold">{message}</div>}
+       {message && <div className="text-success fs-5 fw-bold">{message.payload}</div>}
         <StepsComponent 
           handlePrevStep={handlePrevStep}
           handleNextStep={handleNextStep}

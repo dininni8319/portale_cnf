@@ -6,8 +6,8 @@ import {
   Riepilogo,  
   Ufficio 
 } from "./link-form-comp";
-import { useEffect, useState } from "react";
-import { formActions } from '../../../store/form-slice';
+import { useState } from "react";
+import { isEmptyObject } from "../../../utilities";
 
 const FormComponents = ({
   ufficio,
@@ -83,7 +83,7 @@ const FormComponents = ({
         {step === 5 && <Riepilogo config={config}/>}
         
          <div className='mt-2 d-flex flex-column'>
-            {Object.keys(errorsForm).length > 0 && Object.values(errorsForm.payload)?.map((err, id) => {
+            {!isEmptyObject(errorsForm) && Object.values(errorsForm)?.map((err, id) => {
             return <span key={id} className='text-danger fs-6'>{err}</span>
           })}
         </div>

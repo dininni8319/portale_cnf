@@ -7,9 +7,9 @@ export default function Sign(params) {
 
   return (
     <div className={`container-fluid py-5 custom-height-class`}>
-      <div className="container p-5">
+      <div className="container">
         <div className={`row justify-content-center align-items-center`}>
-          <div className={`col-12 col-md-8 col-lg-6 text-center ${classes.shadow} p-5`}>
+          <div className={`col-12 col-md-8 col-lg-6 text-center ${classes.shadow} p-2 p-md-5`}>
             {isLogin ? <SignUp /> : <SignIn />}
             <button
               className="mt-5 btn btn-outline-secondary rounded-0 "
