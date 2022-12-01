@@ -1,7 +1,17 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 
-const Richiedente = ( { email, first_name,last_name, phone, codicefiscale }) => {
+const Richiedente = ( { 
+  email, 
+  first_name,
+  last_name, 
+  phone, 
+  codicefiscale,
+  focus, 
+  focusHandler,
+}) => {
 
+  const validFiscalCode = '^[A-Za-z]{6}[0-9LMNPQRSTUV]{2}[A-Za-z]{1}[0-9LMNPQRSTUV]{2}[A-Za-z]{1}[0-9LMNPQRSTUV]{3}[A-Za-z]{1}$'
+  const validateEmail = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$";
   return ( 
     <section className="component-wrapper px-5">
         <h4 className='h4'>Richiedente</h4>
@@ -11,7 +21,10 @@ const Richiedente = ( { email, first_name,last_name, phone, codicefiscale }) => 
               <input 
                 type="email"  
                 className="input-custom-style" 
-                id="staticEmail" 
+                id="staticEmail"
+                onBlur={focusHandler}
+                pattern={validateEmail}
+                focused={focus.toString()}
                 {...email} 
                 required
               />
@@ -24,10 +37,12 @@ const Richiedente = ( { email, first_name,last_name, phone, codicefiscale }) => 
                 type="text" 
                 className="input-custom-style" 
                 id="inputName" 
+                onBlur={focusHandler}
+                focused={focus.toString()}
                 {...first_name} 
                 required
               />
-
+              {/* {focus && !first_name.value && <span className='fs-6 text-danger'>Il nome è obblibatorio</span>} */}
             </div>
           </div>
           <div className="mb-3">
@@ -35,7 +50,9 @@ const Richiedente = ( { email, first_name,last_name, phone, codicefiscale }) => 
             <div className="col-sm-10">
               <input 
                 type="text" 
-                className="input-custom-style" 
+                className="input-custom-style"
+                onBlur={focusHandler}
+                focused={focus.toString()} 
                 id="inputLastName" {...last_name} 
                 required
               />
@@ -48,6 +65,9 @@ const Richiedente = ( { email, first_name,last_name, phone, codicefiscale }) => 
                 type="text" 
                 className="input-custom-style" 
                 id="inputPhone" 
+                onBlur={focusHandler}
+                focused={focus.toString()}
+                pattern={validFiscalCode}
                 {...codicefiscale}
               />
             </div>
@@ -60,6 +80,9 @@ const Richiedente = ( { email, first_name,last_name, phone, codicefiscale }) => 
                 className="input-custom-style" 
                 id="inputPhone" 
                 {...phone}
+                onBlur={focusHandler}
+                focused={focus.toString()}
+                pattern="^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
               />
             </div>
           </div>

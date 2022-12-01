@@ -7,6 +7,7 @@ export const excludeWeekends = dateString => {
   return true;
 }
 
+
 export function getCurrentDate() {
     let today = new Date();
     let dd = today.getDate();
@@ -46,7 +47,10 @@ export const validEmail = ( email ) => {
     .match(regex)
 }
 
+
+
 export const validateFiscalCode = ( code ) => {
+  
   const regex = /^[A-Za-z]{6}[0-9LMNPQRSTUV]{2}[A-Za-z]{1}[0-9LMNPQRSTUV]{2}[A-Za-z]{1}[0-9LMNPQRSTUV]{3}[A-Za-z]{1}$/g;
   return code.match(regex);
 }
@@ -54,46 +58,46 @@ export const validateFiscalCode = ( code ) => {
 export const validateForm = ( values ) => {
 
   const { email, first_name, last_name, date, time, codicefiscale, tipologiaRichiesta, ufficio } = values;
-  const error = {};
+  let error = {};
 
   if (!email) {
-   error.email = `La email è obbligatoria!`; 
+   error = {...error,email:`La email è obbligatoria!`}; 
   }
 
   if (!validEmail(email)) {
-    error.email = 'La mail non è valida!';
+    error = {...error,emailNotValid:'La mail non è valida!'};
   }
 
   if (!validateFiscalCode(codicefiscale)) {
-    error.codicefiscale = 'La codice fiscale non è valido!';
+    error = {...error, codicefiscale: 'La codice fiscale non è valido!'};
   }
 
   if (!first_name) {
-    error.first_name = `Il nome è obbligatorio`; 
+    error = {...error, first_name: `Il nome è obbligatorio`}; 
   }
 
   if (!last_name) {
-    error.last_name = `Il cognome è obbligatorio!`; 
+    error = {...error, last_name:`Il cognome è obbligatorio!`}; 
   }
 
   if (!codicefiscale) {
-    error.last_name = `Il codice fiscale è obbligatorio!`; 
+    error = {...error, codicefiscale: `Il codice fiscale è obbligatorio!`}; 
   }
 
   if (!date) {
-    error.last_name = `La data è obbligatoria!`; 
+    error = {...error, date: `La data è obbligatoria!`}; 
   }
 
   if (!time) {
-    error.last_name = `L'orario è obbligatorio!`; 
+    error ={...error, time: `L'orario è obbligatorio!`}; 
   }
 
   if (!tipologiaRichiesta) {
-    error.tipologiaRichiesta = `Il motivo della richiesta è obbligatorio!`; 
+    error = {...error, tipologiaRichiesta: `Il motivo della richiesta è obbligatorio!`}; 
   }
 
   if (!ufficio) {
-    error.ufficio = `L'ufficio è obbligatorio!`; 
+    error = {...error, ufficio: `L'ufficio è obbligatorio!`}; 
   }
 
   return error;

@@ -28,6 +28,9 @@ const formSlice = createSlice({
     
     checkForErrors(state, action) {
       state.errors = action.payload;
+    },
+    setErrorsToNull(state, action) {
+      state.errors = {}
     }
   }
 });

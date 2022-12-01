@@ -30,6 +30,11 @@ form {
   min-height: 30vh;
 }
 
+input {
+  outline: none;
+  border: none;
+  padding: 5px;
+}
 body {
   width: 100vw;
   min-height: 100vh;
@@ -210,4 +215,14 @@ input[type="date"] {
 
 .pagination__link--active {
   color: gold;
+}
+
+input:invalid[focused="true"] {
+  border: 2px solid red!important;
+}
+
+input:valid[focused="true"] {
+  outline: none;
+  border: none;
+  border: 1px solid green!important;
 }

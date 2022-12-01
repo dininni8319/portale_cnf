@@ -1,9 +1,12 @@
 import { memo } from "react";
 
-const Ufficio = ({ ufficio }) => {
+const Ufficio = ({ ufficio, focus, focusHandler }) => {
 
   return ( 
-    <section className="mb-3" required>
+    <section
+      className="mb-3" 
+      required 
+    >
         <h4 className='h4'>Ufficio*</h4>
         <select className="form-select col-sm-10" aria-label="Default select example" {...ufficio}>
           <option defaultValue>Scegli un Ufficio</option>
