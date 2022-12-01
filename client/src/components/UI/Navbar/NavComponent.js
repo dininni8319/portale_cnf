@@ -1,4 +1,5 @@
 import classes from './style.module.css';
+import { Link } from "react-router-dom";
 
 const NavComponent = () => {
   return ( 
@@ -20,9 +21,9 @@ const NavComponent = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" data-element="all-services">
-                <span>Servizi</span>
-              </a>
+              <Link className="nav-link" to='/reserve'>
+                <span>Appuntamenti</span>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#" data-element="live">

@@ -80,18 +80,18 @@ const FormEvents = () => {
             setMessage(data.message);
           }
           setMessage('Qualcosa e andato storto');
-          if (data.event.googleEvent.id) {
+          if (data.success) {
             setMessage(data.msg);
             navigate('/');
           }
-          navigate('/');
+          // navigate('/appoi');
         });
     } 
   };
 
   return ( 
     <div className={`${classes.formContainer}`}>
-      <form className="mb-3 row p-5 bg-gray d-md-flex align-items-center mt-5 col-11 col-md-5" onSubmit={handleSubmit}>
+      <form className="mb-3 row p-2 p-md-5 bg-gray d-md-flex align-items-center mt-5 col-11 col-md-5" onSubmit={handleSubmit}>
         <FormComponents 
           ufficio={ufficio}
           date={date} 

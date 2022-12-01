@@ -35,13 +35,13 @@ const FormComponents = ({
     setFocus(prev => !prev);
   }
 
-  useEffect(() => {
-   if (Object.values(errorsForm).length > 0) {
-      setTimeout(() => {
-        dispatch(formActions.setErrorsToNull())
-      } ,5000)
-   }
-  })
+  // useEffect(() => {
+  //  if (Object.values(errorsForm).length > 0) {
+  //     setTimeout(() => {
+  //       dispatch(formActions.setErrorsToNull())
+  //     } ,5000)
+  //  }
+  // })
   
   
   return ( 

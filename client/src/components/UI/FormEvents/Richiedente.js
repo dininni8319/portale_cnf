@@ -13,7 +13,7 @@ const Richiedente = ( {
   const validFiscalCode = '^[A-Za-z]{6}[0-9LMNPQRSTUV]{2}[A-Za-z]{1}[0-9LMNPQRSTUV]{2}[A-Za-z]{1}[0-9LMNPQRSTUV]{3}[A-Za-z]{1}$'
   const validateEmail = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$";
   return ( 
-    <section className="component-wrapper px-5">
+    <section className="component-wrapper  px-5 col-12 col-md-11">
         <h4 className='h4'>Richiedente</h4>
          <div>
             <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Email*</label>
@@ -80,9 +80,9 @@ const Richiedente = ( {
                 className="input-custom-style" 
                 id="inputPhone" 
                 {...phone}
-                onBlur={focusHandler}
-                focused={focus.toString()}
-                pattern="^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
+                // onBlur={focusHandler}
+                // focused={focus.toString()}
+                // pattern="^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
               />
             </div>
           </div>

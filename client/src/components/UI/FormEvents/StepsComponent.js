@@ -9,7 +9,7 @@ const StepsComponents = ({
 }) => {
  
   return ( 
-     <div className='d-flex justify-content-between py-3 col-md-5 '>
+     <div className='d-flex justify-content-between py-3 col-11 col-md-5'>
       {step !== 1 && <button className="text-green-dark fs-5 fw-bold" onClick={handlePrevStep}>
           <FontAwesomeIcon icon={faAngleLeft} size="1x" className="pe-1 text-green-dark"/>
           Indietro
