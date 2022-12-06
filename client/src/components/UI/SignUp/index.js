@@ -43,11 +43,9 @@ export default function SignUp() {
   };
 
   return (
-    <form className={`${"sign-form"}`} onSubmit={signUp}>
-      <div className={`${"sign-top"}`}></div>
-      <div className={`${"sign-bottom"}`}></div>
-      <div className="mb-5">
-        <h2 className='h2 mb-5 fw-bold'>Login</h2>
+    <form className={`${"sign-form"} d-flex flex-column align-items-center`} onSubmit={signUp}>
+      <div className="mb-3 col-md-9">
+        <h2 className='h2 mb-3 fw-bold'>Login</h2>
         <label className="form-label" htmlFor="userMail">
           {" "}
           Inserisci la tua email
@@ -59,7 +57,7 @@ export default function SignUp() {
           {...email}
         />
       </div>
-      <div className="mb-5">
+      <div className="mb-3 col-md-9">
         <label className="form-label" htmlFor="userPassword">
           {" "}
           Inserisci la tua password
@@ -71,8 +69,15 @@ export default function SignUp() {
           {...password}
         />
       </div>
-      <div className="mb-5">
-        <button type="submit" className="btn btn-dark px-5 rounded-0 fw-bold">
+      <div className="mb-3 col-md-9 d-flex justify-content-center">
+        <button 
+          type="submit" 
+          className="btn-grad px-5 fw-bold"
+          disabled={
+            !email.value 
+            || !password.value
+          }
+        >
           Login
         </button>
       </div>
