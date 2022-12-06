@@ -16,6 +16,7 @@ export default function Sign(params) {
     setIsLogin(!isLogin);
     setIsResetPassword(false);
   }
+
   return (
     <div className={`container-fluid custom-height-class`}>
       <div className="row">

@@ -3,7 +3,8 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "./../../../Contexts/Auth/index";
 import { useContext } from "react";
 import { ConfigContext } from "./../../../Contexts/Config";
-import  classes from "./style.module.css";
+import { validEmail } from "../../../utilities";
+import classes from "../SignIn/style.module.css";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -24,8 +25,6 @@ export default function SignUp() {
       .then((data) => {
         const token = data.token;
 
-        /// una volta ricevuto il token, possiamo richiedere informazioni come username e email ad esempio
-        //alla rotta view profile
         fetch(`${api_urls.backend}/api/view-profile`, {
           method: "GET",
           headers: {
@@ -34,7 +33,7 @@ export default function SignUp() {
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data.data);
+        
             let username = `${data.data.name} ${data.data.last_name}`
             login( username, token, data.data.id);
             navigate("/adminarea"); 
@@ -43,7 +42,7 @@ export default function SignUp() {
   };
 
   return (
-    <form className={`${"sign-form"} d-flex flex-column align-items-center`} onSubmit={signUp}>
+    <form className={`${classes['form-custom-class']}`} onSubmit={signUp}>
       <div className="mb-3 col-md-9">
         <h2 className='h2 mb-3 fw-bold'>Login</h2>
         <label className="form-label" htmlFor="userMail">
@@ -52,7 +51,7 @@ export default function SignUp() {
         </label>
         <input
           type="email"
-          className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
+          className={`${classes['form-group-custom']}`}
           id="userMail"
           {...email}
         />
@@ -64,7 +63,7 @@ export default function SignUp() {
         </label>
         <input
           type="password"
-          className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
+          className={`${classes['form-group-custom']}`}
           id="userPassword"
           {...password}
         />

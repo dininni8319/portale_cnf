@@ -1,14 +1,18 @@
 import { useState } from "react";
+import classes from "./style.module.css";
+
 const ResetPassword = () => {
 
   const [formData, setFormData] = useState({
     email: '',
   });
 
+  const [ error, setError ] = useState('')
   // Handler
   const handleSubmit = e => {
     e.preventDefault();
   };
+
 
   const handleFieldChange = e => {
     setFormData({
@@ -31,7 +35,7 @@ const ResetPassword = () => {
         name="email"
         onChange={handleFieldChange}
         type="email"
-        className='form-control bg-transparent border border-gray rounded-1 my-2 py-2'
+        className={`form-control  ${classes['form-group-reset-p']}`}
       />
     </div>
     <div className="d-flex justify-content-center">

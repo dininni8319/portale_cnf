@@ -2,8 +2,8 @@ import useInput from "../../Hooks/useInput";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../../Contexts/Auth";
 import { ConfigContext } from "../../../Contexts/Config";
-import { useContext, useState } from "react";
-import  classes from "./style.module.css";
+import { useContext } from "react";
+import classes from "./style.module.css";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -15,15 +15,11 @@ export default function SignIn() {
 
   let { api_urls } = useContext(ConfigContext);
   let { login } = useContext(AuthContext);
-  // console.log(api_urls.backend, 'test backend 2');
+
   const Login = (event) => {
     event.preventDefault();
 
     if (password.value === passwordConfirm.value) {
-      // proseguire
-      //fetch register
-      //fetch login
-      //fetch view-profile
 
       fetch(`${api_urls.backend}/api/register`, {
         method: "POST",
@@ -57,8 +53,6 @@ export default function SignIn() {
             .then((data) => {
               const token = data.token;
 
-              /// una volta ricevuto il token, possiamo richiedere informazioni come username e email ad esempio
-              //alla rotta view profile
               fetch(`${api_urls.backend}/api/view-profile`, {
                 method: "GET",
                 headers: {
@@ -79,9 +73,7 @@ export default function SignIn() {
 
   return (
     <>
-      <form  onSubmit={Login} className='d-flex flex-column align-items-center'>
-        <div className={`${"sign-top"}`}></div>
-        <div className={`${"sign-bottom"}`}></div>
+      <form onSubmit={Login} className={`${classes['form-custom-class']}`}>
         <div className="mb-3 col-md-10">
           <h2 className='h2 mb-3 fw-bold'>Registrati</h2>
           <label className="form-label" htmlFor="userName">
@@ -89,7 +81,7 @@ export default function SignIn() {
           </label>
           <input
             type="text"
-            className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
+            className={`${classes['form-group-custom']}`}
             id="userName"
             {...username}
           />
@@ -100,7 +92,7 @@ export default function SignIn() {
           </label>
           <input
             type="text"
-            className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
+            className={`${classes['form-group-custom']}`}
             id="userName"
             {...last_name}
           />
@@ -111,7 +103,7 @@ export default function SignIn() {
           </label>
           <input
             type="email"
-            className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
+            className={`${classes['form-group-custom']}`}
             id="userMail"
             {...email}
           />
@@ -122,7 +114,7 @@ export default function SignIn() {
           </label>
           <input
             type="password"
-            className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
+            className={`${classes['form-group-custom']}`}
             id="userPassword"
             {...password}
           />
@@ -133,7 +125,7 @@ export default function SignIn() {
           </label>
           <input
             type="password"
-            className="form-control bg-transparent border-0 border-bottom border-gray rounded-0"
+            className={`${classes['form-group-custom']}`}
             id="userPasswordConfirm"
             {...passwordConfirm}
           />
