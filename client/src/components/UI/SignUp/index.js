@@ -1,7 +1,7 @@
 import useInput from "../../Hooks/useInput";
 import { useNavigate } from "react-router";
 import { AuthContext } from "./../../../Contexts/Auth/index";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ConfigContext } from "./../../../Contexts/Config";
 import { validEmail } from "../../../utilities";
 import classes from "../SignIn/style.module.css";
@@ -12,6 +12,7 @@ export default function SignUp() {
   let { api_urls } = useContext(ConfigContext);
   const email = useInput("");
   const password = useInput("");
+  const [ error, setError ] = useState({});
 
   const signUp = (event) => {
     event.preventDefault();
@@ -34,9 +35,13 @@ export default function SignUp() {
           .then((response) => response.json())
           .then((data) => {
         
-            let username = `${data.data.name} ${data.data.last_name}`
-            login( username, token, data.data.id);
-            navigate("/adminarea"); 
+            if (data.success) {
+              let username = `${data.data.name} ${data.data.last_name}`
+              login( username, token, data.data.id);
+              navigate("/adminarea");   
+            } else {
+              setError({...error,err:'Le credenziali sono errate!'})
+            }
           });
       });
   };
@@ -80,6 +85,7 @@ export default function SignUp() {
           Login
         </button>
       </div>
+      {error?.err && <span className='text-danger'>{error?.err}</span>}
     </form>
   );
 }

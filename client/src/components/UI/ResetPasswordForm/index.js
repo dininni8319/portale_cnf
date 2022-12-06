@@ -1,17 +1,22 @@
 import { useState, useContext } from 'react';
 import classes from '../SignIn/style.module.css';
 import { ConfigContext } from "../../../Contexts/Config";
-
+import { useNavigate } from "react-router";
+import { isEmptyObject } from "../../../utilities";
 const PasswordResetForm = ({ token }) => {
   
+  const navigate = useNavigate();
   let { api_urls } = useContext(ConfigContext);
 
   const [formData, setFormData] = useState({
     password: '',
-    confirmPassword: '',
+    password_confirm: '',
     token: '',
   });
 
+  const [ error, setError ] = useState({});
+  
+  console.log(error);
   // Handler
   const handleSubmit = e => {
     e.preventDefault();
@@ -24,8 +29,14 @@ const PasswordResetForm = ({ token }) => {
       },
       body: JSON.stringify(formData)
     })
-      .then((response) => {
-        console.log(response,'testing th response')
+      .then((response) => response.json())
+      .then(data => {
+        if (data.success) {
+          navigate('/sign')
+        } else {
+          console.log('test');
+          setError({...error, data})
+        }
       })
   };
 
@@ -39,7 +50,7 @@ const PasswordResetForm = ({ token }) => {
 
   return (
     <form
-    className='mt-3 d-flex flex-column align-items-center justify-content-end'
+    className='mt-3 d-flex flex-column align-items-center justify-content-end p-5'
     onSubmit={handleSubmit}
     >
 
@@ -59,7 +70,7 @@ const PasswordResetForm = ({ token }) => {
       <input
         placeholder='Conferma la Password'
         value={formData.confirmPassword}
-        name="confirmPassword"
+        name="password_confirm"
         onChange={handleFieldChange}
         type="password"
         className={`form-control  ${classes['form-group-reset-p']}`}
@@ -70,11 +81,14 @@ const PasswordResetForm = ({ token }) => {
       <button
         type="submit"
         className="btn-grad px-5 fw-bold"
-        disabled={!formData.confirmPassword || !formData.password}
+        disabled={!formData.password_confirm || !formData.password}
       >
         Invia
       </button>
+      
     </div>
+    
+      {!isEmptyObject(error) && <span className='text-danger'>{error?.data.message}</span>}
   </form>
   );
 };

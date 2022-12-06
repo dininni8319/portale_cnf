@@ -43,6 +43,7 @@ class ForgotPassword extends FormRequest
         $errors = $validator->errors();
         
         $response = response()->json([
+            'success' => false,
             'message' => 'Dati invalidi',
             'details' => $errors->messages(),
         ], 422);

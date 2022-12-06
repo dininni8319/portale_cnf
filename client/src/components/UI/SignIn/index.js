@@ -2,7 +2,7 @@ import useInput from "../../Hooks/useInput";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../../Contexts/Auth";
 import { ConfigContext } from "../../../Contexts/Config";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import classes from "./style.module.css";
 
 export default function SignIn() {
@@ -16,6 +16,9 @@ export default function SignIn() {
   let { api_urls } = useContext(ConfigContext);
   let { login } = useContext(AuthContext);
 
+  const [ error, setError ] = useState('');
+
+  console.log(error, 'testing');
   const Login = (event) => {
     event.preventDefault();
 
@@ -33,15 +36,17 @@ export default function SignIn() {
         }),
       })
         .then((response) => {
+         
           if (response.ok) {
             navigate("/");
             return response.json();
           } else {
-            alert("ops..");
+            setError('I dati sono incorretti')
+            navigate("/");
           }
         })
         .then(() => {
-          fetch(`${api_urls.backend}/api/login`, {
+          fetch(`${api_urls?.backend}/api/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -53,7 +58,7 @@ export default function SignIn() {
             .then((data) => {
               const token = data.token;
 
-              fetch(`${api_urls.backend}/api/view-profile`, {
+              fetch(`${api_urls?.backend}/api/view-profile`, {
                 method: "GET",
                 headers: {
                   Authorization: `Bearer ${token}`,
