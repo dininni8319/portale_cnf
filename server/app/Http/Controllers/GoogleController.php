@@ -38,7 +38,6 @@ class GoogleController extends Controller
         //get logged user
         $user = User::where('id', '=', auth()->guard('api')->user()->id)->first();
         // il codice sopra e da rimettere quando l'app funziona
-        // $user = User::where('id', '=', '3')->first();
 
         /**
          * Strip slashes from the access token json

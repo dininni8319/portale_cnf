@@ -44,7 +44,11 @@ Route::group(['middleware' => 'CORS'],function ($router){
     //Private Route
     Route::get('/view-profile', [AuthPassportController::class, 'viewProfile'])->name('profile.user');
     Route::post('/logout', [AuthPassportController::class, 'logout'])->name('logout.user');
+
+    //Verify/ reset
     Route::get('/email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
+    Route::post('/forgot_password', [VerificationController::class, 'forgotPassword']);
+    Route::post('/reset', [VerificationController::class, 'resetPassword']);
     
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
@@ -54,8 +58,6 @@ Route::group(['middleware' => 'CORS'],function ($router){
     Route::get('google/login/url', [AuthController::class, 'getAuthUrl']);
     Route::post('google/auth/login', [AuthController::class, 'postLogin']);
     
-
-    //google calendar apis
 });
    
 

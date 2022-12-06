@@ -7,5 +7,6 @@ export { default as SignUp } from "./SignUp";
 export { default as Sidebar } from "./Sidebar";
 export { default as ResetPassword } from "./ResetPassword";
 export { default as Card } from "./Card";
+export { default as ResetPasswordForm } from "./ResetPasswordForm";
 
 

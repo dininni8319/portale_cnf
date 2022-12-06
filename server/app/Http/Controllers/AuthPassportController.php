@@ -60,19 +60,24 @@ class AuthPassportController extends Controller
                     'error' => $responseMessage
                 ], 422);
             }
-
-            $accessToken = $user->createToken('authToken')->accessToken; 
-
-            $responseMessage = "Login Successful";
+            if(Hash::check($credentials['password'], $user['password'])){
+                $accessToken = $user->createToken('authToken')->accessToken; 
+    
+                $responseMessage = "Login Successful";
+    
+                return response()->json([
+                    'success' => true,
+                    'message' => $responseMessage,
+                    'token' => $accessToken,
+                    'token_type' => 'bearer',  //al portatore
+                    'data' => auth()->user()
+                ], 201); //success
+            }
 
             return response()->json([
-                'success' => true,
-                'message' => $responseMessage,
-                'token' => $accessToken,
-                'token_type' => 'bearer',  //al portatore
-                'data' => auth()->user()
-            ], 201); //success
-
+                'success' => false,
+                'message' => 'credenziali errate',
+            ], 422);
         } else {
 
             $responseMessage = 'Sorry this user does not exist';

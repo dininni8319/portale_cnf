@@ -90,3 +90,6 @@ Get a week before date in seconds, get a week in seconds, and the current date;
 - composer require laravel/scout
 - php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
 - composer require teamtnt/laravel-scout-tntsearch-driver
+
+#Create a new mail class and a new mail template
+- php artisan make:mail MailForgotPassword

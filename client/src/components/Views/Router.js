@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Protected from "../utils/ProtectedRoute";
 import NotFound from './NotFound';
 import MainLayout from "../Layout/MainLayout";
-import { Home, Appointment, AdminArea, Sign } from "./index";
+import { Home, Appointment, AdminArea, Sign, ResetPassword } from "./index";
 
 const Router = () => {
   return ( 
@@ -17,12 +17,21 @@ const Router = () => {
         <Appointment/>
       </MainLayout>
     } />
+
     <Route path="*" element={
       <MainLayout>
         <NotFound />
       </MainLayout>
     } />
+
+    <Route path="/reset/:token" element={
+      <MainLayout>
+        <ResetPassword />
+      </MainLayout>
+    } />
+
     <Route path="/sign" element={<Sign />} />
+    
     <Route path="/adminarea" element={
       <Protected>
         <MainLayout>
