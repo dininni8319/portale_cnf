@@ -21,26 +21,26 @@ export default function Sign(params) {
     <div className={`container-fluid custom-height-class`}>
       <div className="row">
           <div className='p-0'>
-            <div className='img-cover'>
-            </div>
-              <img src={BuildingImg} alt="login image" className='building-img'/>
+            <div className='img-cover'></div>
+            <img src={BuildingImg} alt="login image" className='building-img'/>
           </div>
           <div className={`col-11 col-md-4 text-center ${classes.shadow}`}>
             {!isResetPassword && (isLogin ? <SignUp /> : <SignIn />)}
+
             {isResetPassword &&  <ResetPassword /> }
             <button
               className="mt-5 rounded-0 bg-transparent fw-bold fs-6"
               onClick={handleAuth}
             >
-              {isLogin ? "Non sei un Autente? Registrati Adesso!" : "Sei un Autente? Vai al Login"}
+              {isLogin ? "Non sei un Autente? Registrati Adesso!" : "Sei un Autente? Vai al Login!"}
             </button>
 
             <div>
-              <button 
+             {!isResetPassword && <button 
                className='text-info bg-transparent' 
                onClick={handleResetPassword}>
                Dimenticato la password
-              </button>
+              </button> }
               </div>
           </div>
       </div>

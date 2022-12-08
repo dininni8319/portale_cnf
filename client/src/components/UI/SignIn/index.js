@@ -79,8 +79,8 @@ export default function SignIn() {
   return (
     <>
       <form onSubmit={Login} className={`${classes['form-custom-class']}`}>
-        <div className="mb-3 col-md-10">
-          <h2 className='h2 mb-3 fw-bold'>Registrati</h2>
+        <div className="col-md-10">
+          <h2 className='h2 mb-2 fw-bold'>Registrati</h2>
           <label className="form-label" htmlFor="userName">
             Inserisci il tuo nome
           </label>
@@ -91,7 +91,7 @@ export default function SignIn() {
             {...username}
           />
         </div>
-        <div className="mb-3 col-md-10">
+        <div className="mb-1 col-md-10">
           <label className="form-label" htmlFor="userName">
            Inserisci il tuo cognome
           </label>
@@ -102,7 +102,7 @@ export default function SignIn() {
             {...last_name}
           />
         </div>
-        <div className="mb-3 col-md-10">
+        <div className="mb-1 col-md-10">
           <label className="form-label" htmlFor="userMail">
             Inserisci il tua Email
           </label>
@@ -113,7 +113,7 @@ export default function SignIn() {
             {...email}
           />
         </div>
-        <div className="mb-3 col-md-10">
+        <div className="mb-1 col-md-10">
           <label className="form-label" htmlFor="userPassword">
            Inserisci il tua password
           </label>
@@ -124,7 +124,7 @@ export default function SignIn() {
             {...password}
           />
         </div>
-        <div className="mb-3 col-md-10">
+        <div className="mb-1 col-md-10">
           <label className="form-label" htmlFor="userPasswordConfirm">
           Inserisci il tua password
           </label>
@@ -135,7 +135,7 @@ export default function SignIn() {
             {...passwordConfirm}
           />
         </div>
-        <div className="mb-3 col-md-9 d-flex justify-content-center">
+        <div className="mb-1 col-md-9 d-flex justify-content-center">
         <button 
           type="submit" 
           className="btn-grad px-5 fw-bold"

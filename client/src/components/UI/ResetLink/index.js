@@ -3,7 +3,7 @@ import classes from "./style.module.css";
 import { AuthContext } from "../../../Contexts/Auth";
 import { ConfigContext } from "../../../Contexts/Config";
 
-const ResetPassword = () => {
+const ResetLink = () => {
 
   let { api_urls } = useContext(ConfigContext);
   let { user } = useContext(AuthContext);
@@ -43,7 +43,7 @@ const ResetPassword = () => {
       onSubmit={handleSubmit}
     >
       <h2 className='h2 mb-3 fw-bold'>Invia il Link</h2>
-      <p className='mb-3'>Inserisci la tua email e ti manderemo un link per il reset!</p>
+      <label className='mb-3'>Inserisci la tua email e ti manderemo un link per il reset!</label>
       <div className="mb-3 col-md-8">
         <input
           placeholder={'Email'}
@@ -67,4 +67,4 @@ const ResetPassword = () => {
    );
 }
  
-export default ResetPassword;
+export default ResetLink;

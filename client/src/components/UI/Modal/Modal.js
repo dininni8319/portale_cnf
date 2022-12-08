@@ -9,7 +9,7 @@ const Backdrop = (props) => {
 };
 
 const Overlay = (props) => {
-  console.log(props);
+
   return (
     <div className={classes.modal}>
       <div className="text-center">

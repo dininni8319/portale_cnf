@@ -33,7 +33,7 @@ const AdminArea = () => {
 
   const endOffset = itemOffset + itemsPerPage;
 
-  const currentItems = currentAppointments.slice(itemOffset, endOffset);
+  const currentItems = currentAppointments?.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(currentAppointments.length / itemsPerPage);
 
   // Invoke when user click to request another page.

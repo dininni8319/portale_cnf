@@ -12,7 +12,8 @@
   --navColor: #323B59; 
   --greenColor: #79c09c;
   --blueColor: #272D36;
-  --headerColor: #A49F9F; 
+  --headerColor: #908e8ee7; 
+  --grayMidDarkColor: #696868; 
   --svgColor: white; 
   --footerColor: #272D36;
   --buttonColor: #007a52;
@@ -25,6 +26,13 @@
   font-family: 'Titillium Web', sans-serif;
 }
 
+body {
+  width: 100vw;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 form {
   border-radius: 5px;
   min-height: 30vh;
@@ -35,17 +43,15 @@ input {
   border: none;
   padding: 5px;
 }
-body {
-  width: 100vw;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+button {
+  outline: none;
+  cursor: pointer;
+  border: none;
 }
 
-.input-custom-style {
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid #e9e6f2!important;
+label {
+  color: var(--grayMidDarkColor);
 }
 
 ul {
@@ -53,10 +59,10 @@ ul {
   padding-left: 0;
 }
 
-button {
-  outline: none;
-  cursor: pointer;
+.input-custom-style {
+  width: 100%;
   border: none;
+  border-bottom: 1px solid #e9e6f2!important;
 }
 
 .nav-ul-width {
@@ -196,9 +202,6 @@ input[type="date"] {
   background-color: white;
 }
 
-/* .ul-class-style {
-  position: relative;
-} */
 .z-index-class {
   position: absolute;
   width: 70%;
