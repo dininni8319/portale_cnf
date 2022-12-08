@@ -35,15 +35,6 @@ const FormComponents = ({
     setFocus(prev => !prev);
   }
 
-  // useEffect(() => {
-  //  if (Object.values(errorsForm).length > 0) {
-  //     setTimeout(() => {
-  //       dispatch(formActions.setErrorsToNull())
-  //     } ,5000)
-  //  }
-  // })
-  
-  
   return ( 
     <div>
       {/* { Object.keys(formErrors).length === 0 && isSubmited && <span className="text-white bg-green-custom fs-5 fw-bold px-5 py-2">La tua richiesta è stata inviata correttamente</span> } */}

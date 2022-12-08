@@ -12,14 +12,14 @@ import ReactPaginate from 'react-paginate';
 const AdminArea = () => {
 
   const { api_urls } = useContext(ConfigContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [ selectedAppointments, setSelectedAppointments ] = useState('');
   const [ term, setTerm ] = useState('');
   const [ currentAppointments, setCurrentAppointments ] = useState([]);
   const [ currentDateAppointments, setCurrentDateAppointments ] = useState('');
   const [ count, setCount ] = useState(0);
-  const [showCalendar, setShowCalendar ] = useState(false);
+  const [ showCalendar, setShowCalendar ] = useState(false);
   const [ show, setShow ] = useState(false);
   const [ idCard, setIdCard ] = useState(0);
 
@@ -78,7 +78,7 @@ const AdminArea = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+
         if (data.success === true) {
           setShow(prev => !prev);
           navigate('/adminarea');
@@ -97,7 +97,7 @@ const AdminArea = () => {
           if (response.status === 200) {
 
             let appointments = currentAppointments?.filter(appoitment => appoitment.id !== id);
-            setCurrentAppointments({...appointments});
+            setCurrentAppointments(prev => [...appointments]);
           }
         })
       setModal(false)

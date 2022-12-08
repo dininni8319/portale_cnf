@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formActions } from '../../../store/form-slice';
 import { FormComponents, StepsComponent } from "./link-form-comp";
 import classes from './style.module.css';
-import { validateForm, isEmptyObject } from '../../../utilities';
+import { validateForm } from '../../../utilities';
 
 const FormEvents = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {step, errors: errorsForm, message, isSubmited } = useSelector(state => state.form);
+  const {step, errors, message, isSubmited } = useSelector(state => state.form);
  
   const email = useInput("");
   const first_name = useInput("");
@@ -22,8 +22,7 @@ const FormEvents = () => {
   const phone = useInput("");
   const [ date, setDate ] = useState({});
   const [ isClicked, setIsClicked ] = useState(false)
-
-  const errors = Object.keys(errorsForm).length > 0 && Object.values(errorsForm);
+  const err = Object.keys(errors).length > 0 && Object.values(errors);
   
   const handlePrevStep = (e) => {
     e.preventDefault();
@@ -52,9 +51,10 @@ const FormEvents = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    dispatch(formActions.checkForErrors(validateForm(config)))
-    
-    if (isEmptyObject(errorsForm)) {
+    dispatch(formActions.checkForErrors(validateForm(config)));
+    dispatch(formActions.setIsSubmited({ payload: true}));
+
+    if (isSubmited && Object.keys(errors).length === 0) {
       
       fetch(`http://localhost:8000/api/calendar/create/event`, {
         method: "POST",
@@ -112,9 +112,9 @@ const FormEvents = () => {
           codicefiscale={codicefiscale}
           phone={phone}
           config={config}
-          errorsForm={errorsForm}
+          errorsForm={errors}
           step={step}
-          errors={errors}
+          errors={err}
         />
    
       </form>

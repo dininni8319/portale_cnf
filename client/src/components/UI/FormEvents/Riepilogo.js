@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { formatDate } from "../../../utilities";
+
 const Riepilogo = ({ config }) => {
   const { 
     email,
@@ -82,7 +83,6 @@ const Riepilogo = ({ config }) => {
               <span className="step">5/5</span>
             </h4>
           </div>
-    
     </section>
    );
 }

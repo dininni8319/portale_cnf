@@ -7,39 +7,39 @@ import { Home, Appointment, AdminArea, Sign, ResetPassword } from "./index";
 const Router = () => {
   return ( 
     <Routes>
-    <Route path="/" element={
-     <MainLayout>
-       <Home />
-     </MainLayout>
-    } />
-    <Route path="/reserve" element={
+      <Route path="/" element={
       <MainLayout>
-        <Appointment />
+        <Home />
       </MainLayout>
-    } />
-
-    <Route path="*" element={
-      <MainLayout>
-        <NotFound />
-      </MainLayout>
-    } />
-
-    <Route path="/reset/:token" element={
-      <MainLayout>
-        <ResetPassword />
-      </MainLayout>
-    } />
-
-    <Route path="/sign" element={<Sign />} />
-    
-    <Route path="/adminarea" element={
-      <Protected>
+      } />
+      <Route path="/reserve" element={
         <MainLayout>
-          <AdminArea />
+          <Appointment />
         </MainLayout>
-      </Protected>
-    } />
-  </Routes>
+      } />
+
+      <Route path="*" element={
+        <MainLayout>
+          <NotFound />
+        </MainLayout>
+      } />
+
+      <Route path="/reset/:token" element={
+        <MainLayout>
+          <ResetPassword />
+        </MainLayout>
+      } />
+
+      <Route path="/sign" element={<Sign />} />
+      
+      <Route path="/adminarea" element={
+        <Protected>
+          <MainLayout>
+            <AdminArea />
+          </MainLayout>
+        </Protected>
+      } />
+    </Routes>
    );
 }
  

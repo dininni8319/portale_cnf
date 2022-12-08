@@ -1,7 +1,6 @@
 import classes from "./Modal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-
 import { createPortal } from "react-dom";
 
 const Backdrop = (props) => {
@@ -50,6 +49,3 @@ const Modal = (props) => {
 
 export default Modal;
 
-// export default function Modal() {
-//     return <div className= 'bg-white'>Hello World</div>
-// }

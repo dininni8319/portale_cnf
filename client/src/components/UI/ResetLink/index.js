@@ -7,13 +7,11 @@ const ResetLink = () => {
 
   let { api_urls } = useContext(ConfigContext);
   let { user } = useContext(AuthContext);
-
   const [formData, setFormData] = useState({
     email: '',
   });
 
   const [ error, setError ] = useState('')
-  
   const handleSubmit = (event) => {
     event.preventDefault();
 
