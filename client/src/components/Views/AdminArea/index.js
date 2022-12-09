@@ -1,18 +1,26 @@
 import { useState, useEffect, useContext, memo } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Card, Sidebar } from "../../UI/index";
 import { ConfigContext } from './../../../Contexts/Config';
-import { formatDate } from "../../../utilities";
+import { formatDate, perPage } from "../../../utilities";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrashAlt,faAngleRight, faPen  } from "@fortawesome/free-solid-svg-icons";
 import Modal from '../../UI/Modal/Modal';
 import useInput from '../../Hooks/useInput';
 import { useNavigate } from "react-router";
 import ReactPaginate from 'react-paginate';
+import { 
+  fetchAppoitmentData, 
+  fetchSearchedAppoitment,
+  fetchByDate,
+ } from '../../../store/appointments/appointment-actions';
 
 const AdminArea = () => {
-
-  const { api_urls } = useContext(ConfigContext);
+  const dispatch =  useDispatch();
   const navigate = useNavigate();
+
+  const appointments = useSelector(state => state.appoitment.data);
+  const { api_urls } = useContext(ConfigContext);
 
   const [ selectedAppointments, setSelectedAppointments ] = useState('');
   const [ term, setTerm ] = useState('');
@@ -28,17 +36,14 @@ const AdminArea = () => {
   const stato = useInput('');
   const note_lavorazione = useInput('');
 
-  const itemsPerPage = 10; 
   const [ itemOffset, setItemOffset ] = useState(0);
+  const itemsPerPage = 10; 
 
-  const endOffset = itemOffset + itemsPerPage;
-
-  const currentItems = currentAppointments?.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(currentAppointments.length / itemsPerPage);
-
+  const { pageCount, currentItems } = perPage(itemOffset, itemsPerPage, appointments)
+  
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % currentAppointments.length;
+    const newOffset = (event.selected * itemsPerPage) % appointments.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
@@ -57,7 +62,6 @@ const AdminArea = () => {
         return true
       }
     })
-
     if (unique) {  
       setShow(prev => !prev);
       setIdCard(id);
@@ -105,48 +109,19 @@ const AdminArea = () => {
 
   useEffect(() => {
     if (term.length >= 2) {
-      fetch(`${api_urls.backend}/api/appuntamenti/search=${term}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data?.appointments) {
-            setCurrentAppointments([...data?.appointments])
-            setCount(Number(data?.count))
-            setShowCalendar(false);
-          }
-        });
+      dispatch(fetchSearchedAppoitment(term))
+        setShowCalendar(false);
     } 
-  }, [term]);
+  }, [dispatch, term]);
 
   useEffect(() => {
-    fetch(`${api_urls.backend}/api/calendar/${selectedAppointments}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data?.appointments) {
-          
-          setCurrentAppointments(prev => [...data?.appointments])
-          setCount(Number(data?.count))
-          setShowCalendar(false);
-        }
-      });
-  }, [selectedAppointments])
+    dispatch(fetchAppoitmentData(selectedAppointments));
+    setShowCalendar(false);
+  }, [dispatch, selectedAppointments]);
 
   useEffect(() => {
-    fetch(`${api_urls.backend}/api/calendar/date/`,{
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ date: currentDateAppointments }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-
-        if (data?.appointments) {
-          setCurrentAppointments([...data?.appointments])
-          setCount(Number(data?.count))
-        }
-        // setCurrentAppointments([])
-        // setCount(0)
-      });
-  }, [currentDateAppointments]);
+    dispatch(fetchByDate(currentDateAppointments))
+  }, [dispatch, currentDateAppointments]);
 
   return ( 
     <div className='d-md-flex py-5 custom-height-class'>

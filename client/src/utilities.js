@@ -1,3 +1,11 @@
+export const perPage = (itemOffSet, itemsPerPage, appointments) => {
+  const endOffset = itemOffSet + itemsPerPage;
+  const currentItems = appointments?.slice(itemOffSet, endOffset);
+  const pageCount = Math.ceil(appointments.length / itemsPerPage);
+
+  return { pageCount, currentItems }
+}
+
 // Everything except weekend days
 export function isEmptyObject(obj) {
   for(let prop in obj) {
@@ -15,7 +23,6 @@ export const excludeWeekends = dateString => {
   }
   return true;
 }
-
 
 export function getCurrentDate() {
     let today = new Date();
@@ -55,8 +62,6 @@ export const validEmail = ( email ) => {
     .toLowerCase()
     .match(regex)
 }
-
-
 
 export const validateFiscalCode = ( code ) => {
   
