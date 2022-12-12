@@ -30,12 +30,13 @@ const appoitmentSlice = createSlice({
       state.data = newAppointments;
       state.message = message;
       state.status = status;
+      state.total = state.total - 1;
     },
     hideCalendar(state, action) {
       state.isCalendar = false;
     },
     showCalendar(state, action) {
-      state.isCalendar = true;
+      state.isCalendar = !state.isCalendar;
     }
   }
 });
