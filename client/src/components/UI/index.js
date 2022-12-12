@@ -7,6 +7,9 @@ export { default as SignUp } from "./SignUp";
 export { default as Sidebar } from "./Sidebar";
 export { default as ResetPassword } from "./ResetLink";
 export { default as Card } from "./Card";
+export { default as Modal } from "./Modal/Modal";
+export { default as Paginate } from "./Paginate";
+export { default as Calendar } from "./Calendar";
+export { default as CardDetails } from "./Card/CardDetails";
+export { default as FormUpdateDetail } from "./FormUpdateDetail";
 export { default as ResetPasswordForm } from "./ResetPasswordForm";
-
-

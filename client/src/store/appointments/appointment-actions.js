@@ -1,29 +1,24 @@
 import { appoitmentActions } from "./appointment-slice";
 
-const url = process.env.REACT_APP_API_URL;
+export const url = process.env.REACT_APP_API_URL;
+
+export const fetchData = async (endPoint, config = {}) => {
+  const response = await fetch(endPoint, config)
+  
+  if (!response.ok) {
+    throw new Error('Could not fetch the data!');
+  }
+
+  const data = await response.json();
+
+  return data;
+}
 
 export const fetchAppoitmentData = (selected) => {
-  
   return (dispatch) => {
-     
-    const fetchData = async () => {
-      const response = await fetch(`${url}/api/calendar/${selected}`)
-      
-      if (!response.ok) {
-        throw new Error('Could not fetch cart data!');
-      }
-
-      const data = await response.json();
-
-      return data;
-    }
-
     async function wrapper(params) {
       try {
-        
-        const appoitmentsData = await fetchData();
-  
-        // console.log(appoitmentsData, 'testing the datain the ftc');
+        const appoitmentsData = await fetchData(`${url}/api/calendar/${selected}`);
         dispatch(appoitmentActions.addItems({
           appointments: appoitmentsData?.appointments,
           total: appoitmentsData?.count,
@@ -40,33 +35,16 @@ export const fetchAppoitmentData = (selected) => {
         }))
       }
     }
-
     wrapper();
   }
 }
 
 export const fetchSearchedAppoitment = (term) => {
-
   return (dispatch) => {
-    
-    const fetchData = async () => {
-      const response = await fetch(`${url}/api/appuntamenti/search=${term}`)
-      
-      if (!response.ok) {
-        throw new Error('Could not fetch cart data!');
-      }
-
-      const data = await response.json();
-
-      return data;
-    }
-
     async function wrapper(params) {
       try {
-        
-        const appoitmentsData = await fetchData();
-  
-        // console.log(appoitmentsData, 'testing the datain the ftc');
+        const appoitmentsData = await fetchData(`${url}/api/appuntamenti/search=${term}`);
+
         dispatch(appoitmentActions.addItems({
           appointments: appoitmentsData?.appointments,
           total: appoitmentsData?.count,
@@ -83,45 +61,24 @@ export const fetchSearchedAppoitment = (term) => {
         }))
       }
     }
-    
     wrapper();
   }
 };
 
 export const fetchByDate = (selectedDate) => {
-   return async(dispatch) => {
-    dispatch(appoitmentActions.addItems({
-      appointments: [],
-      total: 0,
-      status: 'pending',
-      message: 'Requesting the data!'
-    }));
-
-    const sendRequest = async () => {
-      const response = fetch(`${url}/api/calendar/date/`,{
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          date: selectedDate
-        }),
-      });
-      
-      if (!response.ok) {
-        throw new Error('Could not fetch cart data!');
-      }
-
-      const data = await response.json();
-
-      console.log(data, 'date');
-      return data;
-    }
+   return async (dispatch) => {
+     const config = {
+       method: "POST",
+       headers: { "Content-Type": "application/json" },
+       body: JSON.stringify({
+         date: selectedDate
+       }),
+     }
 
     async function wrapper(params) {
       try {
-        
-        const appoitmentsData = await sendRequest();
-
-        // console.log(appoitmentsData, 'testing the datain the ftc');
+        const appoitmentsData = await fetchData(`${url}/api/calendar/date/`, config);
+    
         dispatch(appoitmentActions.addItems({
           appointments: appoitmentsData?.appointments,
           total: appoitmentsData?.count,
@@ -133,12 +90,11 @@ export const fetchByDate = (selectedDate) => {
         dispatch(appoitmentActions.addItems({
           appointments: [],
           total: 0,
-          status: 'error',
+          status: '',
           message: 'Non ho trovato nessun appuntamento!'
         }))
       }
     }
-    
     wrapper();
    };
 };
