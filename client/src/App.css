@@ -17,6 +17,7 @@
   --svgColor: white; 
   --footerColor: #272D36;
   --buttonColor: #007a52;
+  --tealColor: #F2F7FC;
 }
 
 * {
@@ -112,6 +113,10 @@ ul {
   background-color: var(--grayLightColor);
 }
 
+.bg-light-teal {
+  background-color: var(--tealColor);
+}
+
 a {
   color: white;
   font-size: .8888888889rem;;
@@ -130,6 +135,7 @@ h3 {
 
 .custom-height-class {
   min-height: 60vh;
+  width: 100vw;
 }
 
 .component-wrapper {
@@ -268,6 +274,11 @@ input:valid[focused="true"] {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
+}
+
+.offset-class {
+  position: absolute;
+  bottom: -10%;
 }
 
 button:disabled,
