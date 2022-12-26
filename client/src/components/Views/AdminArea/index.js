@@ -75,7 +75,7 @@ const AdminArea = () => {
       <Sidebar 
         handleCalendar={handleCalendar}
       /> 
-      <div className='row justify-content-around col-12 col-md-9'>
+      <div className='row justify-content-md-around col-12 col-md-9'>
         {!isCalendar ? <h2 className='text-dark text-capitalize text-center py-2 px-2 h2 fs-1'>Risultati: <span className='fs-4 fw-bold'>{count === 0 ? "Nessun Risultato" : count }</span></h2>
         : <h2 className='text-dark text-capitalize text-center py-2 px-2 h2 fs-1'>Calendario</h2>}
         <Paginate 

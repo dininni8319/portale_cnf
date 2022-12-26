@@ -53,7 +53,7 @@ const FormEvents = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    // dispatch(formActions.checkForErrors(validateForm(config)));
+    dispatch(formActions.checkForErrors(validateForm(config)));
     dispatch(formActions.setIsSubmited({ payload: true}));
 
     if (Object.keys(validateForm(config)).length === 0) {
