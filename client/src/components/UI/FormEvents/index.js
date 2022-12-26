@@ -53,11 +53,11 @@ const FormEvents = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    dispatch(formActions.checkForErrors(validateForm(config)));
+    // dispatch(formActions.checkForErrors(validateForm(config)));
     dispatch(formActions.setIsSubmited({ payload: true}));
 
-    if (isSubmited && Object.keys(errors).length === 0) {
-      
+    if (Object.keys(validateForm(config)).length === 0) {
+      // console.log('testing if is working the submit form');
       fetch(`${backend}/calendar/create/event`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -15,7 +15,7 @@ const ResetLink = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    fetch(`${api_urls.backend}/api/forgot_password`, {
+    fetch(`${api_urls.backend}/forgot_password`, {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from 'react-redux';
 
 const StepsComponents = ({ 
   handlePrevStep,
@@ -8,6 +9,8 @@ const StepsComponents = ({
   step,
 }) => {
  
+  const { errors } = useSelector(state => state.form);
+
   return ( 
      <div className='d-flex justify-content-between py-3 col-11 col-md-5'>
       {step !== 1 && <button className="text-green-dark fs-5 fw-bold" onClick={handlePrevStep}>

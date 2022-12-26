@@ -17,7 +17,7 @@ export default function SignUp() {
   const signUp = (event) => {
     event.preventDefault();
 
-    fetch(`${api_urls.backend}/api/login`, {
+    fetch(`${api_urls.backend}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: email.value, password: password.value }),
@@ -26,7 +26,7 @@ export default function SignUp() {
       .then((data) => {
         const token = data.token;
 
-        fetch(`${api_urls.backend}/api/view-profile`, {
+        fetch(`${api_urls.backend}/view-profile`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

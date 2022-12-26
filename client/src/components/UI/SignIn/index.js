@@ -18,13 +18,12 @@ export default function SignIn() {
 
   const [ error, setError ] = useState('');
 
-  console.log(error, 'testing');
   const Login = (event) => {
     event.preventDefault();
 
     if (password.value === passwordConfirm.value) {
 
-      fetch(`${api_urls.backend}/api/register`, {
+      fetch(`${api_urls.backend}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -46,7 +45,7 @@ export default function SignIn() {
           }
         })
         .then(() => {
-          fetch(`${api_urls?.backend}/api/login`, {
+          fetch(`${api_urls?.backend}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -58,7 +57,7 @@ export default function SignIn() {
             .then((data) => {
               const token = data.token;
 
-              fetch(`${api_urls?.backend}/api/view-profile`, {
+              fetch(`${api_urls?.backend}/view-profile`, {
                 method: "GET",
                 headers: {
                   Authorization: `Bearer ${token}`,

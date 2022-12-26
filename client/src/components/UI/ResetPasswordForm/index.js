@@ -18,7 +18,7 @@ const PasswordResetForm = ({ token }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    fetch(`${api_urls.backend}/api/reset`, {
+    fetch(`${api_urls.backend}/reset`, {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
