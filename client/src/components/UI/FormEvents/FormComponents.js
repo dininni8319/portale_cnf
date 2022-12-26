@@ -73,8 +73,8 @@ const FormComponents = ({
 
         {step === 5 && <Riepilogo config={config}/>}
         
-         <div className='mt-2 d-flex flex-column'>
-            {!isEmptyObject(errorsForm) && Object.values(errorsForm)?.map((err, id) => {
+        <div className='mt-2 d-flex flex-column'>
+          {!isEmptyObject(errorsForm) && Object.values(errorsForm)?.map((err, id) => {
             return <span key={id} className='text-danger fs-6'>{err}</span>
           })}
         </div>

@@ -1,15 +1,21 @@
 import { useState } from 'react';
-import useInput from '../../Hooks/useInput';
 import Search from '../Search';
+import { useDispatch } from 'react-redux';
+import { appoitmentActions } from "../../../store/appointments/appointment-slice";
 
-const Sidebar = ( { setSelectedAppointments, setCurrentDateAppointments, handleCalendar, setTerm }) => {
+const Sidebar = ( { handleCalendar }) => {
+  const dispatch = useDispatch();
 
   const handleAppointments = (event) => {
-    setSelectedAppointments(event.target.value);
+    dispatch(appoitmentActions.handleAppointments(
+      {selectedAppointments: event.target.value}
+    ));
   };
-
+    
   const handleDateAppointments = (event) => {
-    setCurrentDateAppointments(event.target.value);
+    dispatch(appoitmentActions.handleDate(
+      { currentDateAppointments: event.target.value }
+    ));
   };
 
   return ( 
@@ -60,7 +66,7 @@ const Sidebar = ( { setSelectedAppointments, setCurrentDateAppointments, handleC
         </h2>
         <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
           <div className="accordion-body">
-            <Search title='appuntamento' setTerm={setTerm}/>
+            <Search title='appuntamento' />
           </div>
         </div>
       </div>

@@ -19,6 +19,7 @@ class AuthController extends GoogleController
     public function postLogin(Request $request)
     {
         $authCode = urldecode($request->input('auth_code'));
+        
         //Google client
         $client = GoogleController::getClient();
         

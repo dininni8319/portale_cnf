@@ -16,7 +16,6 @@ const formSlice = createSlice({
       }
       state.step--;
     },
-
     nextFormStep(state, action) {
       
       if (state.step === 5) {
@@ -24,23 +23,18 @@ const formSlice = createSlice({
       }
       state.step++;
     },
-    
     resetSteps(state, action){
       state.step = 1;
     },
-
     checkForErrors(state, action) {
       state.errors = action.payload;
     },
-
     setErrorsToNull(state, action) {
       state.errors = {};
     },
-    
     setMessage(state, action){
       state.message = action.payload;
     },
-
     setIsSubmited(state, action) {
       state.isSubmited = action.payload;
     }
