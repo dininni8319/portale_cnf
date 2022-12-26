@@ -1,4 +1,8 @@
+// import { useState } from 'react';
+
 const Home = () => {
+  // const [ count, setCount ] = useState(12)
+
   const obj = [
     {id: 0, title: 'Mario Rossi', description: 'Il Sindaco della città'},
     {id: 1, title: 'Giunta Comunale', description: 'La giunta, nominata dal sindaco, esercita collegialmente le funzioni ad essa attribuite dalla legge.'},
@@ -21,10 +25,10 @@ const Home = () => {
         </div>
          
       </div>
-      <div className="row justify-content-between mb-5 offset-class">
+      <div className="row justify-content-around mb-5 offset-class">
         {obj.map(elem => {
            return (
-            <div className="card col-11 col-md-3 shadow py-4" key={elem.id}>  
+            <div className="card col-11 col-md-3 shadow py-4 px-5" key={elem.id}>  
               <h3 className='text-dark text-capitalize fw-bold fs-4'>{elem.title}</h3>
               <p>{elem.description}</p>
               <a href="/" className='text-success'>Vai alla pagina</a>
@@ -34,8 +38,34 @@ const Home = () => {
       </div>
     </div>
     <div className="row custom-height-class bg-light-teal w-100">
-
-    </div>
+      <div className='d-flex align-items-center justify-content-center flex-column mt-5 py-5'>
+        <div className='event-header-class'></div>
+        <div className='event-header-class'></div>
+        <h2 className='fw-bolder fs-1 mt-5 mb-4'>Eventi</h2>
+        <div className='bg-success col-11 col-md-8 event-header-class'>
+            <h3 className='text-center text-white text-capitalize fw-bolder fs-3 py-2'>Settembre 2022</h3>
+        </div>
+        <div className='d-flex col-11 col-md-8'>
+          {obj.map((elem, num) => {
+              return (
+                <div className="card col-11 col-md-4 shadow p-2" key={elem.id}>
+                  <h2>{12 + num}</h2> 
+                  {num === 1 && <span>lun</span>}
+                  {num === 2 && <span>mar</span>}
+                  {num === 3 && <span>mer</span>}
+                  <h3 className='text-dark text-capitalize fw-bold fs-4'>{elem.title}</h3>
+                  <p>{elem.description}</p>
+                  <a href="/" className='text-success'>Vai alla pagina</a>
+                  <div className='event-header-class'></div>
+                  <div className='event-header-class'></div>
+                  <div className='event-header-class'></div>
+                </div>
+              )
+          })}
+  
+        </div>
+      </div>
+      </div>
     </>
    );
 }

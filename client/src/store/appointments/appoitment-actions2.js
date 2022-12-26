@@ -8,7 +8,7 @@ export const removeAppoitment = id => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     }
     try {
-      const appoitmentsData = await fetchData(`${url}/api/calendar/delete/meeting/${id}`, config);
+      const appoitmentsData = await fetchData(`${url}/calendar/delete/meeting/${id}`, config);
     
       dispatch(appoitmentActions.removeAppoitment({
          id: id,

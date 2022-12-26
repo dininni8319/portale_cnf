@@ -278,7 +278,12 @@ input:valid[focused="true"] {
 
 .offset-class {
   position: absolute;
+  left: 10%;
   bottom: -10%;
+}
+
+.event-header-class {
+  height: 50px;
 }
 
 button:disabled,
