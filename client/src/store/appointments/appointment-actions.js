@@ -18,7 +18,7 @@ export const fetchAppoitmentData = (selected) => {
   return (dispatch) => {
     async function wrapper(params) {
       try {
-        const appoitmentsData = await fetchData(`${url}/api/calendar/${selected}`);
+        const appoitmentsData = await fetchData(`${url}/calendar/${selected}`);
         dispatch(appoitmentActions.addItems({
           appointments: appoitmentsData?.appointments,
           total: appoitmentsData?.count,
@@ -43,7 +43,7 @@ export const fetchSearchedAppoitment = (term) => {
   return (dispatch) => {
     async function wrapper(params) {
       try {
-        const appoitmentsData = await fetchData(`${url}/api/appuntamenti/search=${term}`);
+        const appoitmentsData = await fetchData(`${url}/appuntamenti/search=${term}`);
 
         dispatch(appoitmentActions.addItems({
           appointments: appoitmentsData?.appointments,
@@ -77,7 +77,7 @@ export const fetchByDate = (selectedDate) => {
 
     async function wrapper(params) {
       try {
-        const appoitmentsData = await fetchData(`${url}/api/calendar/date/`, config);
+        const appoitmentsData = await fetchData(`${url}/calendar/date/`, config);
     
         dispatch(appoitmentActions.addItems({
           appointments: appoitmentsData?.appointments,

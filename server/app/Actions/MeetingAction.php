@@ -9,7 +9,6 @@ class MeetingAction
   public function handleAllMeetings($start_point)
     {
       $currentTime = Carbon::now();
-     
       $currentTime->format('Y-m-d H:i:s');
       
       $pageSize = 5;

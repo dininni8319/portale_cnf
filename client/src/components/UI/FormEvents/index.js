@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import { useState,useContext, memo } from "react";
 import useInput from "../../Hooks/useInput";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,10 +6,12 @@ import { formActions } from '../../../store/form-slice';
 import { FormComponents, StepsComponent } from "./link-form-comp";
 import classes from './style.module.css';
 import { validateForm } from '../../../utilities';
+import { ConfigContext } from "../../../Contexts/Config";
 
 const FormEvents = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { api_urls: { backend } } = useContext(ConfigContext);
   const {step, errors, message, isSubmited } = useSelector(state => state.form);
  
   const email = useInput("");
@@ -56,7 +58,7 @@ const FormEvents = () => {
 
     if (isSubmited && Object.keys(errors).length === 0) {
       
-      fetch(`http://localhost:8000/api/calendar/create/event`, {
+      fetch(`${backend}/calendar/create/event`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(config),

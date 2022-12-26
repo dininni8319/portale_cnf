@@ -1,15 +1,16 @@
-import { getCurrentDate, excludeWeekends } from "../../../utilities";
-import { memo, useEffect, useState } from "react";
+import { getCurrentDate } from "../../../utilities";
+import {  useState, useContext, memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { formatDate } from "../../../utilities";
+import { ConfigContext } from "../../../Contexts/Config";
 
 const Orari = ({ date, setDate, isClicked, setIsClicked }) => {
 
   const [dates, setDates] = useState([]);
   const [size, setSize] = useState(0);
   const [message, setMessage] = useState('');
-  
+  const { api_urls: { backend } } = useContext(ConfigContext);
   const handleNextPage = (e) => {
     e.preventDefault()
     setSize(prev => prev + 5)
@@ -20,10 +21,9 @@ const Orari = ({ date, setDate, isClicked, setIsClicked }) => {
     setSize(prev => size === 0 ? 0 : prev - 5);
   };
 
-
   const handleMeeting = (event) => {
       event.preventDefault()
-      fetch(`http://localhost:8000/api/calendar/all/meetings`, {
+      fetch(`${backend}/calendar/all/meetings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -34,7 +34,7 @@ const Orari = ({ date, setDate, isClicked, setIsClicked }) => {
         .then((data) => {
          
           if (data.paginate) {
-             setDates(prev => prev = [...data.paginate]);
+            setDates(prev => prev = [...data.paginate]);
           }
           
           setMessage('Nessun meeting trovato');
@@ -47,7 +47,6 @@ const Orari = ({ date, setDate, isClicked, setIsClicked }) => {
         <h4 className='h4'>Orari</h4>
         <div className="mb-3 component-wrapper">
           <label htmlFor="inputDate" className="col-sm-2 col-form-label">Dates*</label>
-
           {
             dates?.map((date) => {
               return (
