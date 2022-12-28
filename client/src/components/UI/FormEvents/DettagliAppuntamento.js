@@ -15,7 +15,7 @@ const DettagliAppuntamento = ({ description, tipologiaRichiesta }) => {
       </div>
       <div className="mb-3">
           <div className="col-sm-10">
-            <textarea name="" className='w-100' cols="30" rows="10" {...description}>*Descrizione</textarea>
+            <textarea name="" className='w-100' cols="30" rows="10" placeholder="Dettaglio dell' appuntamento" {...description}>*Descrizione</textarea>
           </div>
       </div>
     </section>

@@ -37,6 +37,7 @@ const AdminArea = () => {
   }
 
   const handleModal = (id) => {
+    setIdCard(id);
     dispatch(appoitmentActions.handleModal({ modal: true, id: id }))
   }
 
@@ -47,8 +48,8 @@ const AdminArea = () => {
       }
     })
     if (unique) {  
-      setShow(prev => !prev);
       setIdCard(id);
+      setShow(prev => !prev);
     }
   }
 
@@ -94,7 +95,9 @@ const AdminArea = () => {
                     >
                       {Number(meeting.stato) === 0 && 
                         <div className='d-flex justify-content-around'>
-                          <button onClick={() => handleModal(meeting.id)} className='bg-transparent'>
+                          <button onClick={() => {
+                            handleModal(meeting.id);
+                          }} className='bg-transparent'>
                             <FontAwesomeIcon icon={faTrashAlt} size="1x" className='text-danger px-2'/>
                           </button>
                           <button className='bg-transparent' onClick={() => handleShow(meeting.id)}>

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Meeting;
 use App\Models\Reserve;
+use App\Mail\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Actions\CreateGoogleEventAction;
 use App\Http\Requests\ReservationRequest;
 use Illuminate\Support\Facades\Validator;
@@ -55,14 +57,14 @@ class GoogleCalendarController extends Controller
       
       $emails = array($request->email, $entity->email_addetto_ufficio);
       
-      // if($emails && $event){
+      if($emails && $event){
         
-      //   $attachment =$this->calendarAttachment->genareteCalendarAttachment($event, $entity, $startTime, $endTime);
+        $attachment = $this->calendarAttachment->genareteCalendarAttachment($event, $entity, $startTime, $endTime);
 
-      //   foreach ($emails as $key => $email) {
+        foreach ($emails as $key => $email) {
           
-      //     Mail::to($email)->send(new Reservation($event, $email, $name, $attachment, $entity));
-      //   }
+          Mail::to($email)->send(new Reservation($event, $email, $name, $attachment, $entity));
+        }
       
         return response()->json(
             [
@@ -80,6 +82,7 @@ class GoogleCalendarController extends Controller
         ],400); //bad request
       }
     } 
+  }
 
     public function updateReservation(Request $request,$id)
     {
@@ -103,6 +106,7 @@ class GoogleCalendarController extends Controller
           'note_lavorazione' => $request->note_lavorazione,
           ]);
           
+        
           // dd($appuntamento);
           return response()->json([
             'success' => true,
