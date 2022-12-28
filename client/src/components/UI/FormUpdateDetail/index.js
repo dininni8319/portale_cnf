@@ -8,17 +8,16 @@ import { ConfigContext } from './../../../Contexts/Config';
 const FormUpdateDetail = ( { meeting, show, idCard, setShow }) => {
   const navigate = useNavigate();
   const stato = useInput('');
-  const note_lavorazione = useInput('');
-  
+  const { value, onChange } = useInput('');
   const { api_urls } = useContext(ConfigContext);
   const config = {
     stato: stato.value,
-    note_lavorazione: note_lavorazione.value,
+    note_lavorazione: value,
   }
   
   const handleSubmit = (event, id) => {
     event.preventDefault();
-    fetch(`${api_urls.backend}/api/calendar/create/event/${id}`, {
+    fetch(`${api_urls.backend}/calendar/create/event/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(config),
@@ -41,24 +40,30 @@ const FormUpdateDetail = ( { meeting, show, idCard, setShow }) => {
           <div>
               <label htmlFor="staticEmail" className="col-form-label ms-2 mt-3">Stato*</label>
               <div className="col-sm-9 px-2">
-                <input 
+                <select 
                   type="text"  
                   className="input-search" 
                   id="staticEmail" 
                   {...stato} 
                   required
-                />
+                >
+                  <option>aperto</option>
+                  <option>chiuso</option>
+                  <option>in stato di lavorazione</option>
+                </select>
               </div>
           </div>
           <div>
               <label htmlFor="staticEmail" className="col-form-label ms-2">Note di Lavorazione</label>
               <div className="col-sm-9 px-2">
-                <input 
+                <textarea 
                   type="text"  
                   className="input-search" 
                   id="staticEmail" 
-                  {...note_lavorazione} 
-                />
+                  onChange={onChange}
+                >
+                  {value}
+                </textarea>
               </div>
           </div>
           <button type='submit' className="btn-color-green text-white fw-bold mt-3 ms-2">

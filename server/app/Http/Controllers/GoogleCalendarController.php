@@ -5,15 +5,11 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Meeting;
 use App\Models\Reserve;
-use App\Mail\Reservation;
 use Illuminate\Http\Request;
-use Spatie\GoogleCalendar\Event;
-use Illuminate\Support\Facades\Mail;
 use App\Actions\CreateGoogleEventAction;
 use App\Http\Requests\ReservationRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\CalendarAttachment;
-use Google\Service\Datastore\ReserveIdsRequest;
 
 class GoogleCalendarController extends Controller
 { 
@@ -112,7 +108,6 @@ class GoogleCalendarController extends Controller
             'success' => true,
             'message' => "L'appuntamento è stato aggiornato"
         ], 201);
-       
       }
     }
   }

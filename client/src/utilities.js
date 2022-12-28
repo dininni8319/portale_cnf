@@ -71,7 +71,7 @@ export const validateFiscalCode = ( code ) => {
 
 export const validateForm = ( values ) => {
 
-  const { email, first_name, last_name, date, time, codicefiscale, tipologiaRichiesta, ufficio } = values;
+  const { email, first_name, last_name, date, time, codicefiscale, tipologiaRichiesta, ufficio, description, phone } = values;
   let error = {};
 
   if (!email) {
@@ -104,6 +104,14 @@ export const validateForm = ( values ) => {
 
   if (!time) {
     error ={...error, time: `L'orario è obbligatorio!`}; 
+  }
+
+  if (!phone) {
+    error ={...error, phone: `Il numero di telefono è obbligatorio!`}; 
+  }
+
+  if (!description) {
+    error ={...error, description: `La descrizione è obbligatoria!`}; 
   }
 
   if (!tipologiaRichiesta) {

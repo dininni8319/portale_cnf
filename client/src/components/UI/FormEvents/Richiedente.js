@@ -73,7 +73,7 @@ const Richiedente = ( {
             </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="inputPhone" className="col-sm-2 col-form-label">Telefono</label>
+            <label htmlFor="inputPhone" className="col-sm-2 col-form-label">*Telefono</label>
             <div className="col-sm-10">
               <input 
                 type="text" 
