@@ -7,6 +7,7 @@ use App\Models\Meeting;
 use App\Models\Reserve;
 use App\Mail\Reservation;
 use Illuminate\Http\Request;
+use App\Mail\ReservationUpdate;
 use Illuminate\Support\Facades\Mail;
 use App\Actions\CreateGoogleEventAction;
 use App\Http\Requests\ReservationRequest;
@@ -104,11 +105,16 @@ class GoogleCalendarController extends Controller
         $appuntamento->update([
           'stato' => true,
           'note_lavorazione' => $request->note_lavorazione,
-          ]);
-          
+          // 'stato_lavorazione' => $request->stato,
+        ]);
         
-          // dd($appuntamento);
-          return response()->json([
+        $email = $appuntamento->email;
+        $name = $appuntamento->first_name .' '.$appuntamento->last_name;
+        $entity = Meeting::find(intval($appuntamento->meeting_id))->entity;
+
+        Mail::to($email)->send(new ReservationUpdate($email, $name, $entity, $appuntamento));
+
+        return response()->json([
             'success' => true,
             'message' => "L'appuntamento è stato aggiornato"
         ], 201);

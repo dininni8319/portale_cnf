@@ -12,7 +12,7 @@ use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 
-class Reservation extends Mailable
+class ReservationUpdate extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -23,16 +23,15 @@ class Reservation extends Mailable
      */
     public $email;
     public $name;
-    public $event;
     public $entity;
+    public $appuntamento;
 
-    public function __construct($event, $email, $name, $attachment, $entity)
+    public function __construct($email, $name, $entity, $appuntamento)
     {
-        $this->event = $event;
         $this->email = $email;
         $this->name = $name; 
-        $this->attachment = $attachment; 
         $this->entity = $entity; 
+        $this->appuntamento = $appuntamento; 
     }
 
     /**
@@ -42,7 +41,7 @@ class Reservation extends Mailable
      */
     public function envelope()
     {
-        $subject = $this->event->name;
+        $subject = 'aggiornamento dell\' appuntamento';
         $entity = $this->entity;
         
         //here you have to pass the email and name of the sender
@@ -60,7 +59,7 @@ class Reservation extends Mailable
     public function content()
     {
         return new Content(
-            markdown: 'emails.reservations'
+            markdown: 'emails.reservationupdate'
         );
     }
 
@@ -71,11 +70,7 @@ class Reservation extends Mailable
      */
     public function attachments()
     {
-        $attachment = $this->attachment;
-       return [
-           Attachment::fromData(fn () => $attachment->get() , 'invite.ics')
-           ->withMime('text/calendar; charset=UTF-8; method=REQUEST'),
-       ];
+       
+       return [];
     }
-
 }
