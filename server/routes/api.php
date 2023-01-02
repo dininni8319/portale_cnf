@@ -8,6 +8,7 @@ use App\Http\Controllers\MeetingsController;
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\AuthPassportController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\GoogleCalendarController;
 
 /*
@@ -47,8 +48,8 @@ Route::group(['middleware' => 'CORS'],function ($router){
 
     //Verify/ reset
     Route::get('/email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
-    Route::post('/forgot_password', [VerificationController::class, 'forgotPassword']);
-    Route::post('/reset', [VerificationController::class, 'resetPassword']);
+    Route::post('/forgot_password', [ResetPasswordController::class, 'forgotPassword']);
+    Route::post('/reset', [ResetPasswordController::class, 'resetPassword']);
     
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');

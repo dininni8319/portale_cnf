@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Actions\ResetPasswordAction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Actions\UserRegistrationAction;
@@ -32,7 +33,7 @@ class AuthPassportController extends Controller
         }
     }
     
-    public function login(Request $request) {
+    public function login(Request $request, ResetPasswordAction $action) {
 
         $validator = Validator::make($request->all(),[
             'email' => 'required|string|email',
@@ -50,9 +51,11 @@ class AuthPassportController extends Controller
 
         $user = User::where('email', $credentials['email'])->first();
         
+        $checkCredentials = Hash::check($credentials['password'], $user['password']);
+
         if($user) {
 
-            if ($user === null && !Hash::check($credentials['password'], $user['password'])) {
+            if ($user === null && !$checkCredentials) {
                 $responseMessage = 'Invalid username or password';
                 return response()->json([
                     'success' => false,
@@ -60,9 +63,17 @@ class AuthPassportController extends Controller
                     'error' => $responseMessage
                 ], 422);
             }
-            if(Hash::check($credentials['password'], $user['password'])){
+            if($checkCredentials){
                 $accessToken = $user->createToken('authToken')->accessToken; 
     
+                $firstLogin = User::where('email', $request->email)->value('isloggedin');
+
+                if (!$firstLogin) {
+                    $resetCredendials = $action->handleReset($request->email);
+                 
+                    return $resetCredendials;
+                }
+
                 $responseMessage = "Login Successful";
     
                 return response()->json([

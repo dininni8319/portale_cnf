@@ -23,9 +23,14 @@ const ResetLink = () => {
       },
       body: JSON.stringify(formData)
     })
-      .then((response) => {
-        console.log(response,'testing th response')
-      })
+    .then((response) => response.json())
+    .then(data => {
+      if (data.success) {
+        setError(data.message);
+      } else {
+        setError(data.message);
+      }
+    })
   };
 
   const handleFieldChange = e => {
@@ -61,6 +66,7 @@ const ResetLink = () => {
           Invia il link
         </button>
       </div>
+      {error && <span className='text-danger py-1 text-sm'>{error}</span>}
   </form>
    );
 }

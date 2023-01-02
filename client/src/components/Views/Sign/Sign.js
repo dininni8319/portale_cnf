@@ -5,16 +5,9 @@ import BuildingImg from './../../../assets/img/building-picture.jpg';
 
 export default function Sign(params) {
   const [isLogin, setIsLogin] = useState(true);
-  const [isResetPassword, setIsResetPassword] = useState(false);
-  
-  const handleResetPassword = () => {
-    setIsLogin(false);
-    setIsResetPassword(true);
-  }
 
   const handleAuth = () => {
     setIsLogin(!isLogin);
-    setIsResetPassword(false);
   }
 
   return (
@@ -25,22 +18,21 @@ export default function Sign(params) {
             <img src={BuildingImg} alt="login image" className='building-img'/>
           </div>
           <div className={`col-11 col-md-4 text-center ${classes.shadow}`}>
-            {!isResetPassword && (isLogin ? <SignUp /> : <SignIn />)}
+            {isLogin ? <SignUp /> : <ResetPassword />}
 
-            {isResetPassword &&  <ResetPassword /> }
             <button
               className="mt-5 rounded-0 bg-transparent fw-bold fs-6"
               onClick={handleAuth}
             >
-              {isLogin ? "Non sei un Autente? Registrati Adesso!" : "Sei un Autente? Vai al Login!"}
+              {/* {isLogin ? "Non sei un Autente? Registrati Adesso!" : "Sei un Autente? Vai al Login!"} */}
             </button>
 
             <div>
-             {!isResetPassword && <button 
+              <button 
                className='text-info bg-transparent' 
-               onClick={handleResetPassword}>
-               Dimenticato la password
-              </button> }
+               onClick={handleAuth}>
+              {isLogin ?  "Dimenticato la password?" : 'Vai al login'}
+              </button>  
               </div>
           </div>
       </div>

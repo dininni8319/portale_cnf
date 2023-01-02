@@ -13,7 +13,7 @@ const PasswordResetForm = ({ token }) => {
     token: '',
   });
 
-  const [ error, setError ] = useState({});
+  const [ error, setError ] = useState('');
   // Handler
   const handleSubmit = e => {
     e.preventDefault();
@@ -26,14 +26,14 @@ const PasswordResetForm = ({ token }) => {
       },
       body: JSON.stringify(formData)
     })
-      .then((response) => response.json())
-      .then(data => {
-        if (data.success) {
-          navigate('/sign')
-        } else {
-          setError({...error, data})
-        }
-      })
+    .then((response) => response.json())
+    .then(data => {
+      if (data.success) {
+        navigate('/sign')
+      } else {
+        setError(data.message)
+      }
+    })
   };
 
   const handleFieldChange = e => {
