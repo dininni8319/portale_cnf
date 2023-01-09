@@ -3,10 +3,15 @@ import classes from '../SignIn/style.module.css';
 import { ConfigContext } from "../../../Contexts/Config";
 import { useNavigate } from "react-router";
 import { isEmptyObject } from "../../../utilities";
+import { AuthContext } from '../../../Contexts/Auth';
 
 const PasswordResetForm = ({ token }) => {
   const navigate = useNavigate();
   let { api_urls } = useContext(ConfigContext);
+  const { login } = useContext(AuthContext);
+  const [ email, setEmail ] = useState('')
+  console.log(email,'testing the email')
+
   const [formData, setFormData] = useState({
     password: '',
     password_confirm: '',
@@ -15,7 +20,7 @@ const PasswordResetForm = ({ token }) => {
 
   const [ error, setError ] = useState('');
   // Handler
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     fetch(`${api_urls.backend}/reset`, {
@@ -29,9 +34,39 @@ const PasswordResetForm = ({ token }) => {
     .then((response) => response.json())
     .then(data => {
       if (data.success) {
-        navigate('/sign')
+        setEmail(data.email)
       } else {
         setError(data.message)
+      }
+    })
+    .then(() => {
+      if (email) {
+        
+        fetch(`${api_urls?.backend}/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email,
+            password: formData.password,
+          })
+        })
+          .then((response) => response.json())
+          .then((data) => {
+              const token = data.token;
+    
+            if (email) {  
+              fetch(`${api_urls?.backend}/view-profile`, {
+                method: "GET",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              })
+              .then((response) => response.json())
+              .then((data) => {
+                login(data.data.name, token, data.data.id);
+                navigate("/adminarea"); //object history;
+              });}
+          })
       }
     })
   };

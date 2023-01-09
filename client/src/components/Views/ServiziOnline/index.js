@@ -110,14 +110,14 @@ const ServiziOnline = () => {
                                         <div className="col-md-6">
                                             <article className={`${classes.scheda} ${classes[" scheda-round"]} p-3`}>
                                                 <div className={classes["scheda-icona-small"]}>
-                                                    <a href="SportelloOnLine.aspx">
+                                                    <h5>
                                                         {/* <svg className="icon">
                                                             <use xlink:href="static/img/ponmetroca.svg#ca-settings"></use></svg> */}
                                                         Generale
-                                                    </a>
+                                                    </h5>
                                                 </div>
                                                 <div className={classes["scheda-icona-small"]}>
-                                                    <h4 className='text-success fs-1'><a href="/reserve">Richiedi un appuntamento</a></h4>
+                                                    <h4 className='text-success'><a href="/reserve">Richiedi un appuntamento</a></h4>
                                                 </div>
                                             </article>
                                         </div>
