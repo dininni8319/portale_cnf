@@ -21,15 +21,22 @@ const NavComponent = () => {
               </a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to='/reserve'>
-                <span>Appuntamenti</span>
+              <Link className="nav-link" to='/servizi_online'>
+                <span>Servizi Online</span>
               </Link>
             </li>
+
             <li className="nav-item">
+              <Link className="nav-link" to='/sportello_online'>
+                <span>Sportello Online</span>
+              </Link>
+            </li>
+
+            {/* <li className="nav-item">
               <a className="nav-link" href="#" data-element="live">
                 <span>Vivere il Comune</span>
               </a>
-            </li>
+            </li> */}
           </ul>
           <ul className="navbar-nav navbar-secondary">
             <li className="nav-item">
