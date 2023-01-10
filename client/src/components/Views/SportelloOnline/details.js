@@ -40,10 +40,9 @@ const Detais = () => {
                                   Da questa sezione puoi richiedere un appuntamento presso lo sportello di ricevimento.<br />
                                   Il sistema provvederà a pianificare il tuo appuntamento.
                               </p>
-                              <p>&nbsp;</p>
                           </div>
                       </div>
-                      <div className="row">
+                      <div className="row mt-4">
                           <div className={`offset-md-1 col-md-11 ${classes.testolungo}`}>
                               <a id={classes["articolo-par-desc_dest"]} className={classes.a}></a>
                               <h4>A chi si rivolge</h4>
@@ -65,20 +64,21 @@ const Detais = () => {
                           <div className={`offset-md-1 col-md-8 ${classes.testolungo}`}>
                               <p className={classes["articolo-titoletto"]}>Procedure collegate all'esito</p>
                               <div className="articolo-mt0">
-                                  <p>
-                                      Una volta effettuato l'appuntamento si riceverà un'email con la conferma dell'appuntamento e le indicazioni su:
-                                      <ul className={classes['ul-style']}>
-                                          <li>dove presentarsi</li>
-                                          <li>l'orario dell'appuntamento</li>
-                                          <li>eventuali documenti da portare con sè</li>
-                                      </ul>
-                                      Il giorno precedente l'appuntamento si riceverà inoltre un nuovo messaggio di cortesia per ricordare l'appuntamento
-                                  </p>
+                                <ul className={classes['ul-style']}>
+                                    <li>dove presentarsi</li>
+                                    <li>l'orario dell'appuntamento</li>
+                                    <li>eventuali documenti da portare con sè</li>
+                                </ul>
+                                <p>
+                                    Una volta effettuato l'appuntamento si riceverà un'email con la conferma dell'appuntamento e le indicazioni su:
+                                    Il giorno precedente l'appuntamento si riceverà inoltre un nuovo messaggio di cortesia per ricordare l'appuntamento
+                                        
+                                </p>
                               </div>
                           </div>
                       </div>
 
-                      <div className="row">
+                      <div className="row mt-4">
                           <div className={`offset-md-1 col-md-11 ${classes.testolungo}`}>
                               <a id={classes["articolo-par-uffici"]} className={classes.a}></a>
                               <h4>Uffici</h4>
@@ -119,7 +119,7 @@ const Detais = () => {
                               </div>
                           </div>
                       </div>
-                      <div className="row">
+                      <div className="row mt-4">
                           <div className="offset-md-1 col-md-11 paragrafo">
                               <a id={classes["articolo-par-cosa_serve"]} className={classes.a}></a>
                               <h4>Cosa serve</h4>
@@ -128,15 +128,11 @@ const Detais = () => {
                       <div className="row">
                           <div className="offset-md-1 col-md-8">
                               <div className={`${classes.callout} ${classes.important} ${classes['callout-punti']}`}>
-                                  <div className="callout-title">
-                                      {/* <svg className="icon icon-primary">
-                                          <use xlink:href="static/img/bootstrap-italia.svg#it-info-circle"></use></svg> */}
-                                  </div>
                                   <div className={classes["callout-punto"]}>
                                       
                                       <div className={classes["callout-punto-testo"]}>
                                           <p>Non serve alcun documento, solo indicare:</p>
-                                          <ul>
+                                          <ul className={classes['ul-style']}>
                                               <li>Codice fiscale</li>
                                               <li>Telefono cellulare</li>
                                               <li>indirizzo e-mail</li>
@@ -148,7 +144,7 @@ const Detais = () => {
                           </div>
                       </div>
 
-                      <div className="row mb-5">
+                      <div className="row mb-5 mt-3">
                           <div className="offset-md-1 col-md-11 paragrafo mb-3">
                               <a id={classes["articolo-par-costi_vinc"]} className={classes.a}></a>
                               <h4>Date disponibili</h4>

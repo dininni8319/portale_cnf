@@ -22,13 +22,13 @@ const NavComponent = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to='/servizi_online'>
-                <span>Servizi Online</span>
+                <span>Servizi On-line</span>
               </Link>
             </li>
 
             <li className="nav-item">
               <Link className="nav-link" to='/sportello_online'>
-                <span>Sportello Online</span>
+                <span>Sportello On-line</span>
               </Link>
             </li>
 

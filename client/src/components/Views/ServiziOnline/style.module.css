@@ -11,7 +11,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 p {
-  font-size: 1.333em;
+  font-size: 1.500em;
+  font-weight: 500;
 }
 
 h5 {
@@ -43,7 +44,8 @@ h5 {
 
 .scheda .scheda-icona-small a {
   color: #003882;
-  font-size: 1.333em;
+  font-size: .850em;
+  text-decoration: none;
 }
 
 .scheda-icona-small {

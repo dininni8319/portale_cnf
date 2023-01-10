@@ -11,7 +11,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 p {
-  font-size: 1.333em;
+  font-size: 1.500em;
+  font-weight: 500;
 }
 
 .ul-style {
@@ -102,7 +103,7 @@ p {
 }
 
 
-.a:hover{
+.a:hover {
   transition: 0.5s ease-in-out;
   background-color: #e5e5e5;
 }
@@ -111,6 +112,9 @@ p {
   color: var(--headerColor);
 }
 
+.scheda-ufficio-testo {
+  font-size: 0.700em;
+}
 @media (max-width: 767px){
   #articolo-dettaglio-testo p {
     line-height: 1.5;

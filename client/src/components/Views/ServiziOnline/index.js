@@ -25,7 +25,7 @@ const ServiziOnline = () => {
                     <div className="row">
                         <div className="offset-lg-1 col-lg-6 col-md-8">
                             <div className={classes["titolo-sezione"]}>
-                                <h2 className={`h2 fs-1 fw-bolder text-center w-100 py-3 ${classes['text-blue-color']}`}>Servizi online</h2>
+                                <h2 className={`h2 fs-1 fw-bolder text-center w-100 py-3 ${classes['text-blue-color']}`}>Servizi On-line</h2>
                             </div>
                         </div>
                     </div>

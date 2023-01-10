@@ -13,8 +13,6 @@ const Detais = () => {
                     <aside id={classes["menu-sinistro"]}>
                         <h4>
                             <a className={classes.a} data-toggle="collapse" href="#lista-paragrafi" role="button" aria-expanded="true" aria-controls="lista-paragrafi">Indice della pagina
-                                {/* <svg className="icon"> */}
-                                {/* <use xlink:href="static/img/bootstrap-italia.svg#it-collapse"></use></svg> */}
                             </a>
                         </h4>
                         <div className={classes["menu-separatore"]}>
@@ -40,7 +38,7 @@ const Detais = () => {
                                 <p>
                                 Attraverso questa sezione potrai accedere con pochi clic a tutti i servizi messi a disposizione dall'amministrazione sul web. I servizi sono organizzati per aree tematiche e per poter utilizzare alcuni di essi dovrai essere in possesso di credenziali SPID o registrandosi al portale.
                                 </p>
-                                <p>&nbsp;</p>
+                                
                             </div>
                         </div>
 
@@ -72,9 +70,9 @@ const Detais = () => {
                             </div>
                         </div>
 
-                        <div className="row">
+                        <div className="row mt-4">
                             <div className={`offset-md-1 col-md-11 ${classes.testolungo}`}>
-                                <a id={classes["articolo-par-desc_dest"]} className={classes.a}></a>
+                                {/* <a id={classes["articolo-par-desc_dest"]} className={classes.a}></a> */}
                                 <h4>Servizi</h4>
                             </div>
                         </div>
@@ -99,7 +97,7 @@ const Detais = () => {
                                             <FontAwesomeIcon icon={faGear} size="1x" className="link-servizi-color pe-1"/> 
                                             <h5>Pagamenti On-Line</h5>
                                         </div>
-                                        <div className={classes["scheda-testo-small"]}>
+                                        <div className={classes["scheda-icona-small"]}>
                                             <h4><Link to='/'>Stampa il modulo di pagamento o paga la tua pendenza direttamente OnLine con PagoPA</Link></h4>
                                         </div>
                                     </article>
@@ -115,7 +113,7 @@ const Detais = () => {
                                               Tributi
                                             </h5>
                                         </div>
-                                        <div className={classes["scheda-testo-small"]}>
+                                        <div className={classes["scheda-icona-small"]}>
                                             <h4><Link to='/'>Consulta la propria posizione contributiva, dati presenti nell'anagraf civile ed in catasto</Link></h4>
                                         </div>
                                     </article>
@@ -128,7 +126,7 @@ const Detais = () => {
                                               Tributi
                                             </h5>
                                         </div>
-                                        <div className={classes["scheda-testo-small"]}>
+                                        <div className={classes["scheda-icona-small"]}>
                                             <h4><Link to='/'>Invia dichiarazioni o istanze in autotutela, oltre che a produrre autocertificazioni</Link></h4>
                                         </div>
                                     </article>
@@ -137,7 +135,7 @@ const Detais = () => {
                         </div>
                     </div>
 
-                    <div className="row mt-3">
+                    <div className="row mt-5">
                         <div className={`offset-md-1 col-md-11 ${classes.testolungo}`}>
                             <h4>Attenzione</h4>
                             <p>Per i alcuni servizi è necessario accedere all'area riservata.</p>
