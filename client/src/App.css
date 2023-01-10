@@ -18,6 +18,7 @@
   --footerColor: #272D36;
   --buttonColor: #007a52;
   --tealColor: #F2F7FC;
+  --linkServiziColor: #003882;
 }
 
 * {
@@ -70,6 +71,9 @@ ul {
   min-width: 20vw;
 }
 
+.link-servizi-color {
+  color: var(--linkServiziColor);
+}
 .nav-link {
   color: white;
   font-size: 18px;

@@ -11,19 +11,20 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 p {
-  font-size: 18px;
+  font-size: 1.333em;
 }
 
 .ul-style {
   list-style: square;
   padding-left: 30px;
 }
+
 .breadcrumb-item {
   font-size: 16px;
 }
 
 #articolo-dettaglio-testo h4 {
-  font-size: 1.333em;
+  font-size: 1.700em;
   font-weight: 600;
   margin-bottom: 4px;
 }
@@ -44,7 +45,7 @@ p {
 }
 
 #menu-sinistro #lista-paragrafi .list-group-item {
-  font-size: .889em;
+  font-size: 1.100em;
   padding: 6px 24px;
   color: #003882;
   border: 0;
@@ -88,12 +89,16 @@ p {
   text-align: inherit;
 }
 
+.list-group-item-action:hover {
+  font-weight: bolder;
+}
+
 .a {
   color: #003882;
   color: -webkit-link;
   cursor: pointer;
-  text-decoration: underline;
-  font-size: 16px;
+  text-decoration: none;
+  font-size: .800em;
 }
 
 
@@ -123,12 +128,4 @@ p {
     font-size: 1em;
     padding: 8px 24px;
   }
-}
-
-@media (min-width: 576px){
-  .h4, h4 {
-      font-size: 1.555rem;
-      line-height: 1.428;
-      font-weight: 600;
-    }
 }

@@ -1,5 +1,5 @@
 import classes from './style.module.css';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWifi } from "@fortawesome/free-solid-svg-icons";
 import { 
   faFacebookF, 
@@ -7,7 +7,7 @@ import {
   faYoutube, 
   faTwitter, 
   faTelegram 
-} from "@fortawesome/free-brands-svg-icons"
+} from "@fortawesome/free-brands-svg-icons";
 
 const NavIcons = () => {
   return ( 

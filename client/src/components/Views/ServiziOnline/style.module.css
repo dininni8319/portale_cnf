@@ -11,13 +11,20 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 p {
-  font-size: 18px;
+  font-size: 1.333em;
+}
+
+h5 {
+  font-size: medium;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .ul-style {
   list-style: square;
   padding-left: 30px;
 }
+
 .breadcrumb-item {
   font-size: 16px;
 }
@@ -36,10 +43,17 @@ p {
 
 .scheda .scheda-icona-small a {
   color: #003882;
+  font-size: 1.333em;
 }
 
+.scheda-icona-small {
+  display: flex;
+  align-items: start;
+}
+
+
 #articolo-dettaglio-testo h4 {
-  font-size: 1.333em;
+  font-size: 1.700em;
   font-weight: 600;
   margin-bottom: 4px;
 }
@@ -60,7 +74,7 @@ p {
 }
 
 #menu-sinistro #lista-paragrafi .list-group-item {
-  font-size: .889em;
+  font-size: 1.100em;
   padding: 6px 24px;
   color: #003882;
   border: 0;
@@ -101,6 +115,7 @@ p {
 .list-group-item-action {
   width: 100%;
   color: #0073e6;
+  /* font-weight: bolder; */
   text-align: inherit;
 }
 
@@ -108,10 +123,9 @@ p {
   color: #003882;
   color: -webkit-link;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
   font-size: 16px;
 }
-
 
 .a:hover{
   transition: 0.5s ease-in-out;
