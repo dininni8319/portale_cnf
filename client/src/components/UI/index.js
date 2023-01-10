@@ -13,3 +13,4 @@ export { default as Calendar } from "./Calendar";
 export { default as CardDetails } from "./Card/CardDetails";
 export { default as FormUpdateDetail } from "./FormUpdateDetail/index";
 export { default as ResetPasswordForm } from "./ResetPasswordForm";
+export { default as Loader1 } from "./Loader1";

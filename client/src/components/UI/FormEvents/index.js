@@ -7,13 +7,14 @@ import { FormComponents, StepsComponent } from "./link-form-comp";
 import classes from './style.module.css';
 import { validateForm } from '../../../utilities';
 import { ConfigContext } from "../../../Contexts/Config";
+import { Loader1 } from '../index';
 
 const FormEvents = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { api_urls: { backend } } = useContext(ConfigContext);
   const {step, errors, message, isSubmited } = useSelector(state => state.form);
- 
+
   const email = useInput("");
   const first_name = useInput("");
   const last_name = useInput("");
@@ -122,9 +123,9 @@ const FormEvents = () => {
           step={step}
           errors={err}
         />
-   
+
       </form>
-       {isSubmited.payload && <div className="text-success fs-5 fw-bold">{!message.payload && !err ? 'Loading...' : message.payload}</div>}
+       {isSubmited.payload && <div className={`${message.payload ? 'text-success': ''} fs-5 fw-bold`}>{!message.payload && !err ? <Loader1 /> : message.payload}</div>}
         <StepsComponent 
           handlePrevStep={handlePrevStep}
           handleNextStep={handleNextStep}
