@@ -83,6 +83,10 @@ const FormEvents = () => {
               dispatch(formActions.resetSteps())
 
               navigate('/');
+
+              dispatch(formActions.setIsSubmited({
+                payload: false,
+              }))
             }, 3000)
           } else {
             dispatch(formActions.setIsSubmited({
@@ -120,7 +124,7 @@ const FormEvents = () => {
         />
    
       </form>
-       {message && <div className="text-success fs-5 fw-bold">{message.payload}</div>}
+       {isSubmited.payload && <div className="text-success fs-5 fw-bold">{!message.payload && !err ? 'Loading...' : message.payload}</div>}
         <StepsComponent 
           handlePrevStep={handlePrevStep}
           handleNextStep={handleNextStep}
