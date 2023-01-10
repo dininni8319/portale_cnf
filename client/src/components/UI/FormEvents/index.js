@@ -1,4 +1,4 @@
-import { useState,useContext, memo } from "react";
+import { useState, useContext, memo } from "react";
 import useInput from "../../Hooks/useInput";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,12 +29,12 @@ const FormEvents = () => {
   const handlePrevStep = (e) => {
     e.preventDefault();
     dispatch(formActions.previusFormStep())
-  }
+  };
   
   const handleNextStep = (e) => {
     e.preventDefault();
     dispatch(formActions.nextFormStep())
-  }
+  };
 
   const config = {
     email: email.value, 
@@ -48,7 +48,7 @@ const FormEvents = () => {
     ufficio: ufficio.value,
     phone: phone.value,
     meeting_id: date.id
-  }
+  };
   
   const handleSubmit = (event) => {
     event.preventDefault();

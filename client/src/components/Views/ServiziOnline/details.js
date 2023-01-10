@@ -18,7 +18,7 @@ const Detais = () => {
                         <div className={classes["menu-separatore"]}>
                             <div className={classes["bg-oro"]}></div>
                         </div>
-                        <div id={classes["lista-paragrafi"]} className={`${classes['list-group']} collapse show`}>
+                        <div id={classes["lista-paragrafi"]} className={`${classes['list-group']} show`}>
                             <a className={`${classes.a} ${classes['list-group-item']} ${classes['list-group-item-action']}`} href="#articolo-par-descr_est" title="Vai al paragrafo Cos'è">Cosa fa</a>
                             <a className={`${classes.a} ${classes['list-group-item']} ${classes['list-group-item-action']}`} href="#articolo-par-desc_dest" title="Vai al paragrafo A chi si rivolge">Servizi</a>
                             <a className={`${classes.a} ${classes['list-group-item']} ${classes['list-group-item-action']}`} href="#articolo-par-uffici" title="Vai al paragrafo Uffici">Ulteriori informazioni</a>
@@ -29,7 +29,7 @@ const Detais = () => {
                     <div className={classes["articolo-paragrafi"]}>
                         <div className="row">
                             <div className={`offset-md-1 col-md-11 ${classes.paragrafo} mt-3`}>
-                                {/* <a id={classes["articolo-par-descr_est"]} className={classes.a}></a> */}
+                                <a id="articolo-par-descr_est" className={classes.a}></a>
                                 <h4>Cosa fa</h4>
                             </div>
                         </div>
@@ -45,7 +45,7 @@ const Detais = () => {
                         <div className="row">
                         <div className="row">
                             <div className={`offset-md-1 col-md-11 ${classes.paragrafo} mt-3`}>
-                                <a id={classes["articolo-par-descr_est"]} className={classes.a}></a>
+                                <a id="articolo-par-descr_est" className={classes.a}></a>
                                 <h4>Servizi</h4>
                             </div>
                         </div>
@@ -72,7 +72,7 @@ const Detais = () => {
 
                         <div className="row mt-4">
                             <div className={`offset-md-1 col-md-11 ${classes.testolungo}`}>
-                                {/* <a id={classes["articolo-par-desc_dest"]} className={classes.a}></a> */}
+                                <a id="articolo-par-desc_dest" className={classes.a}></a>
                                 <h4>Servizi</h4>
                             </div>
                         </div>
@@ -142,6 +142,7 @@ const Detais = () => {
                         </div>
                     </div>
 
+                    <a id="#articolo-par-uffici" className={`${classes.a}`}></a>
                     <div className="row my-5">
                         <div className={`offset-md-1 col-md-11 ${classes.testolungo}`}>
                             <h4 className='fw-bold'>Ulteriori informazioni</h4>

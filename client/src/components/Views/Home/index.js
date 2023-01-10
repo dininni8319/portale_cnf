@@ -1,7 +1,20 @@
-// import { useState } from 'react';
+import { useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 
 const Home = () => {
-  // const [ count, setCount ] = useState(12)
+  const location = useLocation();
+  
+  const handleScroll = () => {
+    const element = document.getElementById('section-home');
+
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth'});
+    }
+  };
+
+  useEffect(() => {
+    handleScroll();
+  }, [location]);
 
   const obj = [
     {id: 0, title: 'Mario Rossi', description: 'Il Sindaco della città'},
@@ -11,7 +24,7 @@ const Home = () => {
 
   return ( 
     <>
-    <div className="container custom-height-class">
+    <div className="container custom-height-class" id='section-home'>
       <div className="row">
         <div className='col-12 col-md-6'>
           <h1 className='fw-bolder text-success text-center py-5'>Parte l'estate con oltre 300 eventi in centro e nei quartieri</h1>
